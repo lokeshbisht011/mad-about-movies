@@ -44,7 +44,7 @@ const Images = () => {
         const randomIndex = Math.floor(Math.random() * derangements.length);
 
         setNewImages(derangements[randomIndex]);
-    }, [allImages]);
+    }, []);
 
 
     const moveImage = (dragIndex, hoverIndex) => {
