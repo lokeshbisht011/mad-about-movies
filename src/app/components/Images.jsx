@@ -44,7 +44,7 @@ const Images = () => {
         const randomIndex = Math.floor(Math.random() * derangements.length);
 
         setNewImages(derangements[randomIndex]);
-    }, []);
+    }, [allImages]);
 
 
     const moveImage = (dragIndex, hoverIndex) => {
@@ -56,8 +56,6 @@ const Images = () => {
 
         setImages(newImages);
     };
-
-
 
     const checkSequence = () => {
         numberOfGuesses++;
@@ -111,7 +109,7 @@ const Images = () => {
             <DndProvider backend={HTML5Backend}>
                 <div className="grid grid-cols-2 bg-[color:var(--bgSoft)] gap-4 p-6">
                     {correctImages && correctImages.map((image, index) => (
-                        <div className='h-[150px] w-[350px] relative border-4 border-green-500'>
+                        <div key={index} className='h-[150px] w-[350px] relative border-4 border-green-500'>
                             <Image key={index} src={image.src} alt="" fill className='object-cover' />
                         </div>
                     ))}
