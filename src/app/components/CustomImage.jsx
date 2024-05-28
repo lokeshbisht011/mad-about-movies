@@ -19,7 +19,7 @@ const CustomImage = ({ src, index, moveImage }) => {
     });
 
     return (
-        <div ref={(node) => drag(drop(node))} className='h-[150px] w-[350px] relative'>
+        <div ref={(node) => drag(drop(node))} className='md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative'>
             <Image src={src} alt="" className='object-cover' fill />
         </div>
     );

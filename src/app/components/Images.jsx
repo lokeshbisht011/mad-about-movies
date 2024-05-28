@@ -58,8 +58,7 @@ const Images = () => {
     };
 
     const checkSequence = () => {
-        numberOfGuesses++;
-        setNumberOfGuesses(numberOfGuesses);
+        setNumberOfGuesses(prev => prev + 1);
         var currentLength = correctImages.length;
 
         const correctIndexes = images.filter((image, index) => {
@@ -109,7 +108,7 @@ const Images = () => {
             <DndProvider backend={HTML5Backend}>
                 <div className="grid grid-cols-2 bg-[color:var(--bgSoft)] gap-4 p-6">
                     {correctImages && correctImages.map((image, index) => (
-                        <div key={index} className='h-[150px] w-[350px] relative border-4 border-green-500'>
+                        <div key={index} className='md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>
                             <Image key={index} src={image.src} alt="" fill className='object-cover' />
                         </div>
                     ))}
