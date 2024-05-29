@@ -14,27 +14,32 @@ import { extractIdFromUrl } from '../utils/utils';
 import CustomImage from './CustomImage';
 import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL } from '../utils/constants';
 import Share from './Share';
+import CustomDragLayer from './CustomDragLayer';
 
 const Images = () => {
+
     const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
     const currentData = bollywoodMovies[randomMovieIndex];
 
-    const allImages = Object.entries(currentData)
-        .filter(([key, value]) => key.startsWith('image'))
-        .map(([key, value]) => {
-            const id = extractIdFromUrl(value);
-            return {
-                src: `${PREFIX}${id}`,
-                correctIndex: parseInt(key.slice(-1)) - 1
-            };
-        });
-
+    const [allImages, setAllImages] = useState([]);
     const [images, setImages] = useState([]);
-    var [numberOfGuesses, setNumberOfGuesses] = useState(0);
     const [correctImages, setCorrectImages] = useState([]);
+    const [numberOfGuesses, setNumberOfGuesses] = useState(0);
     const [gameCompleted, setGameCompleted] = useState(false);
 
     useEffect(() => {
+        const allImages = Object.entries(currentData)
+            .filter(([key, value]) => key.startsWith('image'))
+            .map(([key, value]) => {
+                const id = extractIdFromUrl(value);
+                return {
+                    src: `${PREFIX}${id}`,
+                    correctIndex: parseInt(key.slice(-1)) - 1
+                };
+            });
+            
+        setAllImages(allImages);
+
         const setNewImages = (order) => {
             const newImages = Array(allImages.length).fill(null);
             order.forEach((index, i) => {
@@ -108,6 +113,7 @@ const Images = () => {
         <div className='flex flex-col gap-5 h-lvh'>
             <Toaster />
             <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
+                <CustomDragLayer />
                 <div className="grid grid-cols-2 bg-[color:var(--bgSoft)] gap-4 p-6">
                     {correctImages && correctImages.map((image, index) => (
                         <div key={index} className='md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>

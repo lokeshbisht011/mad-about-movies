@@ -5,7 +5,7 @@ import { useDrag, useDrop } from 'react-dnd';
 const CustomImage = ({ src, index, moveImage }) => {
     const [, drag] = useDrag({
         type: 'IMAGE',
-        item: { index },
+        item: { index, src },
     });
 
     const [, drop] = useDrop({
