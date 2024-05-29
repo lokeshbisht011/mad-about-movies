@@ -18,16 +18,10 @@ import CustomDragLayer from './CustomDragLayer';
 
 const Images = () => {
 
-    const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
-    const currentData = bollywoodMovies[randomMovieIndex];
+    const setRandomMovie = () => {
+        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
+        const currentData = bollywoodMovies[randomMovieIndex];
 
-    const [allImages, setAllImages] = useState([]);
-    const [images, setImages] = useState([]);
-    const [correctImages, setCorrectImages] = useState([]);
-    const [numberOfGuesses, setNumberOfGuesses] = useState(0);
-    const [gameCompleted, setGameCompleted] = useState(false);
-
-    useEffect(() => {
         const allImages = Object.entries(currentData)
             .filter(([key, value]) => key.startsWith('image'))
             .map(([key, value]) => {
@@ -37,7 +31,7 @@ const Images = () => {
                     correctIndex: parseInt(key.slice(-1)) - 1
                 };
             });
-            
+
         setAllImages(allImages);
 
         const setNewImages = (order) => {
@@ -51,6 +45,17 @@ const Images = () => {
         const randomIndex = Math.floor(Math.random() * derangements.length);
 
         setNewImages(derangements[randomIndex]);
+    }
+
+
+    const [allImages, setAllImages] = useState([]);
+    const [images, setImages] = useState([]);
+    const [correctImages, setCorrectImages] = useState([]);
+    const [numberOfGuesses, setNumberOfGuesses] = useState(0);
+    const [gameCompleted, setGameCompleted] = useState(false);
+
+    useEffect(() => {
+        setRandomMovie();
     }, []);
 
 
@@ -109,6 +114,11 @@ const Images = () => {
         });
     }
 
+    const nextMovie = () => {
+        setRandomMovie();
+        setCorrectImages([]);
+    }
+
     return (
         <div className='flex flex-col gap-5 h-lvh'>
             <Toaster />
@@ -139,6 +149,13 @@ const Images = () => {
                     </div>
                 </div>
             )}
+            {
+                gameCompleted && (
+                    <div className='flex items-center justify-center gap-10'>
+                        <button onClick={nextMovie} className="px-4 py-2 mb-2 rounded-lg bg-green-500">Next Movie</button>
+                    </div>
+                )
+            }
             <div className='flex items-center justify-center'>
                 <Share url={BOLLYWOOD_GAME_URL} description={BOLLYWOOD_GAME_SHARE_DESCRIPTION} />
             </div>
