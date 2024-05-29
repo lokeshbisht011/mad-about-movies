@@ -3,7 +3,9 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { isMobile } from 'react-device-detect';
 import { derangements } from '../utils/derangements';
 import bollywoodMovies from '/public/bollywoodMovies.json'
 import toast, { Toaster } from 'react-hot-toast';
@@ -105,7 +107,7 @@ const Images = () => {
     return (
         <div className='flex flex-col gap-5 h-lvh'>
             <Toaster />
-            <DndProvider backend={HTML5Backend}>
+            <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
                 <div className="grid grid-cols-2 bg-[color:var(--bgSoft)] gap-4 p-6">
                     {correctImages && correctImages.map((image, index) => (
                         <div key={index} className='md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>
