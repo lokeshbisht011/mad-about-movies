@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4080624113623119"
-          crossorigin="anonymous"></script>
+          crossOrigin="anonymous"></script>
         <meta property='og:image' content='' />
-        <meta property='og:title' content='Test title' />
-        <meta property='og:description' content='Test Description' />
+        <meta property='og:title' content='Mad About Movies' />
+        <meta property='og:description' content='Everything movie related...' />
       </head>
       <body className={inter.className}>
         <div className="bg-[color:var(--bg)]">

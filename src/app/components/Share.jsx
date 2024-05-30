@@ -4,8 +4,6 @@ import {
     FacebookIcon,
     TelegramShareButton,
     TelegramIcon,
-    FacebookMessengerShareButton,
-    FacebookMessengerIcon,
     TwitterShareButton,
     TwitterIcon,
     WhatsappShareButton,

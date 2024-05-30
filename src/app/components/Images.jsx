@@ -67,6 +67,7 @@ const Images = () => {
     };
 
     const checkSequence = () => {
+        toast.dismiss();
         setNumberOfGuesses(prev => prev + 1);
         var lastCorrectIndex = 0;
 
@@ -81,8 +82,8 @@ const Images = () => {
         setCorrectIndex(lastCorrectIndex);
 
         if (lastCorrectIndex == 6) {
-            showGameCompletedDialog();
             setGameCompleted(true);
+            showGameCompletedDialog();
         } else if (lastCorrectIndex > 0) {
             toast(`You guessed ${lastCorrectIndex} image(s) correctly! Keep going!`);
         } else {
@@ -114,6 +115,7 @@ const Images = () => {
     };
 
     const giveUp = () => {
+        toast.dismiss();
         Swal.fire({
             title: "Are you sure you want to give up?",
             showCancelButton: true,
@@ -136,7 +138,22 @@ const Images = () => {
         });
     }
 
+    const challengeFriend = () => {
+        Swal.fire({
+            title: "Challenge your friends.",
+            html: ReactDOMServer.renderToString(
+                <div className='flex items-center justify-center'>
+                    <Share url={BOLLYWOOD_GAME_URL} description={BOLLYWOOD_GAME_SHARE_DESCRIPTION} />
+                    <button onClick={console.log("asdf")} >Temp</button>
+                </div>
+            ),
+            showConfirmButton: false,
+            width: 500,
+        });
+    }
+
     const nextMovie = () => {
+        setNumberOfGuesses(0);
         setRandomMovie();
         setGameCompleted(false);
         setCorrectIndex(0);
@@ -161,22 +178,23 @@ const Images = () => {
                                 <Image src={image.src} alt="" fill className='object-cover' />
                             </div>
                         )
-                    ))}
+                    ))} 
                 </div>
             </DndProvider>
             {!gameCompleted && (
                 <div className='flex items-center justify-center gap-10'>
-                    <button onClick={checkSequence} className="px-4 py-2 mb-2 rounded-lg bg-green-500">Guess</button>
-                    <button onClick={giveUp} className="px-4 py-2 mb-2 rounded-lg bg-green-500">Give Up</button>
+                    <button onClick={checkSequence} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
+                    <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
                     <div>
-                        <span className='text-white text-xl ml-auto'>Guesses: {numberOfGuesses}</span>
+                        <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
                     </div>
                 </div>
             )}
             {
                 gameCompleted && (
                     <div className='flex items-center justify-center gap-10'>
-                        <button onClick={nextMovie} className="px-4 py-2 mb-2 rounded-lg bg-green-500">Next Movie</button>
+                        <button onClick={challengeFriend} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                        <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Next Movie</button>
                     </div>
                 )
             }
