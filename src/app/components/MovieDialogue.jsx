@@ -9,6 +9,7 @@ import { BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD
 import Share from './Share';
 import ReactDOM from 'react-dom';
 import levenshtein from 'fast-levenshtein';
+import { createRoot } from 'react-dom/client';
 
 const MovieDialogue = ({ params }) => {
 
@@ -60,15 +61,20 @@ const MovieDialogue = ({ params }) => {
             title: title,
             html: '<div id="share-container"></div>',
             didOpen: () => {
-                ReactDOM.render(
-                    <div className='flex items-center justify-center'>
-                        <Share url={movieUrl} description={description} />
-                    </div>,
-                    document.getElementById('share-container')
-                );
-            },
-            willClose: () => {
-                ReactDOM.unmountComponentAtNode(document.getElementById('share-container'));
+                const container = document.getElementById('share-container');
+                if (container) {
+                    const root = createRoot(container);
+                    root.render(
+                        <div className='flex items-center justify-center'>
+                            <Share url={movieUrl} description={description} />
+                        </div>
+                    );
+                    Swal.update({
+                        willClose: () => {
+                            root.unmount();
+                        }
+                    });
+                }
             },
             showConfirmButton: false,
             width: 500,
@@ -105,15 +111,20 @@ const MovieDialogue = ({ params }) => {
             title: "Challenge your friends.",
             html: '<div id="share-container"></div>',
             didOpen: () => {
-                ReactDOM.render(
-                    <div className='flex items-center justify-center'>
-                        <Share url={movieUrl} description={description} />
-                    </div>,
-                    document.getElementById('share-container')
-                );
-            },
-            willClose: () => {
-                ReactDOM.unmountComponentAtNode(document.getElementById('share-container'));
+                const container = document.getElementById('share-container');
+                if (container) {
+                    const root = createRoot(container);
+                    root.render(
+                        <div className='flex items-center justify-center'>
+                            <Share url={movieUrl} description={description} />
+                        </div>
+                    );
+                    Swal.update({
+                        willClose: () => {
+                            root.unmount();
+                        }
+                    });
+                }
             },
             showConfirmButton: false,
             width: 500,

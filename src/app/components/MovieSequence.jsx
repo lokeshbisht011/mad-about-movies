@@ -114,15 +114,20 @@ const MovieSequence = ({ params }) => {
             title: title,
             html: '<div id="share-container"></div>',
             didOpen: () => {
-                ReactDOM.render(
-                    <div className='flex items-center justify-center'>
-                        <Share url={movieUrl} description={description} />
-                    </div>,
-                    document.getElementById('share-container')
-                );
-            },
-            willClose: () => {
-                ReactDOM.unmountComponentAtNode(document.getElementById('share-container'));
+                const container = document.getElementById('share-container');
+                if (container) {
+                    const root = createRoot(container);
+                    root.render(
+                        <div className='flex items-center justify-center'>
+                            <Share url={movieUrl} description={description} />
+                        </div>
+                    );
+                    Swal.update({
+                        willClose: () => {
+                            root.unmount();
+                        }
+                    });
+                }
             },
             showConfirmButton: false,
             width: 500,
@@ -159,15 +164,20 @@ const MovieSequence = ({ params }) => {
             title: "Challenge your friends.",
             html: '<div id="share-container"></div>',
             didOpen: () => {
-                ReactDOM.render(
-                    <div className='flex items-center justify-center'>
-                        <Share url={movieUrl} description={description} />
-                    </div>,
-                    document.getElementById('share-container')
-                );
-            },
-            willClose: () => {
-                ReactDOM.unmountComponentAtNode(document.getElementById('share-container'));
+                const container = document.getElementById('share-container');
+                if (container) {
+                    const root = createRoot(container);
+                    root.render(
+                        <div className='flex items-center justify-center'>
+                            <Share url={movieUrl} description={description} />
+                        </div>
+                    );
+                    Swal.update({
+                        willClose: () => {
+                            root.unmount();
+                        }
+                    });
+                }
             },
             showConfirmButton: false,
             width: 500,

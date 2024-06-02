@@ -1,16 +1,18 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import bollywoodMovieDialogues from '/public/bollywoodMovieDialogues.json'
 
-const page = () => {
+const Page = () => {
 
     const router = useRouter();
 
-    const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieDialogues.length);
-    const newUrl = `/dialogue/mamb${randomMovieIndex}`;
-    router.push(newUrl);
+    useEffect(() => {
+        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieDialogues.length);
+        const newUrl = `/dialogue/mamb${randomMovieIndex}`;
+        router.push(newUrl);
+    }, [router]);
 
     return (
         <div>
@@ -18,4 +20,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

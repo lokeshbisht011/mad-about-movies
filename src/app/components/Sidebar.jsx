@@ -7,6 +7,8 @@ import { usePathname } from 'next/navigation';
 
 const Sidebar = () => {
 
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -14,7 +16,7 @@ const Sidebar = () => {
   };
 
   const isActive = (path) => {
-    const pathname = usePathname();
+    
     return pathname.startsWith(path) ? 'bg-[color:var(--bg)] text-white' : 'text-white';
   };
 
