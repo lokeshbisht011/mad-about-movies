@@ -1,0 +1,42 @@
+[
+    {
+        "name" : "Zindagi Na Milegi Dobara",
+        "id" : 1,
+        "image" : "https://drive.google.com/file/d/1u7fbJc75BgYeqrvH1_gy_K0XUZ72ZMI9/view?usp=sharing"
+    },
+    {
+        "name" : "Yeh Jawaani Hai Deewani",
+        "id" : 2,
+        "image" : "https://drive.google.com/file/d/1qfXs_7COoDxozu2EqaqmQjtV33Z2OrtZ/view?usp=sharing"
+    },
+    {
+        "name" : "Yeh Jawaani Hai Deewani",
+        "id" : 3,
+        "image" : "https://drive.google.com/file/d/1zz6lghUOub3A28hjS86BUKIR75BtZuA2/view?usp=sharing"
+    },
+    {
+        "name" : "Chup Chup Ke",
+        "id" : 4,
+        "image" : "https://drive.google.com/file/d/18Dm4QD_3qLHO9h478wfq8VpfYknDAC_z/view?usp=sharing"
+    },
+    {
+        "name" : "Laapataa Ladies",
+        "id" : 5,
+        "image" : "https://drive.google.com/file/d/1-Y3968HxB4bcKBhV87eJRgcPtaAwX_1u/view?usp=sharing"
+    },
+    {
+        "name" : "Wake Up Sid",
+        "id" : 6,
+        "image" : "https://drive.google.com/file/d/1YTA5fs2hrTaucYVB8K0fVj9cm1rWYyd3/view?usp=sharing"
+    },
+    {
+        "name" : "Dil Chahta Hai",
+        "id" : 7,
+        "image" : "https://drive.google.com/file/d/1LouJtBwBF4ZteSn8wxE59fSS2glEhzRc/view?usp=sharing"
+    },
+    {
+        "name" : "Tu Jhooti Main Makkar",
+        "id" : 8,
+        "image" : "https://drive.google.com/file/d/1N1YgND3sml3CTpwXvs8961-I1A5_cLth/view?usp=sharing"
+    }   
+]

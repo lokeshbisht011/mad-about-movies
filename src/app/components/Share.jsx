@@ -33,7 +33,6 @@ const Share = ({url, description}) => {
             <WhatsappShareButton
                 url={url}
                 title={description}
-                separator=":: "
             >
                 <WhatsappIcon size={32} round />
             </WhatsappShareButton>

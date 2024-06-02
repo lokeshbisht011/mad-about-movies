@@ -4,7 +4,7 @@ import HomeLayout from "./components/HomeLayout";
 
 export default function Home() {
   return (
-    <div className="bg-[color:var(--bg)]">
+    <div className='ml-48'>
       <HomeLayout />
     </div>
   );

@@ -2,15 +2,17 @@
 
 import React from 'react'
 import { useRouter } from 'next/navigation';
-import bollywoodMovieDialogues from '/public/bollywoodMovieDialogues.json'
+import bollywoodMovies from '/public/bollywoodMovies.json'
 
 const page = () => {
 
     const router = useRouter();
 
-    const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieDialogues.length);
-    const newUrl = `/dialogue/mamb${randomMovieIndex}`;
+    const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
+    const newUrl = `/sequence/mamb${randomMovieIndex}`;
     router.push(newUrl);
+
+    console.log(bollywoodMovies);
 
     return (
         <div>

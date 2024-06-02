@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -7,7 +7,6 @@ import { TouchBackend } from 'react-dnd-touch-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { isMobile } from 'react-device-detect';
 import { derangements } from '../utils/derangements';
-import ReactDOMServer from 'react-dom/server';
 import bollywoodMovies from '/public/bollywoodMovies.json'
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -16,13 +15,18 @@ import CustomImage from './CustomImage';
 import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL } from '../utils/constants';
 import Share from './Share';
 import CustomDragLayer from './CustomDragLayer';
+import ReactDOM from 'react-dom';
+import { useRouter } from 'next/navigation';
 
-const Images = () => {
+const MovieSequence = ({ params }) => {
 
-    const setRandomMovie = () => {
-        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
-        const currentData = bollywoodMovies[randomMovieIndex];
+    const router = useRouter();
 
+    const regex = /mamb(\d+)/;
+    const movieIndex = params.id.match(regex)[1];
+    const movieUrl = BOLLYWOOD_GAME_URL + "/sequence/" + params.id;
+
+    const setRandomMovie = (currentData) => {
         const allImages = Object.entries(currentData)
             .filter(([key, value]) => key.startsWith('image'))
             .map(([key, value]) => {
@@ -42,7 +46,6 @@ const Images = () => {
         }
 
         const randomIndex = Math.floor(Math.random() * derangements.length);
-
         setNewImages(derangements[randomIndex]);
     }
 
@@ -50,9 +53,12 @@ const Images = () => {
     const [correctIndex, setCorrectIndex] = useState(0);
     const [numberOfGuesses, setNumberOfGuesses] = useState(0);
     const [gameCompleted, setGameCompleted] = useState(false);
+    const [movieName, setMovieName] = useState();
 
     useEffect(() => {
-        setRandomMovie();
+        const currentData = bollywoodMovies[movieIndex];
+        setMovieName(currentData.name);
+        setRandomMovie(currentData);
     }, []);
 
 
@@ -102,13 +108,22 @@ const Images = () => {
             title = `You guessed the sequence correctly in ${numberOfGuesses} guesses! Challenge your friends now.`;
         }
 
+        const description = "I correctly arranged the scenes from " + movieName + " in just " + numberOfGuesses + " guesses. Can you beat my score?!";
+
         Swal.fire({
             title: title,
-            html: ReactDOMServer.renderToString(
-                <div className='flex items-center justify-center'>
-                    <Share url={BOLLYWOOD_GAME_URL} description={BOLLYWOOD_GAME_SHARE_DESCRIPTION} />
-                </div>
-            ),
+            html: '<div id="share-container"></div>',
+            didOpen: () => {
+                ReactDOM.render(
+                    <div className='flex items-center justify-center'>
+                        <Share url={movieUrl} description={description} />
+                    </div>,
+                    document.getElementById('share-container')
+                );
+            },
+            willClose: () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('share-container'));
+            },
             showConfirmButton: false,
             width: 500,
         });
@@ -139,32 +154,41 @@ const Images = () => {
     }
 
     const challengeFriend = () => {
+        const description = "Can you correctly sequence the scenes from " + movieName + "?!";
         Swal.fire({
             title: "Challenge your friends.",
-            html: ReactDOMServer.renderToString(
-                <div className='flex items-center justify-center'>
-                    <Share url={BOLLYWOOD_GAME_URL} description={BOLLYWOOD_GAME_SHARE_DESCRIPTION} />
-                    <button onClick={console.log("asdf")} >Temp</button>
-                </div>
-            ),
+            html: '<div id="share-container"></div>',
+            didOpen: () => {
+                ReactDOM.render(
+                    <div className='flex items-center justify-center'>
+                        <Share url={movieUrl} description={description} />
+                    </div>,
+                    document.getElementById('share-container')
+                );
+            },
+            willClose: () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('share-container'));
+            },
             showConfirmButton: false,
             width: 500,
         });
     }
 
     const nextMovie = () => {
-        setNumberOfGuesses(0);
-        setRandomMovie();
-        setGameCompleted(false);
-        setCorrectIndex(0);
+        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length) + 1;
+        const newUrl = `/sequence/mamb${randomMovieIndex}`;
+        router.push(newUrl, undefined, { shallow: true });
     }
 
     return (
-        <div className='flex flex-col gap-5 h-lvh'>
+        <div className='flex flex-col bg-[color:var(--bgSoft)] gap-5 p-5'>
+            <div className='justify-center text-center text-white text-2xl'>
+                <span className=''>Movie : {movieName}</span>
+            </div>
             <Toaster />
             <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
                 <CustomDragLayer />
-                <div className="grid grid-cols-2 bg-[color:var(--bgSoft)] gap-4 p-6">
+                <div className="grid grid-cols-2 gap-4">
                     {images.map((image, index) => (
                         index >= correctIndex ? (
                             <CustomImage
@@ -178,7 +202,7 @@ const Images = () => {
                                 <Image src={image.src} alt="" fill className='object-cover' />
                             </div>
                         )
-                    ))} 
+                    ))}
                 </div>
             </DndProvider>
             {!gameCompleted && (
@@ -191,15 +215,13 @@ const Images = () => {
                 </div>
             )}
             {
-                gameCompleted && (
-                    <div className='flex items-center justify-center gap-10'>
-                        <button onClick={challengeFriend} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                        <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Next Movie</button>
-                    </div>
-                )
+                <div className='flex items-center justify-center gap-10'>
+                    <button onClick={challengeFriend} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                    <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Next Movie</button>
+                </div>
             }
         </div>
     );
-};
+}
 
-export default Images;
+export default MovieSequence;
