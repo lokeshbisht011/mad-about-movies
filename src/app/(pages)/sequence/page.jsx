@@ -10,7 +10,8 @@ const Page = () => {
 
     useEffect(() => {
         const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
-        const newUrl = `/sequence/mamb${randomMovieIndex}`;
+        // const newUrl = `/sequence/mamb${randomMovieIndex}`;
+        const newUrl = `/sequence/mamb8`;
         router.push(newUrl);
     }, [router]);
 

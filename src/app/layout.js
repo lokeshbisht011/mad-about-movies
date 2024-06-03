@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,10 @@ export default function RootLayout({ children }) {
         <meta property='og:description' content='Everything movie related...' />
       </head>
       <body className={`${inter.className} bg-[color:var(--bg)]`}>
-        <div className=''>
+        <div className='bg-[color:var(--bg)]'>
           <Sidebar />
           {children}
+          <Footer />
         </div>
       </body>
     </html>

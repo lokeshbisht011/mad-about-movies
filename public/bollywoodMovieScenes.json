@@ -38,5 +38,25 @@
         "name" : "Tu Jhooti Main Makkar",
         "id" : 8,
         "image" : "https://drive.google.com/file/d/1N1YgND3sml3CTpwXvs8961-I1A5_cLth/view?usp=sharing"
-    }   
+    },
+    {
+        "name" : "Ae Dil Hai Mushkil",
+        "id" : 9,
+        "image" : "https://drive.google.com/file/d/1cl9UAKfDUDXrr-ALaxcojLf9vYjapAqV/view?usp=sharing"
+    },
+    {
+        "name" : "Ae Dil Hai Mushkil",
+        "id" : 10,
+        "image" : "https://drive.google.com/file/d/1cfGfYcpFdUznpit1YWfR6vXsrZ9F2T5a/view?usp=sharing"
+    },
+    {
+        "name" : "New York",
+        "id" : 11,
+        "image" : "https://drive.google.com/file/d/1yTxRiAEwbyqJkvmSrls47OaVP-jF--1-/view?usp=sharing"
+    },
+    {
+        "name" : "Rab Ne Bana Di Jodi",
+        "id" : 12,
+        "image" : "https://drive.google.com/file/d/1vo4LiJh7AsA218HUVmoPX7qgGu33_L0F/view?usp=sharing"
+    }
 ]

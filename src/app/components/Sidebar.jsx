@@ -54,7 +54,8 @@ const Sidebar = () => {
           <span className='text-xl text-white'>
           <Link href="/">MadAboutMovies</Link></span>
         </div>
-        <nav>
+        <hr className="my-2 border-t border-gray-300" />
+        <nav className='text-center text-xl'>
           <ul>
             <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/sequence')}`}>
               <Link href="/sequence">Sequence</Link>
@@ -64,6 +65,13 @@ const Sidebar = () => {
             </li>
             <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/scene')}`}>
               <Link href="/scene">Scene</Link>
+            </li>
+            <hr className="my-2 border-t border-gray-300" />
+            <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/about')}`}>
+              <Link href="/about">About</Link>
+            </li>
+            <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/contact')}`}>
+              <Link href="/contact">Contact Us</Link>
             </li>
           </ul>
         </nav>

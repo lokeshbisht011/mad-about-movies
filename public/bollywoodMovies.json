@@ -68,5 +68,35 @@
         "image4" : "https://drive.google.com/file/d/136vTzRs_IYKsEOVtBRkzDsZ7VrRMuYF-/view?usp=sharing",
         "image5" : "https://drive.google.com/file/d/1WRt7RnRRvIL5zXvNyHPkU_QOozfSgMsz/view?usp=sharing",
         "image6" : "https://drive.google.com/file/d/1rFNUJ_CO2RUdCTMAuMftTo2hpB4JaAYV/view?usp=sharing"
+    }, 
+    {
+        "name" : "Ae Dil Hai Mushkil", 
+        "id" : 8,
+        "image1" : "https://drive.google.com/file/d/1q-h63nOrEtc_BnrQAqvs65hO-RCmpRqL/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1mZAHZTYfeZesOoqvfikelO-l0BCUCiwT/view?usp=sharing",
+        "image3" : "https://drive.google.com/file/d/13v6JVYKs73Xp1fkh_30KogYo8wGY1PoV/view?usp=sharing",
+        "image4" : "https://drive.google.com/file/d/1Y5w7Pcq3WgZQhcwrMvHrLuXPgWlzwbYV/view?usp=sharing",
+        "image5" : "https://drive.google.com/file/d/1GXDHcj_SIj-Tje5BRPiLDTKvMqtZ5Znl/view?usp=sharing",
+        "image6" : "https://drive.google.com/file/d/12xiN9CvCHd7vnw-FRjBprOZpBhCu0nBU/view?usp=sharing"
+    },
+    {
+        "name" : "New York", 
+        "id" : 9,
+        "image1" : "https://drive.google.com/file/d/1_p4RTZze1fTmsw5JmVgjjwl5UymJjEUo/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1BCTjLnaMqyukFYsWDOVS9jrdrswQ4j6f/view?usp=sharing",
+        "image3" : "https://drive.google.com/file/d/10oFrOjw45-80L7kJMbDK7zpEi-oefEQg/view?usp=sharing",
+        "image4" : "https://drive.google.com/file/d/1C2ck8rg87juJ3ahwcAD72WAG-8qfOQXD/view?usp=sharing",
+        "image5" : "https://drive.google.com/file/d/1TP1Ym3s2lVz_VTF1MGJAyZVAR6aTCxvU/view?usp=sharing",
+        "image6" : "https://drive.google.com/file/d/1btIEYfyS_ChL2uUGa7TbEVuKtUXOdfzq/view?usp=sharing"
+    },
+    {
+        "name" : "Rab Ne Bana Di Jodi", 
+        "id" : 10,
+        "image1" : "https://drive.google.com/file/d/1p_2z2VCMU-6QgRtB9tJbm7JfqHjUsq-J/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1dU0z5-3clu6gusChwGNM8fG2HFnR-tuF/view?usp=sharing",
+        "image3" : "https://drive.google.com/file/d/1P-mS8soFGu0yit1cUV_Rctl6xJhsMF9P/view?usp=sharing",
+        "image4" : "https://drive.google.com/file/d/1MB7KTWO6EFQJz7W_kq-XQMsl_w3ZPy6B/view?usp=sharing",
+        "image5" : "https://drive.google.com/file/d/1d4G4Pqh962coVOtrl6nqX6BR3rF49TRl/view?usp=sharing",
+        "image6" : "https://drive.google.com/file/d/14bFrhmab5oR-b0GJtDOYY2lp-8kFX-nG/view?usp=sharing"
     }
 ]
