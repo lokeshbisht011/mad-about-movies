@@ -69,10 +69,9 @@ const MovieDialogue = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    Swal.update({
-                        willClose: () => {
-                            root.unmount();
-                        }
+                    
+                    Swal.getPopup().addEventListener('willClose', () => {
+                        root.unmount();
                     });
                 }
             },
@@ -119,10 +118,9 @@ const MovieDialogue = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    Swal.update({
-                        willClose: () => {
-                            root.unmount();
-                        }
+                    
+                    Swal.getPopup().addEventListener('willClose', () => {
+                        root.unmount();
                     });
                 }
             },

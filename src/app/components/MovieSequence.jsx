@@ -17,6 +17,7 @@ import Share from './Share';
 import CustomDragLayer from './CustomDragLayer';
 import ReactDOM from 'react-dom';
 import { useRouter } from 'next/navigation';
+import { createRoot } from 'react-dom/client';
 
 const MovieSequence = ({ params }) => {
 
@@ -122,10 +123,9 @@ const MovieSequence = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    Swal.update({
-                        willClose: () => {
-                            root.unmount();
-                        }
+                    
+                    Swal.getPopup().addEventListener('willClose', () => {
+                        root.unmount();
                     });
                 }
             },
@@ -161,7 +161,7 @@ const MovieSequence = ({ params }) => {
     const challengeFriend = () => {
         const description = "Can you correctly sequence the scenes from " + movieName + "?!";
         Swal.fire({
-            title: "Challenge your friends.",
+            title: "Challenge your friends.a",
             html: '<div id="share-container"></div>',
             didOpen: () => {
                 const container = document.getElementById('share-container');
@@ -172,10 +172,9 @@ const MovieSequence = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    Swal.update({
-                        willClose: () => {
-                            root.unmount();
-                        }
+                    
+                    Swal.getPopup().addEventListener('willClose', () => {
+                        root.unmount();
                     });
                 }
             },

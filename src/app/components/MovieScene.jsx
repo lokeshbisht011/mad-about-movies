@@ -11,6 +11,7 @@ import Share from './Share';
 import ReactDOM from 'react-dom';
 import { useRouter } from 'next/navigation';
 import levenshtein from 'fast-levenshtein';
+import { createRoot } from 'react-dom/client';
 
 const MovieScene = ({ params }) => {
 
@@ -71,10 +72,9 @@ const MovieScene = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    Swal.update({
-                        willClose: () => {
-                            root.unmount();
-                        }
+                    
+                    Swal.getPopup().addEventListener('willClose', () => {
+                        root.unmount();
                     });
                 }
             },
@@ -121,10 +121,9 @@ const MovieScene = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    Swal.update({
-                        willClose: () => {
-                            root.unmount();
-                        }
+                    
+                    Swal.getPopup().addEventListener('willClose', () => {
+                        root.unmount();
                     });
                 }
             },
