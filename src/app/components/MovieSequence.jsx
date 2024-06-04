@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { isMobile } from 'react-device-detect';
@@ -10,12 +10,11 @@ import { derangements } from '../utils/derangements';
 import bollywoodMovies from '/public/bollywoodMovies.json'
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import { extractIdFromUrl } from '../utils/utils';
+import { extractIdFromUrl, numberToString, stringToNumber } from '../utils/utils';
 import CustomImage from './CustomImage';
-import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL } from '../utils/constants';
+import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, RANDOM_URL_PREFIX, CHALLENGE_DIALOGUE_TITLE } from '../utils/constants';
 import Share from './Share';
 import CustomDragLayer from './CustomDragLayer';
-import ReactDOM from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { createRoot } from 'react-dom/client';
 
@@ -23,8 +22,9 @@ const MovieSequence = ({ params }) => {
 
     const router = useRouter();
 
-    const regex = /mamb(\d+)/;
-    const movieIndex = params.id.match(regex)[1];
+    const movieIndexString = params.id.substring(RANDOM_URL_PREFIX.length);
+    const movieIndex = stringToNumber(movieIndexString);
+
     const movieUrl = BOLLYWOOD_GAME_URL + "/sequence/" + params.id;
 
     const setRandomMovie = (currentData) => {
@@ -73,9 +73,8 @@ const MovieSequence = ({ params }) => {
         setImages(newImages);
     };
 
-    const checkSequence = () => {
+    const guess = () => {
         toast.dismiss();
-        setNumberOfGuesses(prev => prev + 1);
         var lastCorrectIndex = 0;
 
         for (let i = 0; i < images.length; i++) {
@@ -90,26 +89,27 @@ const MovieSequence = ({ params }) => {
 
         if (lastCorrectIndex == 6) {
             setGameCompleted(true);
-            showGameCompletedDialog();
+            showGameCompletedDialog(numberOfGuesses + 1);
         } else if (lastCorrectIndex > 0) {
             toast(`You guessed ${lastCorrectIndex} image(s) correctly! Keep going!`);
         } else {
             toast("Oops! None of your guesses are correct. Try again!");
         }
+        setNumberOfGuesses(prev => prev + 1);
     };
 
-    const showGameCompletedDialog = () => {
+    const showGameCompletedDialog = (guesses) => {
         let title;
 
-        if (numberOfGuesses === 1) {
+        if (guesses === 1) {
             title = `You guessed the sequence correctly in just 1 guess!!! Amazing! Challenge your friends now.`;
-        } else if (numberOfGuesses < 4) {
-            title = `You guessed the sequence correctly in just ${numberOfGuesses} guesses!!! Great job! Challenge your friends now.`;
+        } else if (guesses < 4) {
+            title = `You guessed the sequence correctly in just ${guesses} guesses!!! Great job! Challenge your friends now.`;
         } else {
-            title = `You guessed the sequence correctly in ${numberOfGuesses} guesses! Challenge your friends now.`;
+            title = `You guessed the sequence correctly in ${guesses} guesses! Challenge your friends now.`;
         }
 
-        const description = "I correctly arranged the scenes from " + movieName + " in just " + numberOfGuesses + " guesses. Can you beat my score?!";
+        const description = "I correctly arranged the scenes from " + movieName + " in just " + guesses + " guesses. Can you beat my score?!";
 
         Swal.fire({
             title: title,
@@ -161,7 +161,7 @@ const MovieSequence = ({ params }) => {
     const challengeFriend = () => {
         const description = "Can you correctly sequence the scenes from " + movieName + "?!";
         Swal.fire({
-            title: "Challenge your friends.a",
+            title: CHALLENGE_DIALOGUE_TITLE,
             html: '<div id="share-container"></div>',
             didOpen: () => {
                 const container = document.getElementById('share-container');
@@ -184,9 +184,10 @@ const MovieSequence = ({ params }) => {
     }
 
     const nextMovie = () => {
-        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length) + 1;
-        const newUrl = `/sequence/mamb${randomMovieIndex}`;
-        router.push(newUrl, undefined, { shallow: true });
+        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
+        const suffix = numberToString(randomMovieIndex);
+        const newUrl = '/sequence/' + RANDOM_URL_PREFIX + suffix;
+        router.push(newUrl);
     }
 
     return (
@@ -216,7 +217,7 @@ const MovieSequence = ({ params }) => {
             </DndProvider>
             {!gameCompleted && (
                 <div className='flex items-center justify-center gap-10'>
-                    <button onClick={checkSequence} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
+                    <button onClick={guess} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
                     <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
                     <div>
                         <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>

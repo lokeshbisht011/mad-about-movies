@@ -7,6 +7,8 @@
   --bgSoft: #182237;
   --text: white;
   --textSoft: #b7bac1;
+  --sidebarHover: #222938;
+  --sidebarSelected: #151c2c;
 }
 
 .animate-pulse {

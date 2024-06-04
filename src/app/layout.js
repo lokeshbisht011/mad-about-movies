@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
         <meta property='og:description' content='Everything movie related...' />
       </head>
       <body className={`${inter.className} bg-[color:var(--bg)]`}>
-        <div className='bg-[color:var(--bg)]'>
+        <div className='flex flex-col h-screen bg-[color:var(--bg)]'>
           <Sidebar />
           {children}
           <Footer />

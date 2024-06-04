@@ -5,10 +5,9 @@ import React, { useState } from 'react';
 import bollywoodMovieScenes from '/public/bollywoodMovieScenes.json'
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import { extractIdFromUrl } from '../utils/utils';
-import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL } from '../utils/constants';
+import { extractIdFromUrl, stringToNumber } from '../utils/utils';
+import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, RANDOM_URL_PREFIX } from '../utils/constants';
 import Share from './Share';
-import ReactDOM from 'react-dom';
 import { useRouter } from 'next/navigation';
 import levenshtein from 'fast-levenshtein';
 import { createRoot } from 'react-dom/client';
@@ -17,9 +16,11 @@ const MovieScene = ({ params }) => {
 
     const router = useRouter();
 
-    const regex = /mamb(\d+)/;
-    const movieIndex = params.id.match(regex)[1];
+    const movieIndexString = params.id.substring(RANDOM_URL_PREFIX.length);
+    const movieIndex = stringToNumber(movieIndexString);
+
     const movieUrl = BOLLYWOOD_GAME_URL + "/scene/" + params.id;
+
     const currentData = bollywoodMovieScenes[movieIndex];
     const id = extractIdFromUrl(currentData.image);
     const sceneUrl = PREFIX + id;
@@ -31,7 +32,6 @@ const MovieScene = ({ params }) => {
 
     const guess = () => {
         toast.dismiss();
-        setNumberOfGuesses(prev => prev + 1);
 
         const actualMovieName = currentData.name.toLowerCase();
         const userGuess = guessText.toLowerCase();
@@ -40,26 +40,27 @@ const MovieScene = ({ params }) => {
 
         if (distance === 0) {
             setGameCompleted(true);
-            showGameCompletedDialog();
+            showGameCompletedDialog(numberOfGuesses + 1);
         } else if (distance <= similarityThreshold) {
             toast("Almost there! Your guess is very close. Try again!");
         } else {
             toast("Oops! Your guess is incorrect. Try again!");
         }
+        setNumberOfGuesses(prev => prev + 1);
     };
 
-    const showGameCompletedDialog = () => {
+    const showGameCompletedDialog = (guesses) => {
         let title;
 
-        if (numberOfGuesses === 1) {
+        if (guesses === 1) {
             title = `You guessed the movie correctly in just 1 guess!!! Amazing! Challenge your friends now.`;
-        } else if (numberOfGuesses < 4) {
-            title = `You guessed the movie correctly in just ${numberOfGuesses} guesses!!! Great job! Challenge your friends now.`;
+        } else if (guesses < 4) {
+            title = `You guessed the movie correctly in just ${guesses} guesses!!! Great job! Challenge your friends now.`;
         } else {
-            title = `You guessed the movie correctly in ${numberOfGuesses} guesses! Challenge your friends now.`;
+            title = `You guessed the movie correctly in ${guesses} guesses! Challenge your friends now.`;
         }
 
-        const description = "I correctly guessed the movie from a scene in just " + numberOfGuesses + " guesses. Can you beat my score?!";
+        const description = "I correctly guessed the movie from a scene in just " + guesses + " guesses. Can you beat my score?!";
         Swal.fire({
             title: title,
             html: '<div id="share-container"></div>',
@@ -110,7 +111,7 @@ const MovieScene = ({ params }) => {
     const challengeFriend = () => {
         const description = "Can you guess the movie from the scene?!";
         Swal.fire({
-            title: "Challenge your friends.",
+            title: CHALLENGE_DIALOGUE_TITLE,
             html: '<div id="share-container"></div>',
             didOpen: () => {
                 const container = document.getElementById('share-container');
@@ -133,9 +134,10 @@ const MovieScene = ({ params }) => {
     }
 
     const nextMovie = () => {
-        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieScenes.length) + 1;
-        const newUrl = `/scene/mamb${randomMovieIndex}`;
-        router.push(newUrl, undefined, { shallow: true });
+        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieScenes.length);
+        const suffix = numberToString(randomMovieIndex);
+        const newUrl = '/scene/' + RANDOM_URL_PREFIX + suffix;
+        router.push(newUrl);
     }
 
     return (

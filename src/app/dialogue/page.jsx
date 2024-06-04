@@ -3,6 +3,8 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import bollywoodMovieDialogues from '/public/bollywoodMovieDialogues.json'
+import { RANDOM_URL_PREFIX } from '@/app/utils/constants';
+import { numberToString } from '@/app/utils/utils';
 
 const Page = () => {
 
@@ -10,7 +12,8 @@ const Page = () => {
 
     useEffect(() => {
         const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieDialogues.length);
-        const newUrl = `/dialogue/mamb${randomMovieIndex}`;
+        const suffix = numberToString(randomMovieIndex);
+        const newUrl = '/dialogue/' + RANDOM_URL_PREFIX + suffix;
         router.push(newUrl);
     }, [router]);
 

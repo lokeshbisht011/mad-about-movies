@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   const isActive = (path) => {
     
-    return pathname.startsWith(path) ? 'bg-[color:var(--bg)] text-white' : 'text-white';
+    return pathname.startsWith(path) ? 'bg-[color:var(--sidebarSelected)] text-white' : 'text-white';
   };
 
   const closeSidebar = () => {
@@ -57,20 +57,20 @@ const Sidebar = () => {
         <hr className="my-2 border-t border-gray-300" />
         <nav className='text-center text-xl'>
           <ul>
-            <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/sequence')}`}>
+            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/sequence')}`}>
               <Link href="/sequence">Sequence</Link>
             </li>
-            <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/dialogue')}`}>
+            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/dialogue')}`}>
               <Link href="/dialogue">Dialogue</Link>
             </li>
-            <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/scene')}`}>
+            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/scene')}`}>
               <Link href="/scene">Scene</Link>
             </li>
             <hr className="my-2 border-t border-gray-300" />
-            <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/about')}`}>
+            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/about')}`}>
               <Link href="/about">About</Link>
             </li>
-            <li className={`hover:bg-[color:var(--bg)] transition-colors p-2 rounded ${isActive('/contact')}`}>
+            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/contact')}`}>
               <Link href="/contact">Contact Us</Link>
             </li>
           </ul>

@@ -5,20 +5,21 @@ import bollywoodMovieDialogues from '../../../public/bollywoodMovieDialogues.jso
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import { BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL } from '../utils/constants';
+import { BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, RANDOM_URL_PREFIX } from '../utils/constants';
 import Share from './Share';
-import ReactDOM from 'react-dom';
 import levenshtein from 'fast-levenshtein';
 import { createRoot } from 'react-dom/client';
+import { stringToNumber } from '../utils/utils';
 
 const MovieDialogue = ({ params }) => {
 
     const router = useRouter();
 
-    const regex = /mamb(\d+)/;
-    const movieIndex = params.id.match(regex)[1];
+    const movieIndexString = params.id.substring(RANDOM_URL_PREFIX.length);
+    const movieIndex = stringToNumber(movieIndexString);
+
     const currentData = bollywoodMovieDialogues[movieIndex];
-    const movieName = currentData.name;
+    
     const movieUrl = BOLLYWOOD_GAME_URL + "/dialogue/" + params.id;
 
     const [numberOfGuesses, setNumberOfGuesses] = useState(0);
@@ -27,7 +28,6 @@ const MovieDialogue = ({ params }) => {
 
     const guess = () => {
         toast.dismiss();
-        setNumberOfGuesses(prev => prev + 1);
 
         const actualMovieName = currentData.name.toLowerCase();
         const userGuess = guessText.toLowerCase();
@@ -36,26 +36,27 @@ const MovieDialogue = ({ params }) => {
 
         if (distance === 0) {
             setGameCompleted(true);
-            showGameCompletedDialog();
+            showGameCompletedDialog(numberOfGuesses + 1);
         } else if (distance <= similarityThreshold) {
             toast("Almost there! Your guess is very close. Try again!");
         } else {
             toast("Oops! Your guess is incorrect. Try again!");
         }
+        setNumberOfGuesses(prev => prev + 1);
     };
 
-    const showGameCompletedDialog = () => {
+    const showGameCompletedDialog = (guesses) => {
         let title;
 
-        if (numberOfGuesses === 1) {
+        if (guesses === 1) {
             title = `You guessed the movie correctly in just 1 guess!!! Amazing! Challenge your friends now.`;
-        } else if (numberOfGuesses < 4) {
-            title = `You guessed the movie correctly in just ${numberOfGuesses} guesses!!! Great job! Challenge your friends now.`;
+        } else if (guesses < 4) {
+            title = `You guessed the movie correctly in just ${guesses} guesses!!! Great job! Challenge your friends now.`;
         } else {
-            title = `You guessed the movie correctly in ${numberOfGuesses} guesses! Challenge your friends now.`;
+            title = `You guessed the movie correctly in ${guesses} guesses! Challenge your friends now.`;
         }
 
-        const description = "I correctly guessed the movie from a dialogue in just " + numberOfGuesses + " guesses. Can you beat my score?!";
+        const description = "I correctly guessed the movie from a dialogue in just " + guesses + " guesses. Can you beat my score?!";
 
         Swal.fire({
             title: title,
@@ -107,7 +108,7 @@ const MovieDialogue = ({ params }) => {
     const challengeFriend = () => {
         const description = "I challenge you to guess the movie from a dialogue!!\n\n";
         Swal.fire({
-            title: "Challenge your friends.",
+            title: CHALLENGE_DIALOGUE_TITLE,
             html: '<div id="share-container"></div>',
             didOpen: () => {
                 const container = document.getElementById('share-container');
@@ -130,13 +131,14 @@ const MovieDialogue = ({ params }) => {
     }
 
     const nextMovie = () => {
-        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieDialogues.length) + 1;
-        const newUrl = `/dialogue/mamb${randomMovieIndex}`;
-        router.push(newUrl, undefined, { shallow: true });
+        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieDialogues.length);
+        const suffix = numberToString(randomMovieIndex);
+        const newUrl = '/dialogue/' + RANDOM_URL_PREFIX + suffix;
+        router.push(newUrl);
     }
 
     return (
-        <div className='flex flex-col gap-5 h-lvh items-center'>
+        <div className='flex flex-col gap-5 items-center'>
             <Toaster />
             <div className="flex flex-col bg-[color:var(--bgSoft)] gap-4 p-6">
                 <div className="text-white max-w-lg text-center">
