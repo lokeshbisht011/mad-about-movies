@@ -1,7 +1,6 @@
 [
     {
         "name" : "Zindagi Na Milegi Dobara",
-        "id" : 1,
         "image1" : "https://drive.google.com/file/d/18DKSt9l-vzqdzPOxfxSWpdOtUEtD0EiA/view?usp=drive_link",
         "image2" : "https://drive.google.com/file/d/1ErGfgHaEV69Ii0sH_R-ZpN9OUTOOxDIR/view?usp=drive_link",
         "image3" : "https://drive.google.com/file/d/1e-ewykT63lrnJKYPiNGAp9wSSmRZh2fH/view?usp=drive_link",
@@ -11,17 +10,15 @@
     },
     {
         "name" : "Tu Jhooti Main Makkar",
-        "id" : 2,
         "image1" : "https://drive.google.com/file/d/1ZfU_Aj88FwDZ3Rfw7P3Shvm17pDs14J1/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1PRjAIqUxSeclKy5T-OQw8rftuqd-z5D3/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/1G8UUn8goH_6EyDdtBg-iL6943LlgpymX/view?usp=sharing",
         "image4" : "https://drive.google.com/file/d/1Qf2Nc5zezOyGF96tUb1kPffleJAVNMaC/view?usp=sharing",
         "image5" : "https://drive.google.com/file/d/1lDelvXqcSfhdKsXqn-z8r7OqJRSXvgJ5/view?usp=sharing",
-        "image6" : "https://drive.googhighlowle.com/file/d/1K5sPmQTi11ozUVi-hPPt8GCMHm5Yiogr/view?usp=sharing"
+        "image6" : "https://drive.google.com/file/d/1K5sPmQTi11ozUVi-hPPt8GCMHm5Yiogr/view?usp=sharing"
     },
     {
         "name" : "Chup Chup Ke",
-        "id" : 3,
         "image1" : "https://drive.google.com/file/d/1dHrpV3dhNYoctTf2YlaMADUe4fEeMmif/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1mTZeiP3TkIzmLzzFOT4FdR37lh1-yAxx/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/1xQHNxql8bSMTONgz5Im8FRupZ07JfAAP/view?usp=sharing",
@@ -31,7 +28,6 @@
     },
     {
         "name" : "Yeh Jawaani Hai Deewani",
-        "id" : 4,
         "image1" : "https://drive.google.com/file/d/12W0dNK25UzCWEZhbnXjkIupoqGp0fYk5/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1eiwY4i4WSJ0JV16pB-4VsRy62UhXTCh_/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/1d6tgxGGGSNURcnmMTh77Q2PBXSUy7Gty/view?usp=sharing",
@@ -41,7 +37,6 @@
     },
     {
         "name" : "Laapataa Ladies",
-        "id" : 5,
         "image1" : "https://drive.google.com/file/d/1-051EpptAsok4Q9m64EXcj5WZ7V6w1Lk/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1ilULfTFgesFof_Ugs_MXvXkEsqpviY3X/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/12bCakWJTHpymP612kM67V975t6w-rp9X/view?usp=sharing",
@@ -51,7 +46,6 @@
     },
     { 
         "name" : "Wake Up Sid",
-        "id" : 6,
         "image1" : "https://drive.google.com/file/d/1-oB-y-12KrnyaA3fSS4-SMOCgX7eO4wJ/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1Vek0rxd4-sVPkbAFksUpPC62BNeEU4O4/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/14-zdcT0QWXPc9SJbqF5qvSq7tGjwVH73/view?usp=sharing",
@@ -61,7 +55,6 @@
     },
     {
         "name" : "Dil Chahta Hai",
-        "id" : 7,
         "image1" : "https://drive.google.com/file/d/1z3akl3VmyeBS3GHVia_Hpms9FRd60oMn/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1Wr9CuQ4LwSIh4DiY9lZDI41R82M5gkCd/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/1yHu969TGT6feXLGyF99Zk5BmDjh81uNB/view?usp=sharing",
@@ -71,7 +64,6 @@
     }, 
     {
         "name" : "Ae Dil Hai Mushkil", 
-        "id" : 8,
         "image1" : "https://drive.google.com/file/d/1q-h63nOrEtc_BnrQAqvs65hO-RCmpRqL/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1mZAHZTYfeZesOoqvfikelO-l0BCUCiwT/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/13v6JVYKs73Xp1fkh_30KogYo8wGY1PoV/view?usp=sharing",
@@ -81,7 +73,6 @@
     },
     {
         "name" : "New York", 
-        "id" : 9,
         "image1" : "https://drive.google.com/file/d/1_p4RTZze1fTmsw5JmVgjjwl5UymJjEUo/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1BCTjLnaMqyukFYsWDOVS9jrdrswQ4j6f/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/10oFrOjw45-80L7kJMbDK7zpEi-oefEQg/view?usp=sharing",
@@ -91,7 +82,6 @@
     },
     {
         "name" : "Rab Ne Bana Di Jodi", 
-        "id" : 10,
         "image1" : "https://drive.google.com/file/d/1p_2z2VCMU-6QgRtB9tJbm7JfqHjUsq-J/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1dU0z5-3clu6gusChwGNM8fG2HFnR-tuF/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/1P-mS8soFGu0yit1cUV_Rctl6xJhsMF9P/view?usp=sharing",
@@ -101,12 +91,29 @@
     },
     {
         "name" : "Main Hoon Na",
-        "id" : 11,
         "image1" : "https://drive.google.com/file/d/13jgRXofb1fAVbEJlUiCIn9BRIm-UE00Q/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1uyY7DYrExw4P2oP3GRMYyCIOpmbfbHer/view?usp=sharing",
         "image3" : "https://drive.google.com/file/d/1ypd1ta934TQM4JZMA_JqgtNJuryEoihM/view?usp=sharing",
         "image4" : "https://drive.google.com/file/d/1mQwwwvkZxMvLlVx4L0bDs4aAlLr5L4Uu/view?usp=sharing",
         "image5" : "https://drive.google.com/file/d/1aFVvpTb9pSrvgbCE1lL_NSLbD7HQTkwa/view?usp=sharing",
         "image6" : "https://drive.google.com/file/d/1VtVBSNE2BmlMRvjbU31a7f0ICdb0SLqO/view?usp=sharing"
+    },
+    {
+        "name" : "Dil Dhadakne Do",
+        "image1" : "https://drive.google.com/file/d/1q6TCgbCZxlbfb86glHZSBTjPx_JX3hS9/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1TAL8h_8U1XmTHiL36ZsSPfDb4_pl2WV_/view?usp=sharing",
+        "image3" : "https://drive.google.com/file/d/1ijERFsmntdw4x1L39o8RmfN7bkp-vNYf/view?usp=sharing",
+        "image4" : "https://drive.google.com/file/d/1k67k6ycLuZW6I99OBjuaop6jcWpWpKPm/view?usp=sharing",
+        "image5" : "https://drive.google.com/file/d/1OnTnAUVoRF4lRU7SgyZrHxDZrjNaJlx4/view?usp=sharing",
+        "image6" : "https://drive.google.com/file/d/1QyPlR53EMJtMHChVdSm3ZnSKYW6S4nzh/view?usp=sharing"
+    },
+    {
+        "name" : "Mission Majnu",
+        "image1" : "https://drive.google.com/file/d/1rwQC5sc0b-bLLbaHdj62DJwrPidOXL45/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1FTLN-h7EvAV6yQk-cz2k1pN0XCR-g6qr/view?usp=sharing",
+        "image3" : "https://drive.google.com/file/d/1ZN3fNgOrMVv6GOt9ZACKRjsrJ6FBzcE6/view?usp=sharing",
+        "image4" : "https://drive.google.com/file/d/1ISS4jd6SPwVb0qXphZ2BgJThmkrhkmAB/view?usp=sharing",
+        "image5" : "https://drive.google.com/file/d/17T-7j9AG88iNFfQhPI7NNzXjT5OVhrKq/view?usp=sharing",
+        "image6" : "https://drive.google.com/file/d/1WHKAtH9pi7sFcHINXPabuYoU2zrNDmvL/view?usp=sharing"
     }
 ]
