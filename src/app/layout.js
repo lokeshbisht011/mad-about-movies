@@ -26,11 +26,9 @@ export default function RootLayout({ children }) {
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '${process.env.GOOGLE_ANALYTICS_TAG}'
-    });
+    gtag('config', '${process.env.GOOGLE_ANALYTICS_TAG}')
         `}
         </Script>
-
 
         <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4080624113623119"
           crossOrigin="anonymous"></Script>
@@ -38,8 +36,8 @@ export default function RootLayout({ children }) {
         <meta property='og:title' content='Mad About Movies' />
         <meta property='og:description' content='Everything movie related...' />
       </head>
-      <body className={`${inter.className} bg-[color:var(--bg)]`}>
-        <div className='flex flex-col h-screen bg-[color:var(--bg)]'>
+      <body className={`${inter.className} bg-bg`}>
+        <div className='flex flex-col h-screen bg-bg'>
           <Sidebar />
           {children}
           <Footer />

@@ -132,7 +132,7 @@ const MovieDialogue = ({ params }) => {
     return (
         <div className='flex flex-col gap-5 items-center'>
             <Toaster />
-            <div className="flex flex-col bg-[color:var(--bgSoft)] gap-4 p-6">
+            <div className="flex flex-col bg-bgSoft gap-4 p-6">
                 <div className="text-white max-w-lg text-center">
                     <p className="text-lg">{currentData.dialogue}</p>
                 </div>

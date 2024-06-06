@@ -9,6 +9,10 @@
   --textSoft: #b7bac1;
   --sidebarHover: #222938;
   --sidebarSelected: #151c2c;
+  --button: #22c55e;
+  --buttonHover: #16a34a;
+  --giveUpButton: #ef4444;
+  --giveUpButtonHover: #dc2626;
 }
 
 .animate-pulse {

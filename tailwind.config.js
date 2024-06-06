@@ -12,6 +12,18 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+          bg: 'var(--bg)',
+          bgSoft: 'var(--bgSoft)',
+          text: 'var(--text)',
+          textSoft: 'var(--textSoft)',
+          sidebarHover: 'var(--sidebarHover)',
+          sidebarSelected: 'var(--sidebarSelected)',
+          button: 'var(--button)',
+          buttonHover: 'var(--buttonHover)',
+          giveUpbutton: 'var(--giveUpButton)',
+          giveUpbuttonHover: 'var(--giveUpButtonHover)', 
+      },
     },
   },
   plugins: [],

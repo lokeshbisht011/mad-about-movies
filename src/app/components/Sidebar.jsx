@@ -16,8 +16,7 @@ const Sidebar = () => {
   };
 
   const isActive = (path) => {
-    
-    return pathname.startsWith(path) ? 'bg-[color:var(--sidebarSelected)] text-white' : 'text-white';
+    return pathname.startsWith(path);
   };
 
   const closeSidebar = () => {
@@ -37,42 +36,50 @@ const Sidebar = () => {
     };
   }, [isOpen]);
 
-  return (
-    <div>
-      <div className='md:hidden fixed'>
-        {!isOpen && (
-          <button className='p-2'
-            onClick={toggleSidebar}>
-            <RxHamburgerMenu />
-          </button>
+  const menuItems = [
+    { href: '/sequence', label: 'Sequence' },
+    { href: '/dialogue', label: 'Dialogue' },
+    { href: '/scene', label: 'Scene' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact Us' },
+  ];
 
+  return (
+    <div className='fixed'>
+      <div className='text-white'>
+        {!isOpen && (
+          <button className='p-2' onClick={toggleSidebar}>
+            <div className="sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8">
+              <RxHamburgerMenu className="w-full h-full" />
+            </div>
+          </button>
         )}
       </div>
-      {isOpen && <div className="fixed inset-0 bg-black opacity-50 md:hidden" onClick={closeSidebar}></div>}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:block bg-[color:var(--bgSoft)] p-4 flex flex-col h-full z-50 fixed w-48 md:w-60 gap-5`}>
-        <div className='mb-5 text-center'>
+      {isOpen && <div className="fixed inset-0 bg-black opacity-50 " onClick={closeSidebar}></div>}
+      <div className={`${isOpen ? 'block' : 'hidden'}  bg-bgSoft p-4 flex flex-col h-full z-50 fixed w-48 md:w-60 gap-5`}>
+        <div className='mb-2 text-center'>
           <span className='text-xl text-white'>
-          <Link href="/">MadAboutMovies</Link></span>
+            <Link href="/">MadAboutMovies</Link>
+          </span>
         </div>
         <hr className="my-2 border-t border-gray-300" />
         <nav className='text-center text-xl'>
           <ul>
-            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/sequence')}`}>
-              <Link href="/sequence">Sequence</Link>
-            </li>
-            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/dialogue')}`}>
-              <Link href="/dialogue">Dialogue</Link>
-            </li>
-            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/scene')}`}>
-              <Link href="/scene">Scene</Link>
-            </li>
-            <hr className="my-2 border-t border-gray-300" />
-            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/about')}`}>
-              <Link href="/about">About</Link>
-            </li>
-            <li className={`hover:bg-[color:var(--sidebarHover)] transition-colors p-2 rounded ${isActive('/contact')}`}>
-              <Link href="/contact">Contact Us</Link>
-            </li>
+            {menuItems.map((item) => {
+              const activeClass = isActive(item.href) ? 'bg-sidebarSelected' : '';
+              const hoverClass = !isActive(item.href) ? 'hover:bg-sidebarHover' : '';
+
+              return (
+                <div>
+                  {item.label === 'About' && <hr className="my-2 border-t border-gray-300" />}
+                  <li
+                    className={`${hoverClass} ${activeClass} transition-colors p-2 rounded text-text`}
+                  >
+                    <Link href={item.href}>{item.label}</Link>
+                  </li>
+                </div>
+              );
+            })}
           </ul>
         </nav>
       </div>

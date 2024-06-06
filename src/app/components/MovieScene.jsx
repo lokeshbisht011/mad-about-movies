@@ -133,7 +133,7 @@ const MovieScene = ({ params }) => {
     }
 
     return (
-        <div className='flex flex-col bg-[color:var(--bgSoft)] gap-5 p-5 justify-center items-center'>
+        <div className='flex flex-col bg-bgSoft gap-5 p-5 justify-center items-center'>
             <Toaster />
             <div className='md:h-[300px] md:w-[700px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>
                 <Image src={sceneUrl} alt="" fill className='object-cover' />

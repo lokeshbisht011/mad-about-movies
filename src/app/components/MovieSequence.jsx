@@ -191,8 +191,8 @@ const MovieSequence = ({ params }) => {
     }
 
     return (
-        <div className='flex flex-col bg-[color:var(--bgSoft)] gap-5 p-5'>
-            <div className='justify-center text-center text-white text-2xl'>
+        <div className='flex flex-col bg-bgSoft gap-5 p-5'>
+            <div className='justify-center text-center text-text text-2xl'>
                 <span className=''>Movie : {movieName}</span>
             </div>
             <Toaster />
@@ -217,17 +217,17 @@ const MovieSequence = ({ params }) => {
             </DndProvider>
             {!gameCompleted && (
                 <div className='flex items-center justify-center gap-10'>
-                    <button onClick={guess} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
-                    <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
+                    <button onClick={guess} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Guess</button>
                     <div>
                         <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
                     </div>
+                    <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
                 </div>
             )}
             {
                 <div className='flex items-center justify-center gap-10'>
-                    <button onClick={challengeFriend} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                    <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Next Movie</button>
+                    <button onClick={challengeFriend} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                    <button onClick={nextMovie} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                 </div>
             }
         </div>
