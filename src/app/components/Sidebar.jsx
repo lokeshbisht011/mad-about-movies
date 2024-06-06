@@ -65,12 +65,12 @@ const Sidebar = () => {
         <hr className="my-2 border-t border-gray-300" />
         <nav className='text-center text-xl'>
           <ul>
-            {menuItems.map((item) => {
+            {menuItems.map((item, index) => {
               const activeClass = isActive(item.href) ? 'bg-sidebarSelected' : '';
               const hoverClass = !isActive(item.href) ? 'hover:bg-sidebarHover' : '';
 
               return (
-                <div>
+                <div key={index}>
                   {item.label === 'About' && <hr className="my-2 border-t border-gray-300" />}
                   <li
                     className={`${hoverClass} ${activeClass} transition-colors p-2 rounded text-text`}
