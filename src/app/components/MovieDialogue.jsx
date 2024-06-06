@@ -9,7 +9,7 @@ import { BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUES
 import Share from './Share';
 import levenshtein from 'fast-levenshtein';
 import { createRoot } from 'react-dom/client';
-import { stringToNumber } from '../utils/utils';
+import { numberToString, stringToNumber } from '../utils/utils';
 
 const MovieDialogue = ({ params }) => {
 
@@ -19,7 +19,7 @@ const MovieDialogue = ({ params }) => {
     const movieIndex = stringToNumber(movieIndexString);
 
     const currentData = bollywoodMovieDialogues[movieIndex];
-    
+
     const movieUrl = BOLLYWOOD_GAME_URL + "/dialogue/" + params.id;
 
     const [numberOfGuesses, setNumberOfGuesses] = useState(0);
@@ -70,7 +70,7 @@ const MovieDialogue = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    
+
                     Swal.getPopup().addEventListener('willClose', () => {
                         root.unmount();
                     });
@@ -92,15 +92,7 @@ const MovieDialogue = ({ params }) => {
             width: 500,
         }).then((result) => {
             if (result.isConfirmed) {
-                setCorrectIndex(6);
                 setGameCompleted(true);
-                setImages(images => {
-                    const sortedImages = [...images].sort((a, b) => a.correctIndex - b.correctIndex);
-                    return sortedImages.map((image, index) => ({
-                        ...image,
-                        correctIndex: index
-                    }));
-                });
             }
         });
     }
@@ -119,7 +111,7 @@ const MovieDialogue = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    
+
                     Swal.getPopup().addEventListener('willClose', () => {
                         root.unmount();
                     });
@@ -144,27 +136,36 @@ const MovieDialogue = ({ params }) => {
                 <div className="text-white max-w-lg text-center">
                     <p className="text-lg">{currentData.dialogue}</p>
                 </div>
+                {gameCompleted &&
+                    <div className='justify-center text-center text-white text-2xl'>
+                        <span className=''>Movie : {currentData.name}</span>
+                    </div>
+                }
                 <div className="flex flex-col gap-2">
-                    <input
-                        type="text"
-                        className="border border-gray-300 rounded-md p-2"
-                        placeholder="Your guess..."
-                        value={guessText}
-                        onChange={(e) => setGuessText(e.target.value)}
-                    />
                     {!gameCompleted && (
-                        <div className='flex items-center justify-center gap-10'>
-                            <button onClick={guess} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
-                            <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
-                            <div>
-                                <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
+                        <div className='flex flex-col gap-2'>
+                            <div className=''>
+                                <input
+                                    type="text"
+                                    className="border border-gray-300 rounded-md p-2 w-full"
+                                    placeholder="Your guess..."
+                                    value={guessText}
+                                    onChange={(e) => setGuessText(e.target.value)}
+                                />
+                            </div>
+                            <div className='flex items-center justify-center gap-10'>
+                                <button onClick={guess} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
+                                <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
+                                <div>
+                                    <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
+                                </div>
                             </div>
                         </div>
                     )}
                     {
                         <div className='flex items-center justify-center gap-10'>
                             <button onClick={challengeFriend} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                            <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Next Movie</button>
+                            <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                         </div>
                     }
                 </div>
