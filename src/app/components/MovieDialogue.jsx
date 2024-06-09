@@ -134,7 +134,7 @@ const MovieDialogue = ({ params }) => {
             <Toaster />
             <div className="flex flex-col bg-bgSoft gap-4 p-10">
                 <div className="text-white max-w-xl text-center border p-5 border-textSoft">
-                    <span className="text-4xl italic text-textSoft">" {currentData.dialogue} "</span>
+                    <span className="text-4xl italic text-textSoft">&ldquo; {currentData.dialogue} &rdquo;</span>
                 </div>
                 {gameCompleted &&
                     <div className='justify-center text-center text-white text-2xl'>
