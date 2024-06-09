@@ -143,9 +143,9 @@ const MovieScene = ({ params }) => {
                     <span className=''>Movie : {currentData.name}</span>
                 </div>
             }
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-5 items-center">
                 {!gameCompleted && (
-                    <div className='flex flex-col gap-2'>
+                    <div className='flex flex-col gap-5 min-w-[20rem]'>
                         <div className=''>
                             <input
                                 type="text"
@@ -156,18 +156,19 @@ const MovieScene = ({ params }) => {
                             />
                         </div>
                         <div className='flex items-center justify-center gap-10'>
-                            <button onClick={guess} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
-                            <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
+                            <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
                             <div>
                                 <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
                             </div>
+                            
                         </div>
                     </div>
                 )}
                 {
                     <div className='flex items-center justify-center gap-10'>
-                        <button onClick={challengeFriend} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                        <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
+                        <button onClick={challengeFriend} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                        <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                        <button onClick={nextMovie} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                     </div>
                 }
             </div>

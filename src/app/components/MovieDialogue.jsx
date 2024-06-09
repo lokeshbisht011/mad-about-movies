@@ -130,20 +130,20 @@ const MovieDialogue = ({ params }) => {
     }
 
     return (
-        <div className='flex flex-col gap-5 items-center'>
+        <div className='flex flex-col items-center'>
             <Toaster />
-            <div className="flex flex-col bg-bgSoft gap-4 p-6">
-                <div className="text-white max-w-lg text-center">
-                    <p className="text-lg">{currentData.dialogue}</p>
+            <div className="flex flex-col bg-bgSoft gap-4 p-10">
+                <div className="text-white max-w-xl text-center border p-5 border-textSoft">
+                    <span className="text-4xl italic text-textSoft">" {currentData.dialogue} "</span>
                 </div>
                 {gameCompleted &&
                     <div className='justify-center text-center text-white text-2xl'>
                         <span className=''>Movie : {currentData.name}</span>
                     </div>
                 }
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-5 items-center">
                     {!gameCompleted && (
-                        <div className='flex flex-col gap-2'>
+                        <div className='flex flex-col gap-5 min-w-[20rem]'>
                             <div className=''>
                                 <input
                                     type="text"
@@ -154,8 +154,7 @@ const MovieDialogue = ({ params }) => {
                                 />
                             </div>
                             <div className='flex items-center justify-center gap-10'>
-                                <button onClick={guess} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Guess</button>
-                                <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
+                                <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
                                 <div>
                                     <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
                                 </div>
@@ -164,8 +163,9 @@ const MovieDialogue = ({ params }) => {
                     )}
                     {
                         <div className='flex items-center justify-center gap-10'>
-                            <button onClick={challengeFriend} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                            <button onClick={nextMovie} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
+                            <button onClick={challengeFriend} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                            <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                            <button onClick={nextMovie} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                         </div>
                     }
                 </div>

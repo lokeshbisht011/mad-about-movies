@@ -21,8 +21,11 @@ module.exports = {
           sidebarSelected: 'var(--sidebarSelected)',
           button: 'var(--button)',
           buttonHover: 'var(--buttonHover)',
-          giveUpbutton: 'var(--giveUpButton)',
-          giveUpbuttonHover: 'var(--giveUpButtonHover)', 
+          giveUpButton: 'var(--giveUpButton)',
+          giveUpButtonHover: 'var(--giveUpButtonHover)', 
+      },
+      fontFamily: {
+        cursive: ['cursive', 'sans-serif'],
       },
     },
   },

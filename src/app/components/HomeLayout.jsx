@@ -1,11 +1,14 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import GameSection from './GameSection'
 
 const HomeLayout = () => {
+
   return (
     <div className='flex flex-col h-vh p-4 items-center'>
-      <header className="w-full text-white py-4 text-center">
-        <h1 className='text-3xl fond-bold'>Everything movies. Enjoy various games based on bollywood movies.</h1>
+      <header className="text-white py-4 text-center max-w-3xl">
+        <h1 className='text-3xl fond-bold'>Enjoy different games based on your favourite bollywood movies. Challenge your friends and have fun playing.</h1>
       </header>
       <main className="grid md:grid-cols-2 justify-center items-center gap-5 m-8 text-white">
         <GameSection

@@ -217,17 +217,17 @@ const MovieSequence = ({ params }) => {
             </DndProvider>
             {!gameCompleted && (
                 <div className='flex items-center justify-center gap-10'>
-                    <button onClick={guess} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Guess</button>
+                    <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
                     <div>
                         <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
                     </div>
-                    <button onClick={giveUp} className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Give Up</button>
                 </div>
             )}
             {
                 <div className='flex items-center justify-center gap-10'>
-                    <button onClick={challengeFriend} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                    <button onClick={nextMovie} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
+                    <button onClick={challengeFriend} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                    <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                    <button onClick={nextMovie} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                 </div>
             }
         </div>

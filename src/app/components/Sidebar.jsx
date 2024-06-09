@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   const pathname = usePathname();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);  
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -37,9 +37,9 @@ const Sidebar = () => {
   }, [isOpen]);
 
   const menuItems = [
-    { href: '/sequence', label: 'Sequence' },
-    { href: '/dialogue', label: 'Dialogue' },
-    { href: '/scene', label: 'Scene' },
+    { href: '/sequence', label: 'Arrange The Scenes' },
+    { href: '/dialogue', label: 'Guess From Dialogue' },
+    { href: '/scene', label: 'Guess From Scene' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact Us' },
   ];
@@ -56,14 +56,14 @@ const Sidebar = () => {
         )}
       </div>
       {isOpen && <div className="fixed inset-0 bg-black opacity-50 " onClick={closeSidebar}></div>}
-      <div className={`${isOpen ? 'block' : 'hidden'}  bg-bgSoft p-4 flex flex-col h-full z-50 fixed w-48 md:w-60 gap-5`}>
-        <div className='mb-2 text-center'>
+      <div className={`${isOpen ? 'block' : 'hidden'} bg-bgSoft p-4 flex flex-col h-full z-50 fixed w-48 md:w-60 gap-5`}>
+        <div className='text-center'>
           <span className='text-xl text-white'>
             <Link href="/">MadAboutMovies</Link>
           </span>
         </div>
         <hr className="my-2 border-t border-gray-300" />
-        <nav className='text-center text-xl'>
+        <nav className='text-center text-md'>
           <ul>
             {menuItems.map((item, index) => {
               const activeClass = isActive(item.href) ? 'bg-sidebarSelected' : '';
