@@ -5,7 +5,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 const Footer = () => {
     return (
         <footer className="bg--bg text-white py-6 mt-auto">
-            <hr className="border-t border-gray-300 mx-20 mb-5"/>
+            <hr className="border-t border-gray-300 md:mx-20 mx-10 mb-5"/>
             <div className="container mx-auto text-center">
                 <div className="mb-4">
                     <h2 className="text-xl font-bold mb-2">MadAboutMovies</h2>
@@ -38,7 +38,7 @@ const Footer = () => {
                         </li>
                     </ul>
                 </div>
-                <p className='text-sm mb-4'>Disclaimer: All movie scenes on this website are the property of their respective owners<br/> 
+                <p className='text-sm mb-4 sm:mx-5'>Disclaimer: All movie scenes on this website are the property of their respective owners<br/> 
                     and are used for informational and educational purposes only. No copyright infringement is intended.</p>
                 <div className="text-sm">
                     <p>&copy; {new Date().getFullYear()} Mad About Movies. All rights reserved.</p>

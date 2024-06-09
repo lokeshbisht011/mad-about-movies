@@ -16,21 +16,21 @@ const HomeLayout = () => {
           imageSrc="/sequence.jpg"
           description="Can you arrange the movie scenes in the correct order?"
           link="/sequence"
-          imageClass="md:h-[250px] md:w-[350px] sm:h-[180px] sm:w-[250px] h-[80px] w-[190px]"
+          imageClass="md:h-[150px] md:w-[260px] h-[130px] w-[180px]"
         />
         <GameSection
           title="Guess the Movie from the Dialogue"
-          imageSrc="/scene.jpg"
+          imageSrc="/dialogue.jpg"
           description="Test your movie knowledge by guessing the movie from a dialogue."
           link="/dialogue"
-          imageClass="md:h-[250px] md:w-[350px] sm:h-[180px] sm:w-[250px] h-[80px] w-[190px]"
+          imageClass="md:h-[150px] md:w-[400px] h-[90px] w-[240px]"
         />
         <GameSection
           title="Guess the Movie from the Scene"
           imageSrc="/scene.jpg"
           description="Test your movie knowledge by guessing the movie based on a scene."
           link="/scene"
-          imageClass="md:h-[150px] md:w-[350px] sm:h-[100px] sm:w-[250px] h-[80px] w-[190px]"
+          imageClass="md:h-[150px] md:w-[350px] h-[80px] w-[190px]"
         />
       </main>
     </div>
