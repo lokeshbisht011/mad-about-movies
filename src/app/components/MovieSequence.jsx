@@ -12,7 +12,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import { extractIdFromUrl, numberToString, stringToNumber } from '../utils/utils';
 import CustomImage from './CustomImage';
-import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, RANDOM_URL_PREFIX, CHALLENGE_DIALOGUE_TITLE } from '../utils/constants';
+import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, RANDOM_URL_PREFIX, CHALLENGE_DIALOGUE_TITLE, GUESSES_ALLOWED } from '../utils/constants';
 import Share from './Share';
 import CustomDragLayer from './CustomDragLayer';
 import { useRouter } from 'next/navigation';
@@ -92,6 +92,17 @@ const MovieSequence = ({ params }) => {
             showGameCompletedDialog(numberOfGuesses + 1);
         } else if (lastCorrectIndex > 0) {
             toast(`You guessed ${lastCorrectIndex} image(s) correctly! Keep going!`);
+        } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
+            toast("You've reached the maximum number of guesses. Better luck next time!");
+            setCorrectIndex(6);
+            setGameCompleted(true);
+            setImages(images => {
+                const sortedImages = [...images].sort((a, b) => a.correctIndex - b.correctIndex);
+                return sortedImages.map((image, index) => ({
+                    ...image,
+                    correctIndex: index
+                }));
+            });
         } else {
             toast("Oops! None of your guesses are correct. Try again!");
         }
@@ -123,7 +134,7 @@ const MovieSequence = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    
+
                     Swal.getPopup().addEventListener('willClose', () => {
                         root.unmount();
                     });
@@ -172,7 +183,7 @@ const MovieSequence = ({ params }) => {
                             <Share url={movieUrl} description={description} />
                         </div>
                     );
-                    
+
                     Swal.getPopup().addEventListener('willClose', () => {
                         root.unmount();
                     });
@@ -219,14 +230,16 @@ const MovieSequence = ({ params }) => {
                 <div className='flex items-center justify-center gap-10'>
                     <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
                     <div>
-                        <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
+                        <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                     </div>
                 </div>
             )}
             {
                 <div className='flex items-center justify-center gap-10'>
                     <button onClick={challengeFriend} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                    <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                    {!gameCompleted && (
+                        <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                    )}
                     <button onClick={nextMovie} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                 </div>
             }

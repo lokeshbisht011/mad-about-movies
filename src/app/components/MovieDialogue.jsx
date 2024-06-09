@@ -5,7 +5,7 @@ import bollywoodMovieDialogues from '../../../public/bollywoodMovieDialogues.jso
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
-import { BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, RANDOM_URL_PREFIX } from '../utils/constants';
+import { BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, GUESSES_ALLOWED, RANDOM_URL_PREFIX } from '../utils/constants';
 import Share from './Share';
 import levenshtein from 'fast-levenshtein';
 import { createRoot } from 'react-dom/client';
@@ -52,6 +52,9 @@ const MovieDialogue = ({ params }) => {
             title = `You guessed the movie correctly in just 1 guess!!! Amazing! Challenge your friends now.`;
         } else if (guesses < 4) {
             title = `You guessed the movie correctly in just ${guesses} guesses!!! Great job! Challenge your friends now.`;
+        } else if(numberOfGuesses + 1 === GUESSES_ALLOWED) {
+            toast("You've reached the maximum number of guesses. Better luck next time!");
+            setGameCompleted(true);
         } else {
             title = `You guessed the movie correctly in ${guesses} guesses! Challenge your friends now.`;
         }
@@ -156,7 +159,7 @@ const MovieDialogue = ({ params }) => {
                             <div className='flex items-center justify-center gap-10'>
                                 <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
                                 <div>
-                                    <p className="text-md text-gray-400">Guesses: {numberOfGuesses}</p>
+                                    <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +167,9 @@ const MovieDialogue = ({ params }) => {
                     {
                         <div className='flex items-center justify-center gap-10'>
                             <button onClick={challengeFriend} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                            <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                            {!gameCompleted && (
+                                <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                            )}
                             <button onClick={nextMovie} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                         </div>
                     }
