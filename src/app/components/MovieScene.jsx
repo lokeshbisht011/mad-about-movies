@@ -145,18 +145,10 @@ const MovieScene = ({ params }) => {
     return (
         <div className='flex flex-col bg-bgSoft gap-5 p-5 justify-center items-center'>
             <Toaster />
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className='md:h-[300px] md:w-[700px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>
-                {loading && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
-                )}
-                <Image src={sceneUrl} alt="" fill className='object-cover' onLoad={handleImageLoad} />
-            </motion.div>
-            {
-                gameCompleted &&
+            <div className='md:h-[300px] md:w-[700px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>
+                <Image src={sceneUrl} alt="" fill className='object-cover' />
+            </div>
+            {gameCompleted &&
                 <div className='justify-center text-center text-white text-2xl'>
                     <span className=''>Movie : {currentData.name}</span>
                 </div>
