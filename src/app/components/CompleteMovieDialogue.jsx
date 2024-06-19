@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import bollywoodMovieDialogues from '../../../public/bollywoodMovieDialogues.json';
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
@@ -132,6 +132,20 @@ const MovieDialogue = ({ params }) => {
         router.push(newUrl);
     }
 
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
+
+    const handleInput = (e) => {
+        const text = e.target.innerText;
+        setGuessText(text);
+    };
+
+
     return (
         <div className='flex flex-col items-center'>
             <Toaster />
@@ -139,27 +153,27 @@ const MovieDialogue = ({ params }) => {
                 <div className='justify-center text-center text-white text-2xl'>
                     <span className=''>Movie : {currentData.name}</span>
                 </div>
+
                 <div className="text-white max-w-xl text-center border p-5 border-textSoft">
-                    <span className="text-4xl italic text-textSoft">&ldquo; {currentData.dialogue} &rdquo;</span>
+                    <span className="text-4xl italic text-textSoft">&ldquo; {currentData.dialogue} </span>
+                    <div
+                        ref={inputRef}
+                        contentEditable
+                        className="inline-block text-4xl italic text-text border-b-2 border-textSoft bg-transparent outline-none"
+                        onInput={handleInput}
+                        spellCheck="false"
+                        style={{ minWidth: '50px', display: 'inline-block', verticalAlign: 'bottom', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
+                    >
+                    </div>
+                    <span className="text-4xl italic text-textSoft">&rdquo;</span>
                 </div>
 
                 <div className="flex flex-col gap-5 items-center">
                     {!gameCompleted && (
-                        <div className='flex flex-col gap-5 min-w-[20rem]'>
-                            <div className=''>
-                                <input
-                                    type="text"
-                                    className="border border-gray-300 rounded-md p-2 w-full"
-                                    placeholder="Your guess..."
-                                    value={guessText}
-                                    onChange={(e) => setGuessText(e.target.value)}
-                                />
-                            </div>
-                            <div className='flex items-center justify-center gap-10'>
-                                <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
-                                <div>
-                                    <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
-                                </div>
+                        <div className='flex items-center justify-center gap-10'>
+                            <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
+                            <div>
+                                <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                             </div>
                         </div>
                     )}
