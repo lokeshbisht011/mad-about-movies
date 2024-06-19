@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -202,47 +203,78 @@ const MovieSequence = ({ params }) => {
     }
 
     return (
-        <div className='flex flex-col bg-bgSoft gap-5 p-5'>
-            <div className='justify-center text-center text-text text-2xl'>
-                <span className=''>Movie : {movieName}</span>
+
+        <div className="flex flex-col bg-bgSoft gap-5 p-5">
+            <div className="justify-center text-center text-text text-2xl">
+                <span className="">Movie : {movieName}</span>
             </div>
             <Toaster />
             <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
                 <CustomDragLayer />
                 <div className="grid grid-cols-2 gap-4">
                     {images.map((image, index) => (
-                        index >= correctIndex ? (
-                            <CustomImage
-                                key={index}
-                                src={image.src}
-                                index={index}
-                                moveImage={moveImage}
-                            />
-                        ) : (
-                            <div key={index} className='md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>
-                                <Image src={image.src} alt="" fill className='object-cover' />
-                            </div>
-                        )
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5 }}
+                            className="md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative"
+                        >
+                            {index >= correctIndex ? (
+                                <CustomImage src={image.src} index={index} moveImage={moveImage} />
+                            ) : (
+                                <Image src={image.src} alt="" fill className="object-cover border-4 border-green-500" />
+                            )}
+                        </motion.div>
                     ))}
                 </div>
             </DndProvider>
             {!gameCompleted && (
-                <div className='flex items-center justify-center gap-10'>
-                    <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
+                <div className="flex items-center justify-center gap-10">
+                    <motion.button
+                        onClick={() => {
+                            guess();
+                            setNumberOfGuesses(numberOfGuesses + 1);
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"
+                    >
+                        Guess
+                    </motion.button>
                     <div>
                         <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                     </div>
                 </div>
             )}
-            {
-                <div className='flex items-center justify-center gap-10'>
-                    <button onClick={challengeFriend} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
-                    {!gameCompleted && (
-                        <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
-                    )}
-                    <button onClick={nextMovie} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
-                </div>
-            }
+            <div className="flex items-center justify-center gap-10">
+                <motion.button
+                    onClick={challengeFriend}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"
+                >
+                    Challenge a friend
+                </motion.button>
+                {!gameCompleted && (
+                    <motion.button
+                        onClick={giveUp}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md"
+                    >
+                        Give Up
+                    </motion.button>
+                )}
+                <motion.button
+                    onClick={nextMovie}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"
+                >
+                    {gameCompleted ? 'Next' : 'Skip'}
+                </motion.button>
+            </div>
         </div>
     );
 }

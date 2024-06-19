@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "fast-levenshtein": "^3.0.0",
-    "framer-motion": "^11.0.21",
+    "framer-motion": "^11.2.11",
     "next": "^14.2.4",
     "next-share": "^0.27.0",
     "react": "^18.3.1",
