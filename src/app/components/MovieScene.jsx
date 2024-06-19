@@ -43,7 +43,7 @@ const MovieScene = ({ params }) => {
             showGameCompletedDialog(numberOfGuesses + 1);
         } else if (distance <= similarityThreshold) {
             toast("Almost there! Your guess is very close. Try again!");
-        } else if(numberOfGuesses + 1 === GUESSES_ALLOWED) {
+        } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
             toast("You've reached the maximum number of guesses. Better luck next time!");
             setGameCompleted(true);
         } else {
@@ -136,11 +136,19 @@ const MovieScene = ({ params }) => {
         router.push(newUrl);
     }
 
+    const [loading, setLoading] = useState(true);
+    const handleImageLoad = () => {
+        setLoading(false);
+    };
+
     return (
         <div className='flex flex-col bg-bgSoft gap-5 p-5 justify-center items-center'>
             <Toaster />
             <div className='md:h-[300px] md:w-[700px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-green-500'>
-                <Image src={sceneUrl} alt="" fill className='object-cover' />
+                {loading && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
+                )}
+                <Image src={sceneUrl} alt="" fill className='object-cover' onLoad={handleImageLoad} />
             </div>
             {gameCompleted &&
                 <div className='justify-center text-center text-white text-2xl'>
@@ -164,7 +172,7 @@ const MovieScene = ({ params }) => {
                             <div>
                                 <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                             </div>
-                            
+
                         </div>
                     </div>
                 )}
