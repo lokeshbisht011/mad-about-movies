@@ -23,6 +23,7 @@ const MovieScene = ({ params }) => {
     const currentData = bollywoodMovieScenes[movieIndex];
     const id = extractIdFromUrl(currentData.image);
     const sceneUrl = PREFIX + id;
+    const movieNameLength = currentData.name.length;
 
     const [numberOfGuesses, setNumberOfGuesses] = useState(0);
     const [gameCompleted, setGameCompleted] = useState(false);
@@ -74,13 +75,13 @@ const MovieScene = ({ params }) => {
     };
 
     return (
-        <div className='flex flex-col bg-bgSoft gap-5 p-5 justify-center items-center rounded-lg'>
+        <div className='flex flex-col bg-bgSoft gap-5 p-5 justify-center items-center rounded-lg shadow-md'>
             <Toaster />
             <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className='md:h-[300px] md:w-[700px] h-[150px] w-[360px] relative border-4 border-green-500'>
+                className='md:h-[300px] md:w-[700px] h-[140px] w-[330px] relative border-4 border-green-500'>
                 {loading && (
                     <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
                 )}
@@ -94,7 +95,7 @@ const MovieScene = ({ params }) => {
             }
             <div className="flex flex-col gap-5 items-center">
                 {!gameCompleted && (
-                    <div className='flex flex-col gap-5 min-w-[30rem]'>
+                    <div className='flex flex-col gap-5 min-w-[18rem] md:min-w-[30rem]'>
                         <div className=''>
                             <input
                                 type="text"
@@ -102,27 +103,28 @@ const MovieScene = ({ params }) => {
                                 placeholder="Your guess..."
                                 value={guessText}
                                 onChange={(e) => setGuessText(e.target.value)}
+                                maxLength={movieNameLength}
                             />
                             <div className="text-sm mt-2 text-right text-text">
-                                10/20 characters
+                                {guessText.length}/{movieNameLength} characters
                             </div>
                         </div>
 
                         <div className='flex items-center justify-center gap-10'>
-                            <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
+                            <button onClick={guess} className="md:text-md text-sm bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">Guess</button>
                             <div>
-                                <p className="text-md text-textSoft">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
+                                <p className="md:text-md text-sm text-textSoft">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                             </div>
                         </div>
                     </div>
                 )}
                 {
-                    <div className='flex items-center justify-center gap-10'>
-                        <button onClick={() => challengeFriendPopup(movieUrl, SCENE_DESCRIPTION)} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                    <div className='flex items-center justify-center gap-10 md:text-md text-sm'>
+                        <button onClick={() => challengeFriendPopup(movieUrl, SCENE_DESCRIPTION)} className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">Share</button>
                         {!gameCompleted && (
-                            <button onClick={() => giveUp(markGameCompleted)} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                            <button onClick={() => giveUp(markGameCompleted)} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">Give Up</button>
                         )}
-                        <button onClick={() => nextMovie(router, bollywoodMovieScenes, SCENE_URL)} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
+                        <button onClick={() => nextMovie(router, bollywoodMovieScenes, SCENE_URL)} className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                     </div>
                 }
             </div>

@@ -29,7 +29,7 @@ const CustomImage = ({ src, index, moveImage }) => {
     };
 
     return (
-        <div ref={(node) => drag(drop(node))} className='md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative border-4 border-gray-500'>
+        <div ref={(node) => drag(drop(node))} className='md:h-[150px] md:w-[350px] h-[75px] w-[175px] relative border-4 border-gray-500'>
             {loading && (
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
             )}

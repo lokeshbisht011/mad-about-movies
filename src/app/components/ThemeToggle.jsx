@@ -1,6 +1,5 @@
 'use client'
 
-// ThemeToggle.js
 import { useEffect, useState } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 

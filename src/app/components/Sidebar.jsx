@@ -50,7 +50,7 @@ const Sidebar = () => {
       <div className='text-text'>
         {!isOpen && (
           <button className='p-2' onClick={toggleSidebar}>
-            <div className="sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8">
+            <div className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8">
               <RxHamburgerMenu className="w-full h-full" />
             </div>
           </button>

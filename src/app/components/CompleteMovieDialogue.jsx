@@ -24,15 +24,14 @@ const MovieDialogue = ({ params }) => {
     const [numberOfGuesses, setNumberOfGuesses] = useState(0);
     const [gameCompleted, setGameCompleted] = useState(false);
     const [guessText, setGuessText] = useState('');
-    const [charCount, setCharCount] = useState(0);
 
     const guess = () => {
         toast.dismiss();
 
-        const actualMovieName = currentData.name.toLowerCase();
+        const hiddenPart = currentData.hiddenPart.toLowerCase();
         const userGuess = guessText.toLowerCase();
-        const distance = levenshtein.get(userGuess, actualMovieName);
-        const similarityThreshold = Math.floor(actualMovieName.length * 0.5);
+        const distance = levenshtein.get(userGuess, hiddenPart);
+        const similarityThreshold = Math.floor(hiddenPart.length * 0.5);
 
         if (distance === 0) {
             setGameCompleted(true);
@@ -49,14 +48,14 @@ const MovieDialogue = ({ params }) => {
         let title;
 
         if (guesses === 1) {
-            title = `You guessed the movie correctly in just 1 guess!!! Amazing! Challenge your friends now.`;
+            title = `You completely the dialogue in just 1 guess!!! Amazing! Challenge your friends now.`;
         } else if (guesses < 4) {
-            title = `You guessed the movie correctly in just ${guesses} guesses!!! Great job! Challenge your friends now.`;
+            title = `You completely the dialogue in just ${guesses} guesses!!! Great job! Challenge your friends now.`;
         } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
             toast("You've reached the maximum number of guesses. Better luck next time!");
             setGameCompleted(true);
         } else {
-            title = `You guessed the movie correctly in ${guesses} guesses! Challenge your friends now.`;
+            title = `You completely the dialogue correctly in ${guesses} guesses! Challenge your friends now.`;
         }
         gameCompletedPopup(title, movieUrl, DIALOGUE_COMPLETED_DESCRIPTION(movieName, guesses));
     };
@@ -76,7 +75,6 @@ const MovieDialogue = ({ params }) => {
     const handleInput = (e) => {
         const text = e.target.innerText;
         setGuessText(text);
-        setCharCount(text.length);
     };
 
     const handleKeyDown = (event) => {
@@ -111,26 +109,26 @@ const MovieDialogue = ({ params }) => {
                     </div>
                     <span className="text-4xl italic text-textSoft">&rdquo;</span>
                     <div className="text-sm mt-2">
-                        {charCount}/{hiddenPartLength} characters
+                        {guessText.length}/{hiddenPartLength} characters
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-5 items-center">
                     {!gameCompleted && (
                         <div className='flex items-center justify-center gap-10'>
-                            <button onClick={guess} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Guess</button>
+                            <button onClick={guess} className="text-sm md:text-md bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">Guess</button>
                             <div>
-                                <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
+                                <p className="text-sm md:text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                             </div>
-                        </div> 
+                        </div>
                     )}
                     {
-                        <div className='flex items-center justify-center gap-10'>
-                            <button onClick={() => challengeFriendPopup(movieUrl, COMPLETE_DIALOGUE_DESCRIPTION(movieName))} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                        <div className='flex items-center justify-center gap-10 text-sm md:text-md'>
+                            <button onClick={() => challengeFriendPopup(movieUrl, COMPLETE_DIALOGUE_DESCRIPTION(movieName))} className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">Share</button>
                             {!gameCompleted && (
-                                <button onClick={() => giveUp(markGameCompleted)} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                                <button onClick={() => giveUp(markGameCompleted)} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">Give Up</button>
                             )}
-                            <button onClick={() => nextMovie(router, bollywoodMovieCompleteDialogue, COMPLETE_DIALOGUE_URL)} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
+                            <button onClick={() => nextMovie(router, bollywoodMovieCompleteDialogue, COMPLETE_DIALOGUE_URL)} className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                         </div>
                     }
                 </div>

@@ -140,7 +140,7 @@ const MovieSequence = ({ params }) => {
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5 }}
-                            className="md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative"
+                            className="md:h-[150px] md:w-[350px] h-[75px] w-[175px] relative"
                         >
                             {index >= correctIndex ? (
                                 <CustomImage src={image.src} index={index} moveImage={moveImage} />
@@ -160,30 +160,30 @@ const MovieSequence = ({ params }) => {
                         }}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"
+                        className="md:text-md text-sm bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
                     >
                         Guess
                     </motion.button>
                     <div>
-                        <p className="text-md text-textSoft">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
+                        <p className="md:text-md text-sm text-textSoft">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                     </div>
                 </div>
             )}
-            <div className="flex items-center justify-center gap-10">
+            <div className="flex items-center justify-center gap-10 md:text-md text-sm">
                 <motion.button
                     onClick={() => challengeFriendPopup(movieUrl, SEQUENCE_DESCRIPTION(movieName))}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"
+                    className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
                 >
-                    Challenge a friend
+                    Share
                 </motion.button>
                 {!gameCompleted && (
                     <motion.button
                         onClick={() => giveUp(markGameCompleted)}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md"
+                        className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
                     >
                         Give Up
                     </motion.button>
@@ -192,7 +192,7 @@ const MovieSequence = ({ params }) => {
                     onClick={() => nextMovie(router, bollywoodMovies, SEQUENCE_URL)}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"
+                    className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
                 >
                     {gameCompleted ? 'Next' : 'Skip'}
                 </motion.button>
