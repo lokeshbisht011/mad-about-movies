@@ -1,11 +1,16 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GameSection from './GameSection'
 
 const HomeLayout = () => {
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  const themeSuffix = savedTheme === 'light' ? '_light' : '_dark';
+
+  const [themeSuffix, setThemeSuffix] = useState('_light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setThemeSuffix(savedTheme === 'light' ? '_light' : '_dark');
+  }, []);
 
   return (
     <div className='flex flex-col h-vh p-4 items-center text-text'>
