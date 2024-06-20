@@ -4,8 +4,8 @@ import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer className="bg--bg text-white py-6 mt-auto">
-            <hr className="border-t border-gray-300 md:mx-20 mx-10 mb-5"/>
+        <footer className="bg--bg text-text py-6 mt-auto">
+            <hr className="border-t border-line md:mx-20 mx-10 mb-5"/>
             <div className="container mx-auto text-center">
                 <div className="mb-4">
                     <h2 className="text-xl font-bold mb-2">MadAboutMovies</h2>

@@ -6,11 +6,11 @@ import GameSection from './GameSection'
 const HomeLayout = () => {
 
   return (
-    <div className='flex flex-col h-vh p-4 items-center'>
-      <header className="text-white py-4 text-center max-w-3xl">
+    <div className='flex flex-col h-vh p-4 items-center text-text'>
+      <header className="py-4 text-center max-w-3xl">
         <h1 className='text-3xl fond-bold'>Enjoy different games based on your favourite bollywood movies. Challenge your friends and have fun playing.</h1>
       </header>
-      <main className="grid md:grid-cols-2 justify-center items-center gap-5 m-8 text-white">
+      <main className="grid md:grid-cols-2 justify-center items-center gap-5 m-8 text-text">
         <GameSection
           title="Arrange Movie Scenes"
           imageSrc="/sequence.jpg"

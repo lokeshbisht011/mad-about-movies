@@ -1,15 +1,13 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import bollywoodMovieDialogues from '../../../public/bollywoodMovieDialogues.json';
+import bollywoodMovieCompleteDialogue from '/public/bollywoodMovieCompleteDialogue.json'
 import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
-import Swal from 'sweetalert2';
-import { BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, GUESSES_ALLOWED, RANDOM_URL_PREFIX } from '../utils/constants';
-import Share from './Share';
+import { BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, GUESSES_ALLOWED, COMPLETE_DIALOGUE_DESCRIPTION, RANDOM_URL_PREFIX, COMPLETE_DIALOGUE_URL, INCORRECT_GUESS_MESSAGE, DIALOGUE_COMPLETED_DESCRIPTION } from '../utils/constants';
 import levenshtein from 'fast-levenshtein';
-import { createRoot } from 'react-dom/client';
-import { numberToString, stringToNumber } from '../utils/utils';
+import { nextMovie, numberToString, stringToNumber } from '../utils/utils';
+import { challengeFriendPopup, gameCompletedPopup, giveUp } from '../utils/popups';
 
 const MovieDialogue = ({ params }) => {
 
@@ -17,14 +15,16 @@ const MovieDialogue = ({ params }) => {
 
     const movieIndexString = params.id.substring(RANDOM_URL_PREFIX.length);
     const movieIndex = stringToNumber(movieIndexString);
-
-    const currentData = bollywoodMovieDialogues[movieIndex];
+    const currentData = bollywoodMovieCompleteDialogue[movieIndex];
+    const hiddenPartLength = currentData.hiddenPart.length;
+    const movieName = currentData.name;
 
     const movieUrl = BOLLYWOOD_GAME_URL + "/complete-dialogue/" + params.id;
 
     const [numberOfGuesses, setNumberOfGuesses] = useState(0);
     const [gameCompleted, setGameCompleted] = useState(false);
     const [guessText, setGuessText] = useState('');
+    const [charCount, setCharCount] = useState(0);
 
     const guess = () => {
         toast.dismiss();
@@ -40,7 +40,7 @@ const MovieDialogue = ({ params }) => {
         } else if (distance <= similarityThreshold) {
             toast("Almost there! Your guess is very close. Try again!");
         } else {
-            toast("Oops! Your guess is incorrect. Try again!");
+            toast(INCORRECT_GUESS_MESSAGE);
         }
         setNumberOfGuesses(prev => prev + 1);
     };
@@ -58,78 +58,11 @@ const MovieDialogue = ({ params }) => {
         } else {
             title = `You guessed the movie correctly in ${guesses} guesses! Challenge your friends now.`;
         }
-
-        const description = "I correctly guessed the movie from a dialogue in just " + guesses + " guesses. Can you beat my score?!";
-
-        Swal.fire({
-            title: title,
-            html: '<div id="share-container"></div>',
-            didOpen: () => {
-                const container = document.getElementById('share-container');
-                if (container) {
-                    const root = createRoot(container);
-                    root.render(
-                        <div className='flex items-center justify-center'>
-                            <Share url={movieUrl} description={description} />
-                        </div>
-                    );
-
-                    Swal.getPopup().addEventListener('willClose', () => {
-                        root.unmount();
-                    });
-                }
-            },
-            showConfirmButton: false,
-            width: 500,
-        });
+        gameCompletedPopup(title, movieUrl, DIALOGUE_COMPLETED_DESCRIPTION(movieName, guesses));
     };
 
-    const giveUp = () => {
-        toast.dismiss();
-        Swal.fire({
-            title: "Are you sure you want to give up?",
-            showCancelButton: true,
-            confirmButtonColor: "#182237",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes",
-            width: 500,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                setGameCompleted(true);
-            }
-        });
-    }
-
-    const challengeFriend = () => {
-        const description = "I challenge you to guess the movie from a dialogue!!\n\n";
-        Swal.fire({
-            title: CHALLENGE_DIALOGUE_TITLE,
-            html: '<div id="share-container"></div>',
-            didOpen: () => {
-                const container = document.getElementById('share-container');
-                if (container) {
-                    const root = createRoot(container);
-                    root.render(
-                        <div className='flex items-center justify-center'>
-                            <Share url={movieUrl} description={description} />
-                        </div>
-                    );
-
-                    Swal.getPopup().addEventListener('willClose', () => {
-                        root.unmount();
-                    });
-                }
-            },
-            showConfirmButton: false,
-            width: 500,
-        });
-    }
-
-    const nextMovie = () => {
-        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovieDialogues.length);
-        const suffix = numberToString(randomMovieIndex);
-        const newUrl = '/complete-dialogue/' + RANDOM_URL_PREFIX + suffix;
-        router.push(newUrl);
+    const markGameCompleted = () => {
+        setGameCompleted(true);
     }
 
     const inputRef = useRef(null);
@@ -143,8 +76,18 @@ const MovieDialogue = ({ params }) => {
     const handleInput = (e) => {
         const text = e.target.innerText;
         setGuessText(text);
+        setCharCount(text.length);
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+        }
+        const text = inputRef.current.textContent;
+        if (text.length >= hiddenPartLength && event.key !== 'Backspace' && event.key !== 'Delete') {
+            event.preventDefault();
+        }
+    };
 
     return (
         <div className='flex flex-col items-center'>
@@ -161,11 +104,15 @@ const MovieDialogue = ({ params }) => {
                         contentEditable
                         className="inline-block text-4xl italic text-text border-b-2 border-textSoft bg-transparent outline-none"
                         onInput={handleInput}
+                        onKeyDown={handleKeyDown}
                         spellCheck="false"
                         style={{ minWidth: '50px', display: 'inline-block', verticalAlign: 'bottom', whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                     >
                     </div>
                     <span className="text-4xl italic text-textSoft">&rdquo;</span>
+                    <div className="text-sm mt-2">
+                        {charCount}/{hiddenPartLength} characters
+                    </div>
                 </div>
 
                 <div className="flex flex-col gap-5 items-center">
@@ -175,15 +122,15 @@ const MovieDialogue = ({ params }) => {
                             <div>
                                 <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                             </div>
-                        </div>
+                        </div> 
                     )}
                     {
                         <div className='flex items-center justify-center gap-10'>
-                            <button onClick={challengeFriend} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
+                            <button onClick={() => challengeFriendPopup(movieUrl, COMPLETE_DIALOGUE_DESCRIPTION(movieName))} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">Challenge a friend</button>
                             {!gameCompleted && (
-                                <button onClick={giveUp} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
+                                <button onClick={() => giveUp(markGameCompleted)} className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md">Give Up</button>
                             )}
-                            <button onClick={nextMovie} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
+                            <button onClick={() => nextMovie(router, bollywoodMovieCompleteDialogue, COMPLETE_DIALOGUE_URL)} className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md">{gameCompleted ? 'Next' : 'Skip'}</button>
                         </div>
                     }
                 </div>

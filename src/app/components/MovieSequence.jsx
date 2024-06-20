@@ -10,14 +10,12 @@ import { isMobile } from 'react-device-detect';
 import { derangements } from '../utils/derangements';
 import bollywoodMovies from '/public/bollywoodMovies.json'
 import toast, { Toaster } from 'react-hot-toast';
-import Swal from 'sweetalert2';
-import { extractIdFromUrl, numberToString, stringToNumber } from '../utils/utils';
+import { extractIdFromUrl, nextMovie, numberToString, stringToNumber } from '../utils/utils';
 import CustomImage from './CustomImage';
-import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, RANDOM_URL_PREFIX, CHALLENGE_DIALOGUE_TITLE, GUESSES_ALLOWED } from '../utils/constants';
-import Share from './Share';
+import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, RANDOM_URL_PREFIX, CHALLENGE_DIALOGUE_TITLE, GUESSES_ALLOWED, SEQUENCE_DESCRIPTION, SEQUENCE_URL, INCORRECT_SEQUENCE_GUESS_MESSAGE, SEQUENCE_COMPLETED_DESCRIPTION } from '../utils/constants';
 import CustomDragLayer from './CustomDragLayer';
 import { useRouter } from 'next/navigation';
-import { createRoot } from 'react-dom/client';
+import { challengeFriendPopup, gameCompletedPopup, giveUp } from '../utils/popups';
 
 const MovieSequence = ({ params }) => {
 
@@ -95,17 +93,9 @@ const MovieSequence = ({ params }) => {
             toast(`You guessed ${lastCorrectIndex} image(s) correctly! Keep going!`);
         } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
             toast("You've reached the maximum number of guesses. Better luck next time!");
-            setCorrectIndex(6);
-            setGameCompleted(true);
-            setImages(images => {
-                const sortedImages = [...images].sort((a, b) => a.correctIndex - b.correctIndex);
-                return sortedImages.map((image, index) => ({
-                    ...image,
-                    correctIndex: index
-                }));
-            });
+            markGameCompleted();
         } else {
-            toast("Oops! None of your guesses are correct. Try again!");
+            toast(INCORRECT_SEQUENCE_GUESS_MESSAGE);
         }
         setNumberOfGuesses(prev => prev + 1);
     };
@@ -120,91 +110,23 @@ const MovieSequence = ({ params }) => {
         } else {
             title = `You guessed the sequence correctly in ${guesses} guesses! Challenge your friends now.`;
         }
-
-        const description = "I correctly arranged the scenes from " + movieName + " in just " + guesses + " guesses. Can you beat my score?!";
-
-        Swal.fire({
-            title: title,
-            html: '<div id="share-container"></div>',
-            didOpen: () => {
-                const container = document.getElementById('share-container');
-                if (container) {
-                    const root = createRoot(container);
-                    root.render(
-                        <div className='flex items-center justify-center'>
-                            <Share url={movieUrl} description={description} />
-                        </div>
-                    );
-
-                    Swal.getPopup().addEventListener('willClose', () => {
-                        root.unmount();
-                    });
-                }
-            },
-            showConfirmButton: false,
-            width: 500,
-        });
+        gameCompletedPopup(title, movieUrl, SEQUENCE_COMPLETED_DESCRIPTION(movieName, guesses));
     };
 
-    const giveUp = () => {
-        toast.dismiss();
-        Swal.fire({
-            title: "Are you sure you want to give up?",
-            showCancelButton: true,
-            confirmButtonColor: "#182237",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes",
-            width: 500,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                setCorrectIndex(6);
-                setGameCompleted(true);
-                setImages(images => {
-                    const sortedImages = [...images].sort((a, b) => a.correctIndex - b.correctIndex);
-                    return sortedImages.map((image, index) => ({
-                        ...image,
-                        correctIndex: index
-                    }));
-                });
-            }
+    const markGameCompleted = () => {
+        setCorrectIndex(6);
+        setGameCompleted(true);
+        setImages(images => {
+            const sortedImages = [...images].sort((a, b) => a.correctIndex - b.correctIndex);
+            return sortedImages.map((image, index) => ({
+                ...image,
+                correctIndex: index
+            }));
         });
-    }
-
-    const challengeFriend = () => {
-        const description = "Can you correctly sequence the scenes from " + movieName + "?!";
-        Swal.fire({
-            title: CHALLENGE_DIALOGUE_TITLE,
-            html: '<div id="share-container"></div>',
-            didOpen: () => {
-                const container = document.getElementById('share-container');
-                if (container) {
-                    const root = createRoot(container);
-                    root.render(
-                        <div className='flex items-center justify-center'>
-                            <Share url={movieUrl} description={description} />
-                        </div>
-                    );
-
-                    Swal.getPopup().addEventListener('willClose', () => {
-                        root.unmount();
-                    });
-                }
-            },
-            showConfirmButton: false,
-            width: 500,
-        });
-    }
-
-    const nextMovie = () => {
-        const randomMovieIndex = Math.floor(Math.random() * bollywoodMovies.length);
-        const suffix = numberToString(randomMovieIndex);
-        const newUrl = '/sequence/' + RANDOM_URL_PREFIX + suffix;
-        router.push(newUrl);
     }
 
     return (
-
-        <div className="flex flex-col bg-bgSoft gap-5 p-5">
+        <div className="flex flex-col bg-bgSoft gap-5 p-5 rounded-lg shadow-md">
             <div className="justify-center text-center text-text text-2xl">
                 <span className="">Movie : {movieName}</span>
             </div>
@@ -243,13 +165,13 @@ const MovieSequence = ({ params }) => {
                         Guess
                     </motion.button>
                     <div>
-                        <p className="text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
+                        <p className="text-md text-textSoft">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                     </div>
                 </div>
             )}
             <div className="flex items-center justify-center gap-10">
                 <motion.button
-                    onClick={challengeFriend}
+                    onClick={() => challengeFriendPopup(movieUrl, SEQUENCE_DESCRIPTION(movieName))}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"
@@ -258,7 +180,7 @@ const MovieSequence = ({ params }) => {
                 </motion.button>
                 {!gameCompleted && (
                     <motion.button
-                        onClick={giveUp}
+                        onClick={() => giveUp(markGameCompleted)}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-4 py-2 rounded-md"
@@ -267,7 +189,7 @@ const MovieSequence = ({ params }) => {
                     </motion.button>
                 )}
                 <motion.button
-                    onClick={nextMovie}
+                    onClick={() => nextMovie(router, bollywoodMovies, SEQUENCE_URL)}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     className="bg-button hover:bg-buttonHover text-white px-4 py-2 rounded-md"

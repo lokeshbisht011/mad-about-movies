@@ -3,6 +3,7 @@ import "./globals.css";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import Script from "next/script";
+import ThemeToggle from "./components/ThemeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-bg`}>
         <div className='flex flex-col h-screen bg-bg'>
           <Sidebar />
+          <ThemeToggle />
           {children}
           <Footer />
         </div>

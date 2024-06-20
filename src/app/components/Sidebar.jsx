@@ -47,7 +47,7 @@ const Sidebar = () => {
 
   return (
     <div className='fixed z-50'>
-      <div className='text-white'>
+      <div className='text-text'>
         {!isOpen && (
           <button className='p-2' onClick={toggleSidebar}>
             <div className="sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8">
@@ -59,11 +59,11 @@ const Sidebar = () => {
       {isOpen && <div className="fixed inset-0 bg-black opacity-50 " onClick={closeSidebar}></div>}
       <div className={`${isOpen ? 'block' : 'hidden'} bg-bgSoft p-3 flex flex-col h-full fixed w-48 md:w-60 gap-2`}>
         <div className='text-center'>
-          <span className='text-xl text-white'>
+          <span className='text-xl text-text'>
             <Link href="/">MadAboutMovies</Link>
           </span>
         </div>
-        <hr className="border-t border-gray-300" />
+        <hr className="border-t border-line" />
         <nav className='text-center text-sm md:text-lg'>
           <ul>
             {menuItems.map((item, index) => {
@@ -72,7 +72,7 @@ const Sidebar = () => {
 
               return (
                 <div key={index}>
-                  {item.label === 'About' && <hr className="my-2 border-t border-gray-300" />}
+                  {item.label === 'About' && <hr className="my-2 border-t border-line" />}
                   <li
                     className={`${hoverClass} ${activeClass} transition-colors p-2 rounded text-text`}
                   >

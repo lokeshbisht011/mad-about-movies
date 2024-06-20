@@ -22,7 +22,8 @@ module.exports = {
           button: 'var(--button)',
           buttonHover: 'var(--buttonHover)',
           giveUpButton: 'var(--giveUpButton)',
-          giveUpButtonHover: 'var(--giveUpButtonHover)', 
+          giveUpButtonHover: 'var(--giveUpButtonHover)',
+          line: 'var(--line)',
       },
       fontFamily: {
         cursive: ['cursive', 'sans-serif'],
