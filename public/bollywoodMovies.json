@@ -56,13 +56,13 @@
     {
         "name" : "Dil Chahta Hai",
         "image1" : "https://drive.google.com/file/d/1z3akl3VmyeBS3GHVia_Hpms9FRd60oMn/view?usp=sharing",
-        "image2" : "https://drive.google.com/file/d/1Wr9CuQ4LwSIh4DiY9lZDI41R82M5gkCd/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1Wr9CuQ4LwSIh4DiY9lZDI41R82M5gkCd/view?usp=sharing",  
         "image3" : "https://drive.google.com/file/d/1yHu969TGT6feXLGyF99Zk5BmDjh81uNB/view?usp=sharing",
         "image4" : "https://drive.google.com/file/d/136vTzRs_IYKsEOVtBRkzDsZ7VrRMuYF-/view?usp=sharing",
         "image5" : "https://drive.google.com/file/d/1WRt7RnRRvIL5zXvNyHPkU_QOozfSgMsz/view?usp=sharing",
         "image6" : "https://drive.google.com/file/d/1rFNUJ_CO2RUdCTMAuMftTo2hpB4JaAYV/view?usp=sharing"
     }, 
-    {
+    {  
         "name" : "Ae Dil Hai Mushkil", 
         "image1" : "https://drive.google.com/file/d/1q-h63nOrEtc_BnrQAqvs65hO-RCmpRqL/view?usp=sharing",
         "image2" : "https://drive.google.com/file/d/1mZAHZTYfeZesOoqvfikelO-l0BCUCiwT/view?usp=sharing",
@@ -160,5 +160,23 @@
         "image4" : "https://drive.google.com/file/d/1dgmsv4WmwibiFZC_lVVaTiBrDxJde5I3/view?usp=sharing",
         "image5" : "https://drive.google.com/file/d/1Ul7VHv9qJSpSMKe3pYcTC_UyldPvuKH0/view?usp=sharing",
         "image6" : "https://drive.google.com/file/d/1iAqZ-o1bMEn7_Ihd4ZtJIAp1R_mkPayp/view?usp=sharing"
+    },
+    {
+        "name" : "Kuch Kuch Hota Hai",
+        "image1" : "https://drive.google.com/file/d/1wBfZve-XxLkuDKSfTQok7cLIGb1Bdyr7/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1hcYt_IGJnl2knS9scUmgi1AUm5Eq3b8I/view?usp=sharing",
+        "image3" : "https://drive.google.com/file/d/14M86aOppMnNl1W3tLXJfRIC8-Rj0g04B/view?usp=sharing",
+        "image4" : "https://drive.google.com/file/d/1u8rfY01kkku9W6VvtTODXdmIfmLKwDdA/view?usp=sharing",
+        "image5" : "https://drive.google.com/file/d/1s9djWHXpkyvAZPomM2BwCxglrkkgXXDG/view?usp=sharing",
+        "image6" : "https://drive.google.com/file/d/1wwiiy5ZXNXWtWDHOL71vjuhA7iEeVFkA/view?usp=sharing"
+    },
+    {
+        "name" : "Kal Ho Na Ho",
+        "image1" : "https://drive.google.com/file/d/1rKPqi-LB-smUpJGfE2XVC5MGcGIU4mmY/view?usp=sharing",
+        "image2" : "https://drive.google.com/file/d/1Ns1u5HoxyUm_3HrvaKJMZ1HKkoHKMI8d/view?usp=sharing",
+        "image3" : "https://drive.google.com/file/d/1aUEGTIelbAldk2cU4GQX8mQDPUbdPdIK/view?usp=sharing",
+        "image4" : "https://drive.google.com/file/d/1F0hhi5bUDMekajZmBlstZyGG5pqwY0li/view?usp=sharing",
+        "image5" : "https://drive.google.com/file/d/1S3VOtRLPo2U8g4DkgmhIMt_E14UvmTk4/view?usp=sharing",
+        "image6" : "https://drive.google.com/file/d/1z0TLQ-GeATS2AHRvya7wgDDBA9a7WFen/view?usp=sharing"
     }
 ]

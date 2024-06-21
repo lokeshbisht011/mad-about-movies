@@ -12,7 +12,7 @@
     {
         "name": "Tu Jhooti Main Makkar",
         "dialogue": "Aaj kal relationship mein ghusna aasaan hai, usme se nikalna mushkil. ",
-        "hiddenPart": "Rishta jodna aasaan hai, todna mushkil"
+        "hiddenPart": "Rishta jodna aasaan hai todna mushkil"
     },
     {
         "name": "Chup Chup Ke",
@@ -27,7 +27,7 @@
     {
         "name": "Yeh Jawaani Hai Deewani",
         "dialogue": "Mujhe tumse pyaar ho jaaega, phir se. ",
-        "hiddenPart": "Aur tumhe nahi hoga, phir se"
+        "hiddenPart": "Aur tumhe nahi hoga phir se"
     },
     {
         "name": "Laapataa Ladies",
@@ -44,6 +44,5 @@
         "name": "Dil Chahta Hai",
         "dialogue": "Mujhe yakeen hai ki main sirf isliye janma hun ki tumse pyaar kar sakun, tum sirf isliye ",
         "hiddenPart": "ki ek din meri ban jao"
-
     }
 ]
