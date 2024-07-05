@@ -6,12 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "contentlayer2 build"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
+    "@next/mdx": "^14.2.4",
+    "clsx": "^2.1.1",
+    "contentlayer2": "^0.4.6",
     "fast-levenshtein": "^3.0.0",
-    "framer-motion": "^11.2.11",
+    "framer-motion": "^11.2.13",
+    "gray-matter": "^4.0.3",
     "next": "^14.2.4",
+    "next-contentlayer2": "^0.4.6",
     "next-share": "^0.27.0",
     "react": "^18.3.1",
     "react-device-detect": "^2.2.3",
@@ -21,8 +29,13 @@
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-pretty-code": "^0.13.2",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.10.7"
+    "sweetalert2": "^11.10.7",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "20.11.30",

@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import { BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, DIALOGUE_DESCRIPTION, DIALOGUE_GUESSED_DESCRIPTION, DIALOGUE_URL, GUESSES_ALLOWED, INCORRECT_GUESS_MESSAGE, RANDOM_URL_PREFIX } from '../utils/constants';
 import levenshtein from 'fast-levenshtein';
-import { stringToNumber } from '../utils/utils';
-import { challengeFriendPopup, gameCompletedPopup } from '../utils/popups';
+import { nextMovie, stringToNumber } from '../utils/utils';
+import { challengeFriendPopup, gameCompletedPopup, giveUp } from '../utils/popups';
 
 const MovieDialogue = ({ params }) => {
 
@@ -67,11 +67,11 @@ const MovieDialogue = ({ params }) => {
     return (
         <div className='flex flex-col gap-4 p-10 bg-bgSoft items-center rounded-lg shadow-md'>
             <Toaster />
-            <div className="text-white max-w-xl text-center border p-5 border-textSoft">
+            <div className="max-w-xl text-center border p-5 border-textSoft">
                 <span className="text-3xl md:text-4xl italic text-textSoft">&ldquo; {currentData.dialogue} &rdquo;</span>
             </div>
             {gameCompleted &&
-                <div className='justify-center text-center text-white text-2xl'>
+                <div className='justify-center text-center text-text text-2xl'>
                     <span className=''>Movie : {currentData.name}</span>
                 </div>
             }
@@ -87,7 +87,7 @@ const MovieDialogue = ({ params }) => {
                                 maxLength={movieNameLength}
                                 onChange={(e) => setGuessText(e.target.value)}
                             />
-                            <div className="text-sm mt-2 text-right text-text">
+                            <div className="text-sm mt-2 text-right text-textSoft">
                                 {guessText.length}/{movieNameLength} characters
                             </div>
                         </div>

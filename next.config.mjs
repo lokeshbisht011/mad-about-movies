@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
+
+import withMDX from '@next/mdx';
+
+// Define the MDX configuration
+const withMDXConfig = withMDX({
+  extension: /\.mdx?$/,
+});
+
 const nextConfig = {
     images: {
         remotePatterns: [
@@ -9,4 +17,4 @@ const nextConfig = {
     }
 };
 
-export default nextConfig;
+export default withMDXConfig(nextConfig);

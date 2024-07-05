@@ -9,7 +9,7 @@ import { extractIdFromUrl, nextMovie, stringToNumber } from '../utils/utils';
 import { PREFIX, BOLLYWOOD_MOVIE_URL_PREFIX, BOLLYWOOD_GAME_SHARE_DESCRIPTION, BOLLYWOOD_GAME_SHARE_DESCRIPTION_GUESSED, BOLLYWOOD_GAME_URL, CHALLENGE_DIALOGUE_TITLE, RANDOM_URL_PREFIX, GUESSES_ALLOWED, SCENE_DESCRIPTION, SCENE_URL, INCORRECT_GUESS_MESSAGE, SCENE_GUESSED_DESCRIPTION } from '../utils/constants';
 import { useRouter } from 'next/navigation';
 import levenshtein from 'fast-levenshtein';
-import { challengeFriendPopup, gameCompletedPopup } from '../utils/popups';
+import { challengeFriendPopup, gameCompletedPopup, giveUp } from '../utils/popups';
 
 const MovieScene = ({ params }) => {
 
@@ -89,7 +89,7 @@ const MovieScene = ({ params }) => {
             </motion.div>
             {
                 gameCompleted &&
-                <div className='justify-center text-center text-white text-2xl'>
+                <div className='justify-center text-center text-text text-2xl'>
                     <span className=''>Movie : {currentData.name}</span>
                 </div>
             }
@@ -105,7 +105,7 @@ const MovieScene = ({ params }) => {
                                 onChange={(e) => setGuessText(e.target.value)}
                                 maxLength={movieNameLength}
                             />
-                            <div className="text-sm mt-2 text-right text-text">
+                            <div className="text-sm mt-2 text-right text-textSoft">
                                 {guessText.length}/{movieNameLength} characters
                             </div>
                         </div>

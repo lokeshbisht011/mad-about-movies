@@ -41,6 +41,7 @@ const Sidebar = () => {
     { href: '/dialogue', label: 'Guess From Dialogue' },
     { href: '/scene', label: 'Guess From Scene' },
     { href: '/complete-dialogue', label: 'Complete The Dialogue' },
+    { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact Us' },
   ];

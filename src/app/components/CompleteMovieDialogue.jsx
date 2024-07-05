@@ -91,11 +91,11 @@ const MovieDialogue = ({ params }) => {
         <div className='flex flex-col items-center'>
             <Toaster />
             <div className="flex flex-col bg-bgSoft gap-4 p-10">
-                <div className='justify-center text-center text-white text-2xl'>
+                <div className='justify-center text-center text-text text-2xl'>
                     <span className=''>Movie : {currentData.name}</span>
                 </div>
 
-                <div className="text-white max-w-xl text-center border p-5 border-textSoft">
+                <div className="text-text max-w-xl text-center border p-5 border-textSoft">
                     <span className="text-4xl italic text-textSoft">&ldquo; {currentData.dialogue} </span>
                     <div
                         ref={inputRef}
@@ -108,7 +108,7 @@ const MovieDialogue = ({ params }) => {
                     >
                     </div>
                     <span className="text-4xl italic text-textSoft">&rdquo;</span>
-                    <div className="text-sm mt-2">
+                    <div className="text-sm mt-2 text-textSoft">
                         {guessText.length}/{hiddenPartLength} characters
                     </div>
                 </div>
@@ -118,7 +118,7 @@ const MovieDialogue = ({ params }) => {
                         <div className='flex items-center justify-center gap-10'>
                             <button onClick={guess} className="text-sm md:text-md bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md">Guess</button>
                             <div>
-                                <p className="text-sm md:text-md text-gray-400">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
+                                <p className="text-sm md:text-md text-textSoft">Guesses: {numberOfGuesses}/{GUESSES_ALLOWED}</p>
                             </div>
                         </div>
                     )}
