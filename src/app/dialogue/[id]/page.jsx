@@ -1,6 +1,12 @@
 import React from 'react';
 import MovieDialogue from '@/app/components/MovieDialogue';
 
+export async function generateMetadata() {
+  return {
+    title: "Guess From Dialogue",
+  };
+}
+
 const page = ({ params }) => {
     return (
         <div className='flex flex-col mb-10'>

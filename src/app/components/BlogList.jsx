@@ -15,7 +15,7 @@ const BlogList = ({ posts }) => {
           >
             <h2 className="text-2xl font-semibold">{post.title}</h2>
             <img src={post.images.cover} fill alt={post.title} className="mt-5 mb-5" />
-            <p className="text-xl">{post.summary}</p>
+            <p className="text-xl line-clamp-2">{post.summary}</p>
           </Link>
         </div>
       ))}

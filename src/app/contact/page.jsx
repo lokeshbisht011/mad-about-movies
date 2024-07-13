@@ -1,5 +1,11 @@
 import React from 'react'
 
+export async function generateMetadata() {
+  return {
+    title: "Contact Us",
+  };
+}
+
 const page = () => {
   return (
     <div className="p-5 max-w-2xl mx-auto border-2 border-gray-300 rounded-md text-text mt-5 text-center">

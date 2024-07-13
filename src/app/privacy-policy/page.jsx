@@ -1,5 +1,11 @@
 import React from 'react'
 
+export async function generateMetadata() {
+  return {
+    title: "Privacy Policy",
+  };
+}
+
 const page = () => {
   return (
     <div className="p-5 max-w-3xl mt-5 mx-auto border-2 border-gray-300 rounded-md text-text">

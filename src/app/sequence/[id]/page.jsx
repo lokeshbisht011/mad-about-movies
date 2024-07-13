@@ -1,6 +1,12 @@
 import React from 'react';
 import MovieSequence from '@/app/components/MovieSequence';
 
+export async function generateMetadata() {
+  return {
+    title: "Arrange The Scenes",
+  };
+}
+
 const page = ({ params }) => {
     return (
         <div className='flex flex-col mb-10'>

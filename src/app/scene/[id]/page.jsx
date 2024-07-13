@@ -1,6 +1,12 @@
 import React from 'react';
 import MovieScene from '@/app/components/MovieScene';
 
+export async function generateMetadata() {
+  return {
+    title: "Guess From Scene",
+  };
+}
+
 const page = ({ params }) => {
     return (
         <div className='flex flex-col mb-10'>

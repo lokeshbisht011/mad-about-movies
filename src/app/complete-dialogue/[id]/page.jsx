@@ -1,6 +1,12 @@
 import React from 'react';
 import CompleteMovieDialogue from '@/app/components/CompleteMovieDialogue';
 
+export async function generateMetadata() {
+  return {
+    title: "Complete The Dialogue",
+  };
+}
+
 const page = ({ params }) => {
     return (
         <div className='flex flex-col mb-10'>

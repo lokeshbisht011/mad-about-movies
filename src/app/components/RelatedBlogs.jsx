@@ -28,7 +28,7 @@ const RelatedBlogs = ({ currentBlogTags, currentBlogId }) => {
 
   return (
     <div className="container mx-auto px-4 mt-5 text-text">
-      <h2 className="text-center font-bold text-3xl">Related Posts</h2>
+      <h2 className="text-center font-bold text-3xl">Related Blogs</h2>
       <div className="flex flex-wrap gap-5 mt-5">
         {relatedBlogs.map((post) => (
           <div
@@ -46,7 +46,7 @@ const RelatedBlogs = ({ currentBlogTags, currentBlogId }) => {
                 alt={post.title}
                 className="mt-5 mb-5"
               />
-              <p className="text-xl">{post.summary}</p>
+              <p className="text-xl line-clamp-2">{post.summary}</p>
             </Link>
           </div>
         ))}
