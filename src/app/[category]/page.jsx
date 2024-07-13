@@ -2,15 +2,21 @@ import { allBlogs } from "contentlayer/generated";
 import BlogList from "../components/BlogList";
 
 const BlogPage = () => {
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+  }
+
   const blogs = allBlogs;
-  const topPosts = blogs.slice(0, 3); // Example: Top 3 posts
-  const otherPosts = blogs.slice(3);
+  shuffle(blogs);
 
   return (
-    <div className="container mx-auto px-4 mt-5">
-      <h1 className="text-5xl font-bold mb-8 text-center">Blog</h1>
+    <div className="container mx-auto px-4 mt-5 text-text">
+      <h1 className="md:text-5xl text-4xl font-bold mb-8 text-center">BLOGS</h1>
       <section className="mt-8">
-        <h2 className="text-3xl font-bold mb-4">All Blogs</h2>
         <BlogList posts={blogs} />
       </section>
     </div>

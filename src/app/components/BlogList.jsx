@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const BlogList = ({ posts }) => {
   return (
-    <div className="flex flex-wrap gap-5">
+    <div className="flex flex-wrap gap-5 text-text">
       {posts.map((post) => (
         <div
           key={post.slug}
@@ -14,9 +14,7 @@ const BlogList = ({ posts }) => {
             className="h-full flex flex-col justify-between"
           >
             <h2 className="text-2xl font-semibold">{post.title}</h2>
-            <div className="md:h-72 md:w-96 h-[140px] w-[330px] relative my-5">
-              <Image src={post.images.cover} fill alt={post.title} />
-            </div>
+            <img src={post.images.cover} fill alt={post.title} className="mt-5 mb-5" />
             <p className="text-xl">{post.summary}</p>
           </Link>
         </div>

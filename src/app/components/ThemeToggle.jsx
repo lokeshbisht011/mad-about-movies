@@ -20,7 +20,7 @@ const ThemeToggle = () => {
     };
 
     return (
-        <div className='fixed top-2 right-2'>
+        <div className='fixed bottom-2 right-2'>
             <button
                 onClick={toggleTheme}
                 className="border text-white px-2 py-1 rounded-md flex items-center">

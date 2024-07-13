@@ -13,7 +13,21 @@ const computedFields = {
 
 export const Blog = defineDocumentType(() => ({
     name: 'Blog',
-    filePathPattern: '**/*.mdx',
+    filePathPattern: 'blogs/*.mdx',
+    contentType: 'mdx',
+    fields: {
+        title: { type: 'string', required: true },
+        date: { type: 'date', required: true },
+        tags: { type: 'list', of: { type: 'string' }, default: [] },
+        summary: { type: 'string' },
+        images: { type: 'json' },
+    },
+    computedFields
+}))
+
+export const Movie = defineDocumentType(() => ({
+    name: 'Movie',
+    filePathPattern: 'movies/*.mdx',
     contentType: 'mdx',
     fields: {
         title: { type: 'string', required: true },
@@ -27,7 +41,7 @@ export const Blog = defineDocumentType(() => ({
 
 export default makeSource({
     contentDirPath: 'src/content',
-    documentTypes: [Blog],
+    documentTypes: [Blog, Movie],
     mdx: {
         remarkPlugins: [
              remarkGfm,

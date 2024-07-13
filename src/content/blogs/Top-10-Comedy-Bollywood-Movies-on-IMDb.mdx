@@ -9,11 +9,10 @@ tags:
   - top10
 summary: A list of the top 10 comedy Bollywood movies on IMDb.
 images:
-  cover: /images/bollywood-comedy.jpg
-  gallery:
-    - /images/comedy1.jpg
-    - /images/comedy2.jpg
+  cover: /comedy.png
 ---
+
+import { movieLinks } from '../../lib/constants.js';
 
 # Top 10 Comedy Bollywood Movies on IMDb
 
@@ -32,6 +31,12 @@ Bollywood has a rich history of comedy films that have made audiences laugh for 
 **Rating**: 8.4/10
 
 **Summary**: A hilarious yet insightful movie about the pressure of education in India, starring Aamir Khan, R. Madhavan, and Sharman Joshi. This film beautifully balances humor and a strong social message.
+<br/>
+{movieLinks['3 Idiots'].map((link, index) => (
+  <div key={index}>
+    Watch on <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">{link.platform}</a>.
+  </div>
+))}
 
 ## 2. **Hera Pheri**
 
@@ -46,6 +51,12 @@ Bollywood has a rich history of comedy films that have made audiences laugh for 
 **Rating**: 8.1/10
 
 **Summary**: A classic comedy about three men who get entangled in a kidnapping plot. Starring Akshay Kumar, Sunil Shetty, and Paresh Rawal, *Hera Pheri* is a laugh riot from start to finish.
+<br/>
+{movieLinks['Hera Pheri'].map((link, index) => (
+  <div key={index}>
+    Watch on <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">{link.platform}</a>.
+  </div>
+))}
 
 ## 3. **Munna Bhai M.B.B.S.**
 
@@ -60,6 +71,12 @@ Bollywood has a rich history of comedy films that have made audiences laugh for 
 **Rating**: 8.1/10
 
 **Summary**: Sanjay Dutt stars as a gangster who tries to fulfill his father’s dream by becoming a doctor, leading to a series of comedic and heartwarming events.
+<br/>
+{movieLinks['Munna Bhai M.B.B.S.'].map((link, index) => (
+  <div key={index}>
+    Watch on <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">{link.platform}</a>.
+  </div>
+))}
 
 ## 4. **Chupke Chupke**
 
@@ -158,7 +175,3 @@ Bollywood has a rich history of comedy films that have made audiences laugh for 
 **Rating**: 7.0/10
 
 **Summary**: A hilarious film featuring Akshay Kumar, Katrina Kaif, Anil Kapoor, and Nana Patekar about a man trying to marry into a crime family without getting involved in their business.
-
-## Watch These Movies on Netflix
-
-You can find many of these movies available for streaming on <a href="https://www.netflix.com/" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Netflix</a>.
