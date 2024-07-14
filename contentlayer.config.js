@@ -7,7 +7,10 @@ import remarkGfm from 'remark-gfm'
 const computedFields = {
     slug: {
         type: 'string',
-        resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+        resolve: (doc) => doc._raw.flattenedPath
+            .replace(/^.+?(\/)/, '')
+            .toLowerCase()
+            .replace(/\s+/g, '-')
     },
 }
 
