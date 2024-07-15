@@ -36,7 +36,7 @@ const RelatedBlogs = ({ currentBlogTags, currentBlogId }) => {
             className="flex flex-col p-4 border rounded-md shadow-md w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1rem)]"
           >
             <Link
-              href={`/${post._raw.flattenedPath}`}
+              href={`/blogs/${post.slug}`}
               className="h-full flex flex-col justify-between"
             >
               <h2 className="text-2xl font-semibold">{post.title}</h2>
