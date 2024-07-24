@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer2/hooks"
 
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 const components = {
     h1: ({ className, ...props }) => (
@@ -146,6 +147,7 @@ const components = {
         />
     ),
     Image,
+    Link
 }
 
 export function Mdx({ code }) {

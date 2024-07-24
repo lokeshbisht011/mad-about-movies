@@ -1,5 +1,6 @@
 import { allBlogs } from "contentlayer/generated";
 import BlogList from "../components/BlogList";
+import moviesArray from "../../../public/movies.json";
 
 const BlogPage = () => {
   function shuffle(array) {
@@ -11,6 +12,18 @@ const BlogPage = () => {
   }
 
   const blogs = allBlogs;
+
+  const movieBlogs = Object.keys(moviesArray).map((char) => ({
+    title: `Bollywood Movies Starting from ${char.toUpperCase()}`,
+    slug: `bollywood-movies-starting-from-${char}`,
+    summary: `List of Bollywood movies that start with the letter ${char.toUpperCase()}`,
+    tags: ["Bollywood", "Movies", char.toUpperCase()],
+    body: {
+      code: JSON.stringify(moviesArray[char]), // You can customize this as per your needs
+    },
+  }));
+  const combinedBlogs = [...blogs, ...movieBlogs];
+
   shuffle(blogs);
 
   return (

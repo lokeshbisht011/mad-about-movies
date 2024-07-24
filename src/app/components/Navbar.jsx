@@ -26,7 +26,7 @@ const Navbar = () => {
   }, [isGamesOpen]);
 
   const menuItems = [
-    { href: "/blog", label: "Blog" },
+    { href: "/blogs", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact Us" },
   ];

@@ -14,7 +14,7 @@ const BlogList = ({ posts }) => {
             className="h-full flex flex-col justify-between"
           >
             <h2 className="text-2xl font-semibold">{post.title}</h2>
-            <img src={post.images.cover} fill alt={post.title} className="mt-5 mb-5" />
+            {post?.images?.cover && <img src={post.images.cover} fill alt={post.title} className="mt-5 mb-5" />}
             <p className="text-xl line-clamp-2">{post.summary}</p>
           </Link>
         </div>

@@ -2,7 +2,7 @@
 
 import withMDX from '@next/mdx';
 
-// Define the MDX configuration
+
 const withMDXConfig = withMDX({
   extension: /\.mdx?$/,
 });

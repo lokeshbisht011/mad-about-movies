@@ -27,7 +27,7 @@ const RelatedBlogs = ({ currentBlogTags, currentBlogId }) => {
   const relatedBlogs = getRelatedBlogs(currentBlogTags, currentBlogId);
 
   return (
-    <div className="container mx-auto px-4 mt-5 text-text">
+    <div className="mx-12 px-4 mt-5 text-text">
       <h2 className="text-center font-bold text-3xl">Related Blogs</h2>
       <div className="flex flex-wrap gap-5 mt-5">
         {relatedBlogs.map((post) => (

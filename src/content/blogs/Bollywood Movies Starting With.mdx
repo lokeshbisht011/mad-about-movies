@@ -1,0 +1,23 @@
+---
+title: Bollywood Movies A-Z
+date: 2023-07-24
+tags:
+  - bollywood
+  - movies
+  - a-to-z
+summary: An A-Z guide to Bollywood movies, linking to detailed blogs for each letter.
+images:
+  cover: /bollywood-a-z.png
+---
+
+# Bollywood Movies A-Z
+
+Bollywood, the heart of Indian cinema, offers a rich collection of movies spanning across various genres and languages. In this guide, we provide you with an alphabetical journey through some of the most iconic Bollywood movies. Click on each letter to explore detailed blogs featuring movies starting with that letter.
+
+{["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"].map(letter => (
+  <div key={letter} className="mt-4" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+    <a href={`/blogs/bollywood-movies-starting-with-${letter.toLowerCase()}`} className="text-blue-500 underline text-2xl font-bold">
+      Explore Bollywood Movies Starting with {letter}
+    </a>
+  </div>
+))}

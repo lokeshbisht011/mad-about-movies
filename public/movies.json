@@ -1,0 +1,582 @@
+{
+  "a": [
+    {
+      "title": "Andhadhun",
+      "description": "A thriller film about a blind pianist who becomes embroiled in a murder case.",
+      "year": 2018,
+      "cast": ["Ayushmann Khurrana", "Tabu", "Radhika Apte"],
+      "links": [
+        {
+          "url": "https://www.primevideo.com/detail/0LH1GMRIWABG6AFSW62O3BJJHH",
+          "platform": "Amazon Prime"
+        }
+      ]
+    },
+    {
+      "title": "Airlift",
+      "description": "A film based on the true story of the largest human evacuation in history.",
+      "year": 2016,
+      "cast": ["Akshay Kumar", "Nimrat Kaur"],
+      "links": [
+        {
+          "url": "https://www.primevideo.com/detail/0LHZJ6U79K9VVIMRY1R7S8EC6M",
+          "platform": "Amazon Prime"
+        }
+      ]
+    }
+  ],
+  "b": [
+    {
+      "title": "Bajrangi Bhaijaan",
+      "description": "A heartwarming tale of a man's journey to reunite a mute Pakistani girl with her family.",
+      "year": 2015,
+      "cast": ["Salman Khan", "Kareena Kapoor", "Harshaali Malhotra"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/bajrangi-bhaijaan/1000054485",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Barfi!",
+      "description": "A romantic comedy-drama featuring a love triangle involving a mute and deaf man.",
+      "year": 2012,
+      "cast": ["Ranbir Kapoor", "Priyanka Chopra", "Ileana D'Cruz"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/title/70179168",
+          "platform": "Netflix"
+        }
+      ]
+    }
+  ],
+  "c": [
+    {
+      "title": "Chennai Express",
+      "description": "A comedy-action film about a man who travels to Rameswaram and gets caught up in a series of misadventures.",
+      "year": 2013,
+      "cast": ["Shah Rukh Khan", "Deepika Padukone"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/in/title/70259362",
+          "platform": "Netflix"
+        }
+      ]
+    },
+    {
+      "title": "Chhichhore",
+      "description": "A film about a group of friends who reunite after many years and recall their college days.",
+      "year": 2019,
+      "cast": ["Sushant Singh Rajput", "Shraddha Kapoor"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/chhichhore/1260028890",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "d": [
+    {
+      "title": "Dilwale Dulhania Le Jayenge",
+      "description": "A classic romantic film about a young couple who fall in love during a trip to Europe.",
+      "year": 1995,
+      "cast": ["Shah Rukh Khan", "Kajol"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/dilwale-dulhania-le-jayenge/1000056014",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Dangal",
+      "description": "A biographical sports drama about a former wrestler who trains his daughters to become world-class wrestlers.",
+      "year": 2016,
+      "cast": ["Aamir Khan", "Sakshi Tanwar"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/dangal/1260021452",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "e": [
+    {
+      "title": "Ek Tha Tiger",
+      "description": "An action film about a spy who falls in love with a Pakistani woman during a mission.",
+      "year": 2012,
+      "cast": ["Salman Khan", "Katrina Kaif"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/ek-tha-tiger/1000061842",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "English Vinglish",
+      "description": "A film about a woman who enrolls in an English-speaking course to regain her self-esteem.",
+      "year": 2012,
+      "cast": ["Sridevi", "Adil Hussain"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/english-vinglish/1260027594",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "f": [
+    {
+      "title": "Freddy",
+      "description": "A thriller film about a shy and introverted dentist whose life takes a dark turn.",
+      "year": 2022,
+      "cast": ["Kartik Aaryan", "Alaya F"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/freddy/1260237572",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Fukrey",
+      "description": "A comedy about a group of friends who get caught up in a scheme to make quick money.",
+      "year": 2013,
+      "cast": ["Pulkit Samrat", "Varun Sharma"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/fukrey/1000066381",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "g": [
+    {
+      "title": "Gully Boy",
+      "description": "A musical drama about a street rapper from Mumbai who pursues his dreams despite obstacles.",
+      "year": 2019,
+      "cast": ["Ranveer Singh", "Alia Bhatt"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/gully-boy/1260026896",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Gangaajal",
+      "description": "A film about a police officer who fights against corruption in a small town.",
+      "year": 2003,
+      "cast": ["Ajay Devgn", "Gracy Singh"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/gangaajal/1000058207",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "h": [
+    {
+      "title": "Hera Pheri",
+      "description": "A comedy film about three hapless individuals who get entangled in a kidnapping scheme.",
+      "year": 2000,
+      "cast": ["Akshay Kumar", "Paresh Rawal", "Sunil Shetty"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/hera-pheri/1000057516",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Highway",
+      "description": "A drama about a young woman who finds freedom and self-discovery during a road trip.",
+      "year": 2014,
+      "cast": ["Alia Bhatt", "Randeep Hooda"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/highway/1260021441",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "i": [
+    {
+      "title": "Ishaqzaade",
+      "description": "A romantic drama about two young lovers from feuding families.",
+      "year": 2012,
+      "cast": ["Arjun Kapoor", "Parineeti Chopra"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/ishaqzaade/1260021954",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "j": [
+    {
+      "title": "Jab We Met",
+      "description": "A romantic comedy about the journey of a young woman who meets a charming man on a train journey.",
+      "year": 2007,
+      "cast": ["Shahid Kapoor", "Kareena Kapoor"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/jab-we-met/1000065838",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Jolly LLB",
+      "description": "A comedy-drama about a small-time lawyer who takes on a high-profile case.",
+      "year": 2013,
+      "cast": ["Arshad Warsi", "Boman Irani"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/jolly-llb/1000064418",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "k": [
+    {
+      "title": "Kabir Singh",
+      "description": "A drama about a young surgeon with a self-destructive streak and his tumultuous love life.",
+      "year": 2019,
+      "cast": ["Shahid Kapoor", "Kiara Advani"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/kabir-singh/1260236594",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Kuch Kuch Hota Hai",
+      "description": "A romantic drama about friendship, love, and the trials of relationships.",
+      "year": 1998,
+      "cast": ["Shah Rukh Khan", "Kajol", "Rani Mukerji"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/kuch-kuch-hota-hai/1000056012",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "l": [
+    {
+      "title": "Lagaan",
+      "description": "A period drama about villagers who challenge British officers to a cricket match to avoid paying taxes.",
+      "year": 2001,
+      "cast": ["Aamir Khan", "Gracy Singh"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/lagaan/1260021524",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Ludo",
+      "description": "A dark comedy that intertwines the lives of several people through a series of chaotic events.",
+      "year": 2020,
+      "cast": ["Abhishek Bachchan", "Rajkummar Rao", "Aditya Roy Kapur"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/title/81027248",
+          "platform": "Netflix"
+        }
+      ]
+    }
+  ],
+  "m": [
+    {
+      "title": "Masaan",
+      "description": "A poignant drama that explores the lives of people in Varanasi dealing with love, loss, and redemption.",
+      "year": 2015,
+      "cast": ["Richa Chadha", "Vicky Kaushal"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/title/80089100",
+          "platform": "Netflix"
+        }
+      ]
+    },
+    {
+      "title": "Mohenjo Daro",
+      "description": "A historical film set in the ancient Indus Valley Civilization, revolving around a young man’s journey.",
+      "year": 2016,
+      "cast": ["Hrithik Roshan", "Pooja Hegde"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/mohenjo-daro/1260024919",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "n": [
+    {
+      "title": "Naina",
+      "description": "A drama about a woman struggling to cope with her past trauma.",
+      "year": 2022,
+      "cast": ["Nargis Fakhri", "Vicky Kaushal"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/title/81032157",
+          "platform": "Netflix"
+        }
+      ]
+    },
+    {
+      "title": "Nikhil",
+      "description": "A film exploring the life of a man caught between love and societal pressures.",
+      "year": 2019,
+      "cast": ["Rishi Kapoor", "Kangana Ranaut"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/nikhil/1260236075",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "o": [
+    {
+      "title": "Oye Lucky! Lucky Oye!",
+      "description": "A comedy-drama about a lovable thief who becomes a media sensation.",
+      "year": 2008,
+      "cast": ["Abhay Deol", "Neetu Chandra"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/oye-lucky-lucky-oye/1000057901",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Om Shanti Om",
+      "description": "A reincarnation drama about a film star from the 1970s who returns to avenge his death in a later life.",
+      "year": 2007,
+      "cast": ["Shah Rukh Khan", "Deepika Padukone"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/om-shanti-om/1000057644",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "p": [
+    {
+      "title": "Piku",
+      "description": "A family drama about a father-daughter relationship and the struggles of managing old age.",
+      "year": 2015,
+      "cast": ["Amitabh Bachchan", "Deepika Padukone"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/piku/1260021402",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Padmaavat",
+      "description": "A historical epic about the legend of Queen Padmavati and her fight against the invader Alauddin Khilji.",
+      "year": 2018,
+      "cast": ["Deepika Padukone", "Ranveer Singh", "Shahid Kapoor"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/padmaavat/1260026723",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "q": [
+    {
+      "title": "Queen",
+      "description": "A comedy-drama about a young woman who embarks on a solo honeymoon trip after her fiancé calls off their wedding.",
+      "year": 2013,
+      "cast": ["Kangana Ranaut", "Rajkummar Rao"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/in/title/80083268",
+          "platform": "Netflix"
+        }
+      ]
+    }
+  ],
+  "r": [
+    {
+      "title": "Raja Hindustani",
+      "description": "A romantic drama about a taxi driver who falls in love with a wealthy girl.",
+      "year": 1996,
+      "cast": ["Aamir Khan", "Karishma Kapoor"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/raja-hindustani/1000057612",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Raazi",
+      "description": "A spy thriller about an Indian woman married to a Pakistani military officer who serves as a spy during the 1971 Indo-Pak war.",
+      "year": 2018,
+      "cast": ["Alia Bhatt", "Vicky Kaushal"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/raazi/1260026926",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "s": [
+    {
+      "title": "Sholay",
+      "description": "A classic action-adventure film about two criminals hired to defeat a notorious bandit.",
+      "year": 1975,
+      "cast": ["Amitabh Bachchan", "Dharmendra", "Hema Malini"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/sholay/1000056862",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Swades",
+      "description": "A drama about an NRI who returns to India to bring about social change in his village.",
+      "year": 2004,
+      "cast": ["Shah Rukh Khan", "Gayathri Joshi"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/swades/1260023180",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "t": [
+    {
+      "title": "Taare Zameen Par",
+      "description": "A drama about a dyslexic child and his struggles with the traditional education system.",
+      "year": 2007,
+      "cast": ["Aamir Khan", "Darsheel Safary"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/taare-zameen-par/1260021468",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    },
+    {
+      "title": "Tumhari Sulu",
+      "description": "A comedy-drama about a housewife who unexpectedly becomes a successful radio jockey.",
+      "year": 2017,
+      "cast": ["Vidya Balan", "Manav Kaul"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/tumhari-sulu/1260021712",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "u": [
+    {
+      "title": "Udta Punjab",
+      "description": "A gritty drama about the drug problem in Punjab and its impact on different individuals.",
+      "year": 2016,
+      "cast": ["Shahid Kapoor", "Kareena Kapoor", "Alia Bhatt"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/udta-punjab/1260026888",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "v": [
+    {
+      "title": "Vicky Donor",
+      "description": "A comedy-drama about a sperm donor and the challenges he faces with his family and society.",
+      "year": 2012,
+      "cast": ["Ayushmann Khurrana", "Yami Gautam"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/vicky-donor/1260021952",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "w": [
+    {
+      "title": "Wake Up Sid",
+      "description": "A coming-of-age film about a young man who learns responsibility after flunking his exams.",
+      "year": 2009,
+      "cast": ["Ranbir Kapoor", "Kalki Koechlin"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/wake-up-sid/1000057521",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "x": [
+    {
+      "title": "X: Past Is Present",
+      "description": "A film exploring the lives and relationships of a group of people across different time periods.",
+      "year": 2015,
+      "cast": ["Radhika Apte", "Kalki Koechlin"],
+      "links": [
+        {
+          "url": "https://www.hotstar.com/in/movies/x-past-is-present/1260026879",
+          "platform": "Disney+ Hotstar"
+        }
+      ]
+    }
+  ],
+  "y": [
+    {
+      "title": "Yeh Jawaani Hai Deewani",
+      "description": "A film about friendship and romance as four friends reunite and reflect on their past.",
+      "year": 2013,
+      "cast": ["Ranbir Kapoor", "Deepika Padukone"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/in/title/80098951",
+          "platform": "Netflix"
+        }
+      ]
+    }
+  ],
+  "z": [
+    {
+      "title": "Zindagi Na Milegi Dobara",
+      "description": "A film about three friends on a road trip that changes their perspectives on life and relationships.",
+      "year": 2011,
+      "cast": ["Hrithik Roshan", "Farhan Akhtar", "Abhay Deol"],
+      "links": [
+        {
+          "url": "https://www.netflix.com/in/title/70108483",
+          "platform": "Netflix"
+        }
+      ]
+    }
+  ]
+}
