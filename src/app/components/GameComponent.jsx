@@ -2,17 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import bollywoodMovieScenes from "/public/bollywoodMovieScenes.json";
-import levenshtein from "fast-levenshtein";
-import { PREFIX } from "@/app/utils/constants";
 import socket from "@/app/utils/socket";
-import { extractIdFromUrl } from "../utils/utils";
 import PlayerList from "./PlayerList";
 import GameSettings from "./GameSettings";
 import GameWindow from "./GameWindow";
-import Swal from "sweetalert2";
 import Chats from "./Chats";
 import { Toaster } from "react-hot-toast";
 
@@ -23,6 +16,9 @@ const GameComponent = ({ roomId, playerName }) => {
   const [isGameStarted, setIsGameStarted] = useState(false);
 
   const [players, setPlayers] = useState([]);
+  const [rounds, setRounds] = useState([]);
+  const [roundNumber, setRoundNumber] = useState([]);
+
   const [guessText, setGuessText] = useState("");
   const [numberOfGuesses, setNumberOfGuesses] = useState(0);
   const [gameCompleted, setGameCompleted] = useState(false);
@@ -45,8 +41,9 @@ const GameComponent = ({ roomId, playerName }) => {
       }
     });
 
-    socket.on("update-players", (players) => {
+    socket.on("update-players", ({ players, rounds }) => {
       setPlayers(players);
+      setRounds(rounds);
       const owner = players.find((player) => player.isOwner);
       if (owner.id === socket.id) {
         setIsOwner(true);
@@ -54,8 +51,9 @@ const GameComponent = ({ roomId, playerName }) => {
     });
 
     socket.on("start-round", (room) => {
-      setIsGameStarted(true);
       setRoom(room);
+      setRoundNumber(room.roundNumber);
+      setIsGameStarted(true);
     });
 
     socket.on("player-guessed", (room, playerName) => {
@@ -72,7 +70,13 @@ const GameComponent = ({ roomId, playerName }) => {
     });
 
     return () => {
+      socket.off("room-not-found");
+      socket.off("room-details");
       socket.off("update-players");
+      socket.off("start-round");
+      socket.off("player-guessed");
+      socket.off("update-room-settings");
+      socket.off("end-game");
     };
   }, [roomId]);
 
@@ -84,7 +88,11 @@ const GameComponent = ({ roomId, playerName }) => {
     <div>
       <div className="hidden md:flex h-screen max-w-5xl mx-auto p-2">
         <Toaster />
-        <PlayerList room={room} />
+        <PlayerList
+          players={players}
+          rounds={rounds}
+          roundNumber={roundNumber}
+        />
         <div className="w-1/2 flex flex-col bg-white px-2">
           {!isGameStarted && (
             <div className="flex flex-col items-center">

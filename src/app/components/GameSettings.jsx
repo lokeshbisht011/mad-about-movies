@@ -9,6 +9,15 @@ const GameSettings = ({ isOwner, roomId, room }) => {
   const [guessTime, setGuessTime] = useState(room ? room.guessTime : 30);
   const [rounds, setRounds] = useState(room ? room.totalRounds : 5);
 
+  const playerOptions = Array.from({ length: 19 }, (_, i) => i + 2);
+  const guessTimeOptions = [5, 15, 20, 30, 45, 60, 70, 80, 90, 100, 120, 150, 180];
+  const roundsOptions = Array.from({ length: 15 }, (_, i) => i + 2);
+  const gameTypeOptions = [
+    { value: "scene", label: "Guess from Scene" },
+    { value: "dialogue", label: "Guess from Dialogue" },
+    { value: "complete", label: "Complete the Dialogue" },
+  ];
+
   useEffect(() => {
     if (room) {
       setGameType(room.gameType);
@@ -35,7 +44,6 @@ const GameSettings = ({ isOwner, roomId, room }) => {
         room.guessTime = value;
         break;
       case "rounds":
-        console.log("dfd")
         setRounds(value);
         room.totalRounds = value;
         break;
@@ -56,47 +64,77 @@ const GameSettings = ({ isOwner, roomId, room }) => {
         {isOwner ? (
           <>
             <div className="flex md:mb-4 mb-2 gap-2 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Game Type:</h2>
+              <h2 className="md:text-md text-md font-bold mb-2">Game Type</h2>
               <select
                 id="gameType"
                 value={gameType}
                 onChange={handleSettingsChange}
-                className="border md:p-2 rounded md:text-md text-sm p-1"
+                className="border md:p-2 rounded md:text-md text-sm p-1 w-full max-w-60"
               >
-                <option value="scene">Guess from Scene</option>
-                <option value="dialogue">Guess from Dialogue</option>
-                <option value="complete">Complete the Dialogue</option>
+                {gameTypeOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex md:mb-4 mb-2 gap-2 items-center justify-between">
+              <h2 className="md:text-md text-md font-bold mb-2">
+                Players
+              </h2>
+              <select
+                id="playersAllowed"
+                value={playersAllowed}
+                onChange={handleSettingsChange}
+                className="border md:p-2 rounded md:text-md text-sm p-1 w-full max-w-60"
+              >
+                {playerOptions.map((num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Players Allowed:</h2>
-              <input
-                id="playersAllowed"
-                type="number"
-                value={playersAllowed}
-                onChange={handleSettingsChange}
-                className="border md:p-2 rounded md:text-md text-sm p-1"
-              />
-            </div>
-            <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Guess Time (seconds):</h2>
-              <input
+              <h2 className="md:text-md text-md font-bold mb-2">
+                Time(seconds)
+              </h2>
+              <select
                 id="guessTime"
-                type="number"
                 value={guessTime}
                 onChange={handleSettingsChange}
-                className="border md:p-2 rounded md:text-md text-sm p-1"
-              />
+                className="border md:p-2 rounded md:text-md text-sm p-1 w-full max-w-60"
+              >
+                {guessTimeOptions.map((time) => (
+                  <option key={time} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Rounds:</h2>
-              <input
+              <h2 className="md:text-md text-md font-bold mb-2">Rounds</h2>
+              <select
                 id="rounds"
-                type="number"
                 value={rounds}
                 onChange={handleSettingsChange}
-                className="border md:p-2 rounded md:text-md text-sm p-1"
-              />
+                className="border md:p-1 rounded md:text-sm text-sm p-1 w-full max-w-60"
+              >
+                {roundsOptions.map((round) => (
+                  <option key={round} value={round}>
+                    {round}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <hr className="border-t border-line mb-2" />
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={startGame}
+                className="md:text-md text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
+              >
+                Start Game
+              </button>
             </div>
           </>
         ) : (
@@ -106,11 +144,15 @@ const GameSettings = ({ isOwner, roomId, room }) => {
               <p>{gameType}</p>
             </div>
             <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Players Allowed:</h2>
+              <h2 className="md:text-lg text-md font-bold mb-2">
+                Players Allowed:
+              </h2>
               <p>{playersAllowed}</p>
             </div>
             <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Guess Time (seconds):</h2>
+              <h2 className="md:text-lg text-md font-bold mb-2">
+                Guess Time (seconds):
+              </h2>
               <p>{guessTime}</p>
             </div>
             <div className="flex mb-4 items-center justify-between">
@@ -119,14 +161,6 @@ const GameSettings = ({ isOwner, roomId, room }) => {
             </div>
           </>
         )}
-      </div>
-      <div className="flex justify-center mt-4">
-      <button
-        onClick={startGame}
-        className="md:text-md text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
-      >
-        Start Game
-      </button>
       </div>
     </div>
   );

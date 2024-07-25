@@ -28,6 +28,7 @@ const MultiplayerMovieScene = ({ image, handleImageLoad}) => {
           fill
           className="object-cover"
           onLoad={handleImageLoading}
+          quality={50}
         />
       )}
     </motion.div>

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import socket from "../utils/socket";
 import toast, { Toaster } from "react-hot-toast";
+import { generateRandomString } from "../utils/utils";
 
 const MultiplayerGame = () => {
   const router = useRouter();
@@ -23,7 +24,6 @@ const MultiplayerGame = () => {
     });
 
     socket.on("room-joined", (roomId) => {
-      setRoomId(roomId);
       router.push(`/room/${roomId}`);
     });
 
@@ -33,17 +33,10 @@ const MultiplayerGame = () => {
       setRoomId("");
     });
 
-    socket.on("game-message", (message) => {
-      setMessages((prev) => [...prev, message]);
-    });
-
     return () => {
       socket.off("room-created");
       socket.off("room-joined");
       socket.off("room-not-found");
-      socket.off("player-joined");
-      socket.off("player-left");
-      socket.off("game-message");
     };
   }, []);
 
@@ -53,7 +46,7 @@ const MultiplayerGame = () => {
       toast.error("Name is required");
     } else {
       localStorage.setItem("playerName", playerName);
-      const newRoomId = Math.random().toString(36).substr(2, 9);
+      const newRoomId = generateRandomString(5);
       socket.emit("create-room", newRoomId, playerName);
     }
   };

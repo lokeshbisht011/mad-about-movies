@@ -14,13 +14,6 @@ const Chats = ({ roomId, playerName }) => {
       ]);
     });
 
-    socket.on("player-left", (playerName) => {
-      setChatMessages((prev) => [
-        ...prev,
-        { user: "", text: `${playerName} left the room` },
-      ]);
-    });
-
     socket.on("game-message", (message) => {
       setChatMessages((prevMessages) => [...prevMessages, message]);
     });

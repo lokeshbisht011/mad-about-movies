@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import socket from "../utils/socket";
 
-const PlayerList = ({ room }) => {
-  const [players, setPlayers] = useState(room ? room.players : []);
+const PlayerList = ({ players, rounds, roundNumber }) => {
   const [currentRoundPlayersGuessed, setCurrentRoundPlayersGuessed] = useState(
     []
   );
 
+
   useEffect(() => {
-    if (room) {
-      setPlayers(room.players);
+    if (rounds) {
       const playersGuessed =
-        room.rounds?.[room.roundNumber - 1]?.playersGuessed || [];
+        rounds?.[roundNumber - 1]?.playersGuessed || [];
       setCurrentRoundPlayersGuessed(playersGuessed);
     }
-  }, [room]);
+  }, [rounds]);
 
   return (
     <div className="md:w-1/4 w-1/2 p-4 bg-gray-100">
