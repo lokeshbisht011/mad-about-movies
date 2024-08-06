@@ -50,7 +50,7 @@ const Chats = ({ roomId, playerName, players }) => {
     <div className="md:w-1/4 w-1/2 bg-white rounded-lg">
       <h2 className="text-xl font-bold text-center p-2 ">Chats</h2>
       <div className="flex flex-col h-full">
-        <div className="flex flex-col overflow-y-scroll flex-grow h-96">
+        <div className="flex flex-col overflow-y-scroll h-full">
           {chatMessages.map((message, index) => (
             <div
               key={index}

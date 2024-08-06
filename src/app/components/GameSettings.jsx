@@ -96,8 +96,8 @@ const GameSettings = ({ isOwner, roomId, room }) => {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-white">
-      <div className="md:p-4 p-2 flex-grow">
+    <div className="flex flex-col h-full bg-white rounded-lg">
+      <div className="md:p-4 p-2 flex-grow md:mx-0 md:mt-0 mx-2 mt-2">
         {isOwner ? (
           <>
             {settings.map(({ id, label, value, options }) => (
@@ -135,7 +135,7 @@ const GameSettings = ({ isOwner, roomId, room }) => {
         )}
       </div>
       {isOwner && (
-        <div className="flex justify-center mt-4 p-4">
+        <div className="flex justify-center mt-4 md:p-4 px-2">
           <button
             onClick={startGame}
             className="md:text-md text-sm w-full bg-gray-100 hover:bg-gray-200 text-black px-3 py-1 md:px-4 md:py-2 rounded-md"

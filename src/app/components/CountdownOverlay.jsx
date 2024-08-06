@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const CountdownOverlay = ({ showCountdown, countdown, playerUpdates, previousAnswer, gameType }) => (
   <AnimatePresence>
     {showCountdown && (
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-300 z-50 p-4">
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-300 z-50 p-4 rounded-lg">
         {gameType != "Arrange the Scenes" && previousAnswer && (
           <motion.div
             className="text-center text-xl font-semibold text-black mb-4"

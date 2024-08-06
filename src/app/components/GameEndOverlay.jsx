@@ -5,14 +5,14 @@ const GameEndOverlay = ({ showGameEndScreen, winningPlayers, countdown }) => (
   <AnimatePresence>
     {showGameEndScreen && (
       <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-between bg-gray-300 z-50 p-4"
+        className="absolute inset-0 flex flex-col items-center justify-between bg-gray-300 z-50 p-4 rounded-lg"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <motion.div
-          className="text-center text-3xl font-bold text-black mt-4"
+          className="text-center text-3xl font-bold text-black md:mt-4"
           initial={{ y: "-100%", opacity: 0 }}
           animate={{ y: "0%", opacity: 1 }}
           exit={{ y: "-100%", opacity: 0 }}

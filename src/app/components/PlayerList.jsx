@@ -54,6 +54,79 @@ const PlayerList = ({ players }) => {
       color: "green",
       rank: 3,
     });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    rankedPlayers.push({
+      id: "hghj",
+      name: "rando292839",
+      score: 450,
+      isPlaying: true,
+      isOwner: false,
+      color: "green",
+      rank: 3,
+    });
+    
 
     return rankedPlayers;
   };
@@ -67,12 +140,14 @@ const PlayerList = ({ players }) => {
           rankedPlayers.map((player, index) => (
             <li
               key={index}
-              className={`flex justify-between p-2 ${
+              className={`flex justify-between p-2 md:text-md text-sm ${
                 currentRoundPlayersGuessed.includes(player.id)
                   ? "bg-green-500"
                   : index % 2 === 0
                   ? "bg-gray-100"
                   : "bg-white"
+              }${index === 0 ? "rounded-lg bg-gray-100 rounded-t-lg" : ""} ${
+                index === rankedPlayers.length - 1 ? "rounded-b-lg" : ""
               }`}
             >
               <div

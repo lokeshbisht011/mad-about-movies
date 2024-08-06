@@ -90,7 +90,6 @@ const GameComponent = ({ roomId, playerName }) => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        minHeight: "100vh",
       }}
     >
       <Toaster />
@@ -114,12 +113,10 @@ const GameComponent = ({ roomId, playerName }) => {
       </div>
 
       <div className="md:hidden flex flex-col mx-auto p-2">
-        <div className="flex flex-col bg-white px-2">
+        <div className="flex flex-col bg-white rounded-lg">
           {!isGameStarted && (
-            <div className="flex flex-col items-center">
-              <div className="mb-4">
+              <div className="flex flex-col md:mb-4 mb-2">
                 <GameSettings isOwner={isOwner} roomId={roomId} room={room} />
-              </div>
             </div>
           )}
           {isGameStarted && (

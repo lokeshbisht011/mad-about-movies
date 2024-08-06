@@ -228,11 +228,32 @@ const GameWindow = ({ room, roomId, isOwner }) => {
         });
         updatedPlayerUpdates.push({
           socketId: "dfdf",
+          playerName: "sfdasdfsadf",
+          scoreIncrement: 200,
+        });
+        updatedPlayerUpdates.push({
+          socketId: "dfdfd",
+          playerName: "sfdasdfsadf",
+          scoreIncrement: 200,
+        });
+        updatedPlayerUpdates.push({
+          socketId: "dfddff",
+          playerName: "sfdasdfsadf",
+          scoreIncrement: 200,
+        });
+        updatedPlayerUpdates.push({
+          socketId: "dfdfdf",
+          playerName: "sfdasdfsadf",
+          scoreIncrement: 200,
+        });
+
+        updatedPlayerUpdates.push({
+          socketId: "dffdfddf",
           playerName: "sfadf",
           scoreIncrement: 200,
         });
         updatedPlayerUpdates.push({
-          socketId: "dfdf",
+          socketId: "dfddfff",
           playerName: "sfdasdfsadfdf",
           scoreIncrement: 20,
         });
@@ -265,7 +286,7 @@ const GameWindow = ({ room, roomId, isOwner }) => {
   };
 
   return (
-    <div className="relative bg-white p-4">
+    <div className="relative bg-white p-4 rounded-lg">
       <CountdownOverlay showCountdown={showCountdown} countdown={countdown} playerUpdates={playerUpdates} previousAnswer={previousAnswer} gameType={gameType}/>
       <GameEndScreen showGameEndScreen={showGameEndScreen} winningPlayers={winningPlayers} countdown={countdown} />
       {true && (

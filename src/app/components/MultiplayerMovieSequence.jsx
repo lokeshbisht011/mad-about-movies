@@ -70,34 +70,34 @@ const MultiplayerMovieSequence = ({ images, movieName, roomId, timer, currentRou
 
   return (
     <div className="flex flex-col gap-5 p-2 items-center justify-center border rounded-lg shadow-lg">
-      <div className="justify-center text-center text-text text-2xl">
+      <div className="justify-center text-center text-text md:text-2xl text-xl">
         <span className="">Movie : {movieName}</span>
       </div>
       <Toaster />
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-        <CustomDragLayer className={"md:h-[80px] md:w-[200px] h-[75px] w-[175px]"} />
-        <div className="grid grid-cols-2 gap-8">
+        <CustomDragLayer className={"md:h-[80px] md:w-[200px] h-[70px] w-[160px]"} />
+        <div className="grid grid-cols-2 md:gap-8 gap-4">
           {myImages && myImages.map((image, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="md:h-[80px] md:w-[200px] h-[75px] w-[175px] relative"
+              className="md:h-[80px] md:w-[200px] h-[70px] w-[160px] relative"
             >
               {index >= correctIndex ? (
                 <CustomImage
                   src={image.url}
                   index={index}
                   moveImage={moveImage}
-                  className={"md:h-[80px] md:w-[200px] h-[75px] w-[175px]"}
+                  className={"md:h-[80px] md:w-[200px] h-[70px] w-[160px]"}
                 />
               ) : (
                 <Image
                   src={image.url}
                   alt=""
                   fill
-                  className="object-cover border-4 border-green-500"
+                  className="object-cover md:border-4 border-2 border-green-500"
                 />
                 
               )}
