@@ -1,8 +1,7 @@
-"use client";
+import React from "react";
+import SinglePlayerLayout from "../components/SinglePlayerLayout";
 
-import HomeLayout from "./components/HomeLayout";
-
-export default function Home() {
+const page = () => {
   return (
     <div
       style={{
@@ -11,10 +10,11 @@ export default function Home() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        minHeight: "100vh",
       }}
     >
-      <HomeLayout />
+      <SinglePlayerLayout />
     </div>
   );
-}
+};
+
+export default page;

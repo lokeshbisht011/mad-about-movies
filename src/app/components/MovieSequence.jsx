@@ -143,7 +143,7 @@ const MovieSequence = ({ params }) => {
                             className="md:h-[150px] md:w-[350px] h-[75px] w-[175px] relative"
                         >
                             {index >= correctIndex ? (
-                                <CustomImage src={image.src} index={index} moveImage={moveImage} />
+                                <CustomImage src={image.src} index={index} moveImage={moveImage} className={"md:h-[150px] md:w-[350px] h-[75px] w-[175px]"} />
                             ) : (
                                 <Image src={image.src} alt="" fill className="object-cover border-4 border-green-500" />
                             )}

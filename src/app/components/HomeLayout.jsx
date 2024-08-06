@@ -1,47 +1,123 @@
-'use client'
+"use client";
 
-import React, { useEffect, useState } from 'react'
-import GameSection from './GameSection'
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import socket from "../utils/socket";
+import toast, { Toaster } from "react-hot-toast";
+import { generateRandomString } from "../utils/utils";
 
 const HomeLayout = () => {
+  const router = useRouter();
 
-  const [themeSuffix, setThemeSuffix] = useState('_light');
+  const [roomId, setRoomId] = useState("");
+  const [playerName, setPlayerName] = useState("");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setThemeSuffix(savedTheme === 'light' ? '_light' : '_dark');
+    const savedPlayerName = localStorage.getItem("playerName");
+    if (savedPlayerName) {
+      setPlayerName(savedPlayerName);
+    }
+
+    socket.on("room-created", (roomId) => {
+      router.push(`/room/${roomId}`);
+    });
+
+    socket.on("room-joined", (roomId) => {
+      router.push(`/room/${roomId}`);
+    });
+
+    socket.on("room-not-found", (error) => {
+      toast.dismiss();
+      toast.error(error);
+      setRoomId("");
+    });
+
+    return () => {
+      socket.off("room-created");
+      socket.off("room-joined");
+      socket.off("room-not-found");
+    };
   }, []);
 
-  return (
-    <div className='flex flex-col h-vh p-4 items-center text-text'>
-      <header className="py-4 text-center max-w-3xl">
-        <h1 className='text-3xl fond-bold'>Enjoy different games based on your favourite bollywood movies. Challenge your friends and have fun playing.</h1>
-      </header>
-      <main className="grid md:grid-cols-2 justify-center items-center gap-5 m-8 text-text">
-        <GameSection
-          title="Arrange Movie Scenes"
-          imageSrc={`/sequence${themeSuffix}.jpg`}
-          description="Can you arrange the movie scenes in the correct order?"
-          link="/sequence"
-          imageClass="md:h-[150px] md:w-[260px] h-[130px] w-[180px]"
-        />
-        <GameSection
-          title="Guess the Movie from the Dialogue"
-          imageSrc={`/dialogue${themeSuffix}.jpg`}
-          description="Test your movie knowledge by guessing the movie from a dialogue."
-          link="/dialogue"
-          imageClass="md:h-[150px] md:w-[400px] h-[90px] w-[240px]"
-        />
-        <GameSection
-          title="Guess the Movie from the Scene"
-          imageSrc="/scene.jpg"
-          description="Test your movie knowledge by guessing the movie based on a scene."
-          link="/scene"
-          imageClass="md:h-[150px] md:w-[350px] h-[80px] w-[190px]"
-        />
-      </main>
-    </div>
-  )
-}
+  const createRoom = () => {
+    if (!playerName || playerName.trim() === "") {
+      toast.dismiss();
+      toast.error("Name is required");
+    } else {
+      localStorage.setItem("playerName", playerName);
+      const newRoomId = generateRandomString(5);
+      socket.emit("create-room", newRoomId, playerName);
+    }
+  };
 
-export default HomeLayout
+  const joinRoom = (id) => {
+    if (!playerName || playerName.trim() === "") {
+      toast.dismiss();
+      toast.error("Name is required");
+    } else {
+      localStorage.setItem("playerName", playerName);
+      socket.emit("join-room", id, playerName);
+    }
+  };
+
+  return (
+    <div
+      className="flex items-center justify-center bg-gray-100 p-5"
+      style={{
+        backgroundImage: "url('/bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        minHeight: "100vh",
+      }}
+    >
+      <Toaster />
+      <motion.div
+        className="max-w-md rounded-lg p-8 shadow-lg bg-purple-600 -mt-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="mb-4 text-center text-4xl font-bold text-white">
+          Mad About Movies
+        </h1>
+        <input
+          type="text"
+          placeholder="Your name"
+          value={playerName}
+          onChange={(e) => setPlayerName(e.target.value)}
+          className="mb-3 w-full rounded-md border border-gray-300 p-3 text-gray-700"
+        />
+        <button
+          onClick={createRoom}
+          className="mb-3 w-full rounded-md bg-blue-500 px-4 py-3 text-white transition hover:bg-blue-600"
+        >
+          Create Room
+        </button>
+        <input
+          type="text"
+          placeholder="Room ID"
+          value={roomId}
+          onChange={(e) => setRoomId(e.target.value)}
+          className="mb-3 w-full rounded-md border border-gray-300 p-3 text-gray-700"
+        />
+        <button
+          onClick={() => joinRoom(roomId)}
+          className="mb-3 w-full rounded-md bg-green-500 px-4 py-3 text-white transition hover:bg-green-600"
+        >
+          Join Room
+        </button>
+        <button
+          onClick={() => router.push("/single-player")}
+          className="w-full rounded-md bg-gray-500 px-4 py-3 text-white transition hover:bg-gray-600"
+        >
+          Single Player Mode
+        </button>
+      </motion.div>
+    </div>
+  );
+};
+
+export default HomeLayout;

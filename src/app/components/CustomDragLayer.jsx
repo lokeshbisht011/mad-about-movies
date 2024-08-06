@@ -1,8 +1,7 @@
-// components/CustomDragLayer.js
 import { useDragLayer } from 'react-dnd';
 import Image from 'next/image';
 
-const CustomDragLayer = () => {
+const CustomDragLayer = ({ className }) => {
   const { item, itemType, isDragging, currentOffset } = useDragLayer((monitor) => ({
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
@@ -25,7 +24,7 @@ const CustomDragLayer = () => {
   if (itemType === 'IMAGE') {
     return (
       <div style={layerStyles}>
-        <div className="md:h-[150px] md:w-[350px] sm:h-[120px] sm:w-[300px] h-[80px] w-[190px] relative">
+        <div className={`relative ${className}`}>
           <Image src={item.src} alt="" className="object-cover" fill />
         </div>
       </div>

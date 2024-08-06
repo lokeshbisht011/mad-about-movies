@@ -17,7 +17,6 @@ const GameComponent = ({ roomId, playerName }) => {
 
   const [players, setPlayers] = useState([]);
   const [rounds, setRounds] = useState([]);
-  const [roundNumber, setRoundNumber] = useState([]);
 
   const [guessText, setGuessText] = useState("");
   const [numberOfGuesses, setNumberOfGuesses] = useState(0);
@@ -41,23 +40,17 @@ const GameComponent = ({ roomId, playerName }) => {
       }
     });
 
-    socket.on("update-players", ({ players, rounds }) => {
+    socket.on("update-players", ({ players }) => {
       setPlayers(players);
-      setRounds(rounds);
       const owner = players.find((player) => player.isOwner);
       if (owner.id === socket.id) {
         setIsOwner(true);
       }
     });
 
-    socket.on("start-round", (room) => {
+    socket.on("game-started", (room) => {
       setRoom(room);
-      setRoundNumber(room.roundNumber);
       setIsGameStarted(true);
-    });
-
-    socket.on("player-guessed", (room, playerName) => {
-      setRoom(room);
     });
 
     socket.on("update-room-settings", (room) => {
@@ -66,6 +59,11 @@ const GameComponent = ({ roomId, playerName }) => {
 
     socket.on("end-game", (room) => {
       setRoom(room);
+      setPlayers(room.players);
+      const owner = room.players.find((player) => player.isOwner);
+      if (owner.id === socket.id) {
+        setIsOwner(true);
+      }
       resetGame();
     });
 
@@ -73,8 +71,7 @@ const GameComponent = ({ roomId, playerName }) => {
       socket.off("room-not-found");
       socket.off("room-details");
       socket.off("update-players");
-      socket.off("start-round");
-      socket.off("player-guessed");
+      socket.off("game-started");
       socket.off("update-room-settings");
       socket.off("end-game");
     };
@@ -85,15 +82,21 @@ const GameComponent = ({ roomId, playerName }) => {
   }
 
   return (
-    <div>
-      <div className="hidden md:flex h-screen max-w-5xl mx-auto p-2">
-        <Toaster />
-        <PlayerList
-          players={players}
-          rounds={rounds}
-          roundNumber={roundNumber}
-        />
-        <div className="w-1/2 flex flex-col bg-white px-2">
+    <div
+      className="h-screen"
+      style={{
+        backgroundImage: "url('/bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        minHeight: "100vh",
+      }}
+    >
+      <Toaster />
+      <div className="hidden md:flex max-w-6xl mx-auto p-2">
+        <PlayerList players={players} />
+        <div className="w-1/2 flex flex-col px-2">
           {!isGameStarted && (
             <div className="flex flex-col items-center">
               <div className="w-full mb-4">
@@ -107,11 +110,10 @@ const GameComponent = ({ roomId, playerName }) => {
             </div>
           )}
         </div>
-        <Chats roomId={roomId} playerName={playerName} />
+        <Chats roomId={roomId} playerName={playerName} players={players} />
       </div>
 
-      <div className="md:hidden flex flex-col h-screen mx-auto p-2">
-        <Toaster />
+      <div className="md:hidden flex flex-col mx-auto p-2">
         <div className="flex flex-col bg-white px-2">
           {!isGameStarted && (
             <div className="flex flex-col items-center">
@@ -126,9 +128,9 @@ const GameComponent = ({ roomId, playerName }) => {
             </div>
           )}
         </div>
-        <div className="flex gap-4">
-          <PlayerList room={room} />
-          <Chats roomId={roomId} playerName={playerName} />
+        <div className="flex gap-4 mt-4">
+          <PlayerList players={players} />
+          <Chats roomId={roomId} playerName={playerName} players={players} />
         </div>
       </div>
     </div>

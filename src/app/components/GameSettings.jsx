@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import socket from "@/app/utils/socket"; // Import your socket instance
+import toast from "react-hot-toast";
 
 const GameSettings = ({ isOwner, roomId, room }) => {
-  const [gameType, setGameType] = useState(room ? room.gameType : "scene");
+  const [gameType, setGameType] = useState(
+    room ? room.gameType : "Arrange the Scenes"
+  );
   const [playersAllowed, setPlayersAllowed] = useState(
     room ? room.playersAllowed : 4
   );
@@ -10,12 +13,15 @@ const GameSettings = ({ isOwner, roomId, room }) => {
   const [rounds, setRounds] = useState(room ? room.totalRounds : 5);
 
   const playerOptions = Array.from({ length: 19 }, (_, i) => i + 2);
-  const guessTimeOptions = [5, 15, 20, 30, 45, 60, 70, 80, 90, 100, 120, 150, 180];
+  const guessTimeOptions = [
+    2, 5, 15, 20, 30, 45, 60, 70, 80, 90, 100, 120, 150, 180,
+  ];
   const roundsOptions = Array.from({ length: 15 }, (_, i) => i + 2);
   const gameTypeOptions = [
-    { value: "scene", label: "Guess from Scene" },
-    { value: "dialogue", label: "Guess from Dialogue" },
-    { value: "complete", label: "Complete the Dialogue" },
+    "Arrange the Scenes",
+    "Guess from Scene",
+    "Guess from Dialogue",
+    "Complete the Dialogue",
   ];
 
   useEffect(() => {
@@ -55,113 +61,89 @@ const GameSettings = ({ isOwner, roomId, room }) => {
   };
 
   const startGame = () => {
-    socket.emit("start-game", roomId);
+    if (room.players.length > 0) {
+      socket.emit("start-game", roomId);
+    } else {
+      toast("Need at least two players to start game");
+    }
   };
 
+  const settings = [
+    {
+      id: "gameType",
+      label: "Game Type",
+      value: gameType,
+      options: gameTypeOptions,
+    },
+    {
+      id: "playersAllowed",
+      label: "Players",
+      value: playersAllowed,
+      options: playerOptions,
+    },
+    {
+      id: "guessTime",
+      label: "Time(seconds)",
+      value: guessTime,
+      options: guessTimeOptions,
+    },
+    {
+      id: "rounds",
+      label: "Rounds",
+      value: rounds,
+      options: roundsOptions,
+    },
+  ];
+
   return (
-    <div>
-      <div className="md:p-4 p-2 bg-gray-200 rounded-md">
+    <div className="flex flex-col h-full bg-white">
+      <div className="md:p-4 p-2 flex-grow">
         {isOwner ? (
           <>
-            <div className="flex md:mb-4 mb-2 gap-2 items-center justify-between">
-              <h2 className="md:text-md text-md font-bold mb-2">Game Type</h2>
-              <select
-                id="gameType"
-                value={gameType}
-                onChange={handleSettingsChange}
-                className="border md:p-2 rounded md:text-md text-sm p-1 w-full max-w-60"
-              >
-                {gameTypeOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex md:mb-4 mb-2 gap-2 items-center justify-between">
-              <h2 className="md:text-md text-md font-bold mb-2">
-                Players
-              </h2>
-              <select
-                id="playersAllowed"
-                value={playersAllowed}
-                onChange={handleSettingsChange}
-                className="border md:p-2 rounded md:text-md text-sm p-1 w-full max-w-60"
-              >
-                {playerOptions.map((num) => (
-                  <option key={num} value={num}>
-                    {num}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-md text-md font-bold mb-2">
-                Time(seconds)
-              </h2>
-              <select
-                id="guessTime"
-                value={guessTime}
-                onChange={handleSettingsChange}
-                className="border md:p-2 rounded md:text-md text-sm p-1 w-full max-w-60"
-              >
-                {guessTimeOptions.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-md text-md font-bold mb-2">Rounds</h2>
-              <select
-                id="rounds"
-                value={rounds}
-                onChange={handleSettingsChange}
-                className="border md:p-1 rounded md:text-sm text-sm p-1 w-full max-w-60"
-              >
-                {roundsOptions.map((round) => (
-                  <option key={round} value={round}>
-                    {round}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <hr className="border-t border-line mb-2" />
-            <div className="flex justify-center mt-4">
-              <button
-                onClick={startGame}
-                className="md:text-md text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
-              >
-                Start Game
-              </button>
-            </div>
+            {settings.map(({ id, label, value, options }) => (
+              <div key={id} className="flex mb-4 items-center justify-between">
+                <h2 className="md:text-md text-sm text-black font-semibold mb-2">
+                  {label}
+                </h2>
+                <select
+                  id={id}
+                  value={value}
+                  onChange={handleSettingsChange}
+                  className="md:p-2 rounded text-center text-black md:text-md bg-gray-100 text-sm p-1 w-full max-w-60"
+                >
+                  {options.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ))}
           </>
         ) : (
           <>
-            <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Game Type:</h2>
-              <p>{gameType}</p>
-            </div>
-            <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">
-                Players Allowed:
-              </h2>
-              <p>{playersAllowed}</p>
-            </div>
-            <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">
-                Guess Time (seconds):
-              </h2>
-              <p>{guessTime}</p>
-            </div>
-            <div className="flex mb-4 items-center justify-between">
-              <h2 className="md:text-lg text-md font-bold mb-2">Rounds:</h2>
-              <p>{rounds}</p>
-            </div>
+            {settings.map(({ label, value }, index) => (
+              <div
+                key={index}
+                className="flex mb-4 items-center justify-between"
+              >
+                <h2 className="md:text-lg text-md font-bold mb-2">{label}</h2>
+                <p>{value}</p>
+              </div>
+            ))}
           </>
         )}
       </div>
+      {isOwner && (
+        <div className="flex justify-center mt-4 p-4">
+          <button
+            onClick={startGame}
+            className="md:text-md text-sm w-full bg-gray-100 hover:bg-gray-200 text-black px-3 py-1 md:px-4 md:py-2 rounded-md"
+          >
+            Start Game
+          </button>
+        </div>
+      )}
     </div>
   );
 };

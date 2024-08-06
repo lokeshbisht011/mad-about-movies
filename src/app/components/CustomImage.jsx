@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-const CustomImage = ({ src, index, moveImage }) => {
+const CustomImage = ({ src, index, moveImage, className }) => {
     const [, drag, preview] = useDrag({
         type: 'IMAGE',
         item: { index, src },
@@ -29,7 +29,7 @@ const CustomImage = ({ src, index, moveImage }) => {
     };
 
     return (
-        <div ref={(node) => drag(drop(node))} className='md:h-[150px] md:w-[350px] h-[75px] w-[175px] relative border-4 border-gray-500'>
+        <div ref={(node) => drag(drop(node))} className={`relative border-4 border-gray-500 ${className}`}>
             {loading && (
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
             )}
