@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { Mdx } from "@/app/components/Mdx";
 import RelatedBlogs from "@/app/components/RelatedBlogs";
 import moviesArray from "../../../../public/movies.json";
+import songsArray from "../../../../public/songs.json";
 import BollywoodMovies from "@/app/components/BollywoodMovies";
+import BollywoodSongs from "@/app/components/BollywoodSongs";
 
 async function getDocFromParams(slug) {
   const doc = allBlogs.find((doc) => doc.slug === slug);
@@ -27,6 +29,14 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  if (slug.includes("bollywood-songs-starting-with-")) {
+    const char = slug.split("bollywood-songs-starting-with-")[1];
+    return {
+      title: `Bollywood Songs Starting from ${char.toUpperCase()}`,
+      description: `A list of Bollywood songs that start with the letter ${char.toUpperCase()}.`,
+    };
+  }
+
   const doc = await getDocFromParams(slug);
   return {
     title: doc.title,
@@ -43,6 +53,16 @@ const page = async ({ params }) => {
     return (
       <div>
         <BollywoodMovies movies={movies} char={char} />
+      </div>
+    );
+  }
+
+  if (slug.includes("bollywood-songs-starting-with-")) {
+    const char = slug.split("bollywood-songs-starting-with-")[1];
+    const songs = songsArray[char.toLowerCase()];
+    return (
+      <div>
+        <BollywoodSongs songs={songs} char={char} />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const BollywoodMovies = ({ movies, char }) => {
+const BollywoodSongs = ({ songs, char }) => {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     .split("")
     .filter((letter) => letter !== char.toUpperCase());
@@ -16,30 +16,32 @@ const BollywoodMovies = ({ movies, char }) => {
     <div>
       <div className="mx-auto max-w-2xl text-text p-5 mt-5">
         <h1 className="text-4xl font-bold text-center mb-8">
-          Bollywood Movies Starting with {char.toUpperCase()}
+          Bollywood Songs Starting with {char.toUpperCase()}
         </h1>
         <p className="mb-6">
-          Welcome to our curated list of Bollywood movies that begin with the
-          letter {char.toUpperCase()}! Happy watching!
+          Welcome to our curated list of Bollywood songs that begin with the
+          letter {char.toUpperCase()}! Enjoy the music!
         </p>
         <div>
-          {movies.map((movie, index) => (
+          {songs.map((song, index) => (
             <div key={index} className="mt-10">
               <h2 className="text-3xl font-semibold mb-2">
-                {index + 1}. {movie.title}
+                {index + 1}. {song.title}
               </h2>
-              <p className="text-gray-700 mb-4">{movie.description}</p>
+              <p className="text-gray-700 mb-4">{song.description}</p>
               <p className="text-gray-500 mb-2">
-                <span className="font-semibold">Year:</span> {movie.year}
+                <span className="font-semibold">Year:</span> {song.year}
               </p>
               <p className="text-gray-500 mb-2">
-                <span className="font-semibold">Cast:</span>{" "}
-                {movie.cast.join(", ")}
+                <span className="font-semibold">Artist(s):</span> {song.artist}
               </p>
-              {movie.links &&
-                movie.links.map((link, index) => (
+              <p className="text-gray-500 mb-2">
+                <span className="font-semibold">Album:</span> {song.album}
+              </p>
+              {song.links &&
+                song.links.map((link, index) => (
                   <div key={index}>
-                    Watch on{" "}
+                    Listen on{" "}
                     <Link
                       href={link.url}
                       target="_blank"
@@ -57,7 +59,7 @@ const BollywoodMovies = ({ movies, char }) => {
       </div>
       <hr className="mx-5"></hr>
       <h2 className="text-3xl font-bold text-center my-5">
-        Explore More Bollywood Movies
+        Explore More Bollywood Songs
       </h2>
       <div className="flex flex-wrap gap-5 mt-5 px-4 mx-12">
         {displayedLetters.map((letter) => (
@@ -66,27 +68,26 @@ const BollywoodMovies = ({ movies, char }) => {
             className="flex flex-col p-4 border rounded-md shadow-md w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.333%-1rem)]"
           >
             <Link
-              href={`/blogs/bollywood-movies-starting-with-${letter.toLowerCase()}`}
+              href={`/blogs/bollywood-songs-starting-with-${letter.toLowerCase()}`}
               className="h-full flex flex-col justify-between"
             >
               <h2 className="text-2xl font-semibold">
-                Movies Starting with {letter}
+                Songs Starting with {letter}
               </h2>
               <div className="relative">
                 <img
                   src="/movies.png"
-                  alt={`Movies starting with ${letter}`}
+                  alt={`Songs starting with ${letter}`}
                   className="w-full h-auto"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                <span className="inline-block text-blue-500 text-7xl font-outline-2 font-bold">
-
+                  <span className="inline-block text-blue-500 text-7xl font-outline-2 font-bold">
                     {letter}
                   </span>
                 </div>
               </div>
               <p className="text-xl line-clamp-2">
-                A list of Bollywood movies that start with the letter{" "}
+                A list of Bollywood songs that start with the letter{" "}
                 {letter.toUpperCase()}.
               </p>
             </Link>
@@ -97,4 +98,4 @@ const BollywoodMovies = ({ movies, char }) => {
   );
 };
 
-export default BollywoodMovies;
+export default BollywoodSongs;
