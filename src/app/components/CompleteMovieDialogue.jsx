@@ -166,7 +166,7 @@ const MovieDialogue = ({ params }) => {
   };
 
   return (
-    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md mt-12 mx-auto">
+    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md mt-12 mx-4">
       <span className="md:text-3xl text-xl text-black font-semibold text-center max-w-xl mb-4">
         Complete the dialogue from the movie.
       </span>

@@ -10,14 +10,13 @@ export async function generateMetadata() {
 const page = ({ params }) => {
   return (
     <div
-      className="flex flex-col pb-8"
+      className="flex flex-col min-h-screen pb-8"
       style={{
         backgroundImage: "url('/bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        minHeight: "700px",
       }}
     >
       <div className="flex justify-center">

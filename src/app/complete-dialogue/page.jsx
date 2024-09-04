@@ -18,7 +18,20 @@ const Page = () => {
     router.push(newUrl);
   }, [router]);
 
-  return <div></div>;
+  return (
+    <div
+      className="flex min-h-screen"
+      style={{
+        backgroundImage: "url('/bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      
+    </div>
+  );
 };
 
 export default Page;

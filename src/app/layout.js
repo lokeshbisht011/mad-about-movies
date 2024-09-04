@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         <meta property="og:description" content="Everything movie related..." />
       </head>
       <body className={`${inter.className} bg-bg`}>
-        <div className="flex flex-col h-screen bg-bg">
+        <div className="flex flex-col h-screen bg-bg" >
           <Navbar />
           {/* <ThemeToggle /> */}
           {children}

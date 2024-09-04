@@ -10,7 +10,7 @@ export async function generateMetadata() {
 const page = ({ params }) => {
   return (
     <div
-      className="flex flex-col pb-12"
+      className="flex flex-col min-h-screen"
       style={{
         backgroundImage: "url('/bg.png')",
         backgroundSize: "cover",
@@ -19,7 +19,7 @@ const page = ({ params }) => {
         backgroundAttachment: "fixed",
       }}
     >
-      <div className="flex justify-center mx-10">
+      <div className="flex justify-center">
         <CompleteMovieDialogue params={params} />
       </div>
     </div>

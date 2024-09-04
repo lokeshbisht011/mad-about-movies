@@ -12,7 +12,6 @@ export default function Home() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        
       }}
     >
       <SinglePlayerLayout />
