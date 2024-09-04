@@ -73,6 +73,26 @@ const SinglePlayerLayout = () => {
         </section>
 
         <section className="p-6 shadow-md rounded-lg text-center items-center justify-center bg-bgSoft">
+          <h2 className="text-2xl mb-4">Complete Movie Dialogue</h2>
+          <div className="flex justify-center items-center">
+            <div className="flex items-center justify-center border border-textSoft p-4 md:w-[500px] md:h-[200px] w-[350px] h-[150px]">
+              <span className="text-2xl md:text-4xl italic text-textSoft">
+                &ldquo; Main udna chahta hun, daudna chahta hun, girna bhi
+                chahta hun... &rdquo;
+              </span>
+            </div>
+          </div>
+          <p className="my-4 text-textSoft">
+            Can you complete the dialogue from the movie?
+          </p>
+          <Link href={"/complete-dialogue"}>
+            <span className="bg-button text-white px-4 py-2 rounded-md hover:bg-buttonHover">
+              Play Now
+            </span>
+          </Link>
+        </section>
+
+        <section className="p-6 shadow-md rounded-lg text-center items-center justify-center bg-bgSoft">
           <h2 className="text-2xl mb-4">Guess Movie from Scene</h2>
           <div className="flex justify-center items-center">
             <motion.div
@@ -98,26 +118,7 @@ const SinglePlayerLayout = () => {
             </span>
           </Link>
         </section>
-
-        <section className="p-6 shadow-md rounded-lg text-center items-center justify-center bg-bgSoft">
-          <h2 className="text-2xl mb-4">Complete Movie Dialogue</h2>
-          <div className="flex justify-center items-center">
-            <div className="flex items-center justify-center border border-textSoft p-4 md:w-[500px] md:h-[200px] w-[350px] h-[150px]">
-              <span className="text-2xl md:text-4xl italic text-textSoft">
-                &ldquo; Main udna chahta hun, daudna chahta hun, girna bhi
-                chahta hun... &rdquo;
-              </span>
-            </div>
-          </div>
-          <p className="my-4 text-textSoft">
-            Can you complete the dialogue from the movie?
-          </p>
-          <Link href={"/complete-dialogue"}>
-            <span className="bg-button text-white px-4 py-2 rounded-md hover:bg-buttonHover">
-              Play Now
-            </span>
-          </Link>
-        </section>
+        
       </main>
     </div>
   );
