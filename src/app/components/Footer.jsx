@@ -4,8 +4,8 @@ import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer className="bg--bg text-text py-6 mt-auto">
-            <hr className="border-t border-line md:mx-20 mx-5 mb-5"/>
+        <footer className="bg-bg text-text pb-4 pt-8">
+            {/* <hr className="border-t border-line md:mx-20 mx-5 mb-5"/> */}
             <div className="container mx-auto text-center">
                 <div className="mb-4">
                     <h2 className="text-xl font-bold mb-2">MadAboutMovies</h2>
@@ -16,7 +16,7 @@ const Footer = () => {
                         <Link href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
                             <FaTwitter className="text-xl hover:text-blue-400 transition-colors" />
                         </Link>
-                        <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                        <Link href="https://www.instagram.com/madaboutmovies009" target="_blank" rel="noopener noreferrer">
                             <FaInstagram className="text-xl hover:text-pink-500 transition-colors" />
                         </Link>
                         <Link href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">

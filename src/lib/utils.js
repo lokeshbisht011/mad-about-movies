@@ -1,3 +1,4 @@
+import confetti from "canvas-confetti"
 import { ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -13,3 +14,11 @@ export function formatDate(input) {
     year: "numeric",
   })
 }
+
+export function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
+};

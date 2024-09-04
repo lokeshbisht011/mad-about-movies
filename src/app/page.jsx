@@ -1,6 +1,7 @@
 "use client";
 
 import HomeLayout from "./components/HomeLayout";
+import SinglePlayerLayout from "./components/SinglePlayerLayout";
 
 export default function Home() {
   return (
@@ -11,10 +12,10 @@ export default function Home() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
-        minHeight: "100vh",
+        
       }}
     >
-      <HomeLayout />
+      <SinglePlayerLayout />
     </div>
   );
 }

@@ -19,7 +19,7 @@ const BlogPage = () => {
     summary: `List of Bollywood movies that start with the letter ${char.toUpperCase()}`,
     tags: ["Bollywood", "Movies", char.toUpperCase()],
     body: {
-      code: JSON.stringify(moviesArray[char]), // You can customize this as per your needs
+      code: JSON.stringify(moviesArray[char]),
     },
   }));
   const combinedBlogs = [...blogs, ...movieBlogs];
@@ -27,7 +27,7 @@ const BlogPage = () => {
   shuffle(blogs);
 
   return (
-    <div className="container mx-auto px-4 mt-5 text-text">
+    <div className="container mx-auto px-4 mt-5 text-text" >
       <h1 className="md:text-5xl text-4xl font-bold mb-8 text-center">BLOGS</h1>
       <section className="mt-8">
         <BlogList posts={blogs} />

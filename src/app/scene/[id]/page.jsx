@@ -1,5 +1,5 @@
-import React from 'react';
-import MovieScene from '@/app/components/MovieScene';
+import React from "react";
+import MovieScene from "@/app/components/MovieScene";
 
 export async function generateMetadata() {
   return {
@@ -8,16 +8,23 @@ export async function generateMetadata() {
 }
 
 const page = ({ params }) => {
-    return (
-        <div className='flex flex-col mb-10'>
-          <div className='justify-center text-center text-text p-10'>
-            <span className='text-xl'>Guess the name of the movie from the scene.</span>
-          </div>
-          <div className='flex justify-center items-center'>
-              <MovieScene params={params}/>
-          </div>
-        </div>
-      )
-}
+  return (
+    <div
+      className="flex flex-col pb-8"
+      style={{
+        backgroundImage: "url('/bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        minHeight: "100vh",
+      }}
+    >
+      <div className="flex justify-center items-center">
+        <MovieScene params={params} />
+      </div>
+    </div>
+  );
+};
 
-export default page
+export default page;

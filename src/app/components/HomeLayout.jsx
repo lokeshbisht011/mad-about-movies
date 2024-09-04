@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import socket from "../utils/socket";
 import toast, { Toaster } from "react-hot-toast";
 import { generateRandomString } from "../utils/utils";
+import GoogleAd from "./GoogleAd";
 
 const HomeLayout = () => {
   const router = useRouter();
