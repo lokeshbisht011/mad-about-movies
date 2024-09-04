@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-bg`}>
         <div className="flex flex-col h-screen bg-bg">
           <Navbar />
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           {children}
           <Footer />
         </div>

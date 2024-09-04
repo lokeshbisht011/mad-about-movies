@@ -1,6 +1,6 @@
 "use client";
 
-import HomeLayout from "./components/HomeLayout";
+// import HomeLayout from "./components/HomeLayout";
 import SinglePlayerLayout from "./components/SinglePlayerLayout";
 
 export default function Home() {

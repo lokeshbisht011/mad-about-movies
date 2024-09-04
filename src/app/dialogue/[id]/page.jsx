@@ -20,7 +20,7 @@ const page = ({ params }) => {
         minHeight: "700px",
       }}
     >
-      <div className="flex justify-center mx-10">
+      <div className="flex justify-center">
         <MovieDialogue params={params} />
       </div>
     </div>

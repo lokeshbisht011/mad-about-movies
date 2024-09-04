@@ -150,7 +150,7 @@ const MovieSequence = ({ params }) => {
   };
 
   return (
-    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md md:mt-4 mt-8">
+    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md md:mt-4 mt-8 mx-4">
       <span className="md:text-3xl text-xl text-black font-semibold text-center max-w-xl mb-4">
         Arrange the scenes from the movie into the correct order.
       </span>

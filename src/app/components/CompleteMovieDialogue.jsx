@@ -150,23 +150,25 @@ const MovieDialogue = ({ params }) => {
     let charIndex = 0;
 
     return currentData.hiddenPart.split(" ").map((word, wordIndex) => (
-      <span key={wordIndex} className="mr-2">
-        {word.split("").map((char, index) => (
-          <span
-            key={index}
-            className="inline-block text-center w-2 border-b-2 border-gray-500 mx-[2px]"
-          />
-        ))}
-        {charIndex < word.length - 1 && (
-          <span className="inline-block w-1"></span>
-        )}
-        {word.length}
-      </span>
+      <div className="flex">
+        <span key={wordIndex} className="mr-2 text-xs md:text-base">
+          {word.split("").map((char, index) => (
+            <span
+              key={index}
+              className="inline-block text-center w-2 border-b-2 border-gray-500 mx-[2px]"
+            />
+          ))}
+          {charIndex < word.length - 1 && (
+            <span className="inline-block w-1"></span>
+          )}
+          {word.length}
+        </span>
+      </div>
     ));
   };
 
   return (
-    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md mt-12 mx-8">
+    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md mt-12 mx-auto">
       <span className="md:text-3xl text-xl text-black font-semibold text-center max-w-xl mb-4">
         Complete the dialogue from the movie.
       </span>
@@ -226,7 +228,7 @@ const MovieDialogue = ({ params }) => {
               {!gameCompleted && (
                 <div className="flex flex-col items-center justify-center gap-4">
                   <div
-                    className={`flex gap-1 items-center justify-center ${
+                    className={`flex flex-wrap gap-1 items-center justify-center ${
                       gameCompleted ? "invisible" : ""
                     }`}
                   >
@@ -254,7 +256,7 @@ const MovieDialogue = ({ params }) => {
                   </div>
                 </div>
               )}
-              <div className="flex items-center justify-center gap-10 md:text-md text-md">
+              <div className="flex items-center justify-center gap-8 md:text-md text-md">
                 <motion.button
                   onClick={() =>
                     challengeFriendPopup(

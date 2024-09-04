@@ -191,7 +191,7 @@ const MovieScene = ({ params }) => {
             {!gameCompleted && (
               <div className="flex flex-col gap-4 min-w-[18rem] md:min-w-[30rem]">
                 <div
-                  className={`flex gap-1 items-center justify-center ${
+                  className={`flex flex-wrap gap-1 items-center justify-center ${
                     gameCompleted ? "invisible" : ""
                   }`}
                 >
@@ -230,7 +230,7 @@ const MovieScene = ({ params }) => {
                 </div>
               </div>
             )}
-            <div className="flex items-center justify-center gap-10 md:text-md text-md">
+            <div className="flex items-center justify-center gap-8 md:text-md text-md">
               <motion.button
                 onClick={() =>
                   challengeFriendPopup(movieUrl, SCENE_DESCRIPTION)

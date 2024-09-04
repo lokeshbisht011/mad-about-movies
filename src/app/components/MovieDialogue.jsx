@@ -114,7 +114,7 @@ const MovieDialogue = ({ params }) => {
     let charIndex = 0;
 
     return currentData.name.split(" ").map((word, wordIndex) => (
-      <span key={wordIndex} className="mr-2">
+      <span key={wordIndex} className="mr-2 text-xs md:text-base">
         {word.split("").map((char, index) => (
           <span
             key={index}
@@ -130,7 +130,7 @@ const MovieDialogue = ({ params }) => {
   };
 
   return (
-    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md md:mt-4 mt-8">
+    <div className="flex flex-col bg-bg p-4 justify-center items-center rounded-lg shadow-md md:mt-4 mt-8 mx-4">
       <span className="md:text-3xl text-xl text-black font-semibold text-center max-w-xl mb-4">
         Guess the name of the movie from the dialogue.
       </span>
@@ -168,7 +168,7 @@ const MovieDialogue = ({ params }) => {
             {!gameCompleted && (
               <div className="flex flex-col gap-5 md:min-w-[30rem] min-w-[20rem]">
                 <div
-                  className={`flex gap-1 items-center justify-center ${
+                  className={`flex flex-wrap gap-1 items-center justify-center ${
                     gameCompleted ? "invisible" : ""
                   }`}
                 >
@@ -209,7 +209,7 @@ const MovieDialogue = ({ params }) => {
                 </div>
               </div>
             )}
-            <div className="flex items-center justify-center gap-10 md:text-md text-md">
+            <div className="flex items-center justify-center gap-8 md:text-md text-md">
               <motion.button
                 onClick={() =>
                   challengeFriendPopup(movieUrl, DIALOGUE_DESCRIPTION)
