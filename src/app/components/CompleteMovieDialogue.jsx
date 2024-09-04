@@ -150,20 +150,18 @@ const MovieDialogue = ({ params }) => {
     let charIndex = 0;
 
     return currentData.hiddenPart.split(" ").map((word, wordIndex) => (
-      <div className="flex">
-        <span key={wordIndex} className="mr-2 text-xs md:text-base">
-          {word.split("").map((char, index) => (
-            <span
-              key={index}
-              className="inline-block text-center w-2 border-b-2 border-gray-500 mx-[2px]"
-            />
-          ))}
-          {charIndex < word.length - 1 && (
-            <span className="inline-block w-1"></span>
-          )}
-          {word.length}
-        </span>
-      </div>
+      <span key={wordIndex} className="mr-2 text-xs md:text-base">
+        {word.split("").map((char, index) => (
+          <span
+            key={index}
+            className="inline-block text-center w-2 border-b-2 border-gray-500 mx-[2px]"
+          />
+        ))}
+        {charIndex < word.length - 1 && (
+          <span className="inline-block w-1"></span>
+        )}
+        {word.length}
+      </span>
     ));
   };
 
