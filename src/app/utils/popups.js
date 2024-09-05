@@ -3,6 +3,7 @@ import { CHALLENGE_DIALOGUE_TITLE } from "./constants";
 import { createRoot } from "react-dom/client";
 import Share from "../components/Share";
 import toast from "react-hot-toast";
+import soundEffectsManager from "@/lib/soundManager";
 
 export const challengeFriendPopup = (movieUrl, description) => {
     Swal.fire({
@@ -63,7 +64,10 @@ export const giveUp = (markGameCompleted) => {
         width: 500,
     }).then((result) => {
         if (result.isConfirmed) {
+            soundEffectsManager.playSound("click");
             markGameCompleted();
-        }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            soundEffectsManager.playSound("click");
+          }
     });
 }

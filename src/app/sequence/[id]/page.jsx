@@ -10,7 +10,7 @@ export async function generateMetadata() {
 const page = ({ params }) => {
   return (
     <div
-      className="flex flex-col min-h-screen pb-4"
+      className="flex flex-col pb-4"
       style={{
         backgroundImage: "url('/bg.png')",
         backgroundSize: "cover",

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import bollywoodMovieScenes from "/public/bollywoodMovieScenes.json";
 import { RANDOM_URL_PREFIX } from "@/app/utils/constants";
 import { numberToString } from "@/app/utils/utils";
+import { PacmanLoader } from "react-spinners";
 
 const Page = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const Page = () => {
 
   return (
     <div
-      className="flex min-h-screen"
+      className="flex min-h-screen justify-center"
       style={{
         backgroundImage: "url('/bg.png')",
         backgroundSize: "cover",
@@ -28,7 +29,9 @@ const Page = () => {
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
       }}
-    ></div>
+    >
+      <PacmanLoader className="mt-36" color="#ffffff" size={20}/>
+    </div>
   );
 };
 

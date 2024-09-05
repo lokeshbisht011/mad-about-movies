@@ -24,6 +24,7 @@ import {
   giveUp,
 } from "../utils/popups";
 import { triggerConfetti } from "@/lib/utils";
+import soundEffectsManager from "@/lib/soundManager";
 
 const MovieScene = ({ params }) => {
   const [numberOfGuesses, setNumberOfGuesses] = useState(0);
@@ -75,12 +76,14 @@ const MovieScene = ({ params }) => {
       markGameCompleted();
       showGameCompletedDialog(numberOfGuesses + 1);
       triggerConfetti();
+      soundEffectsManager.playSound("right");
     } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
       toast(
         "You've reached the maximum number of guesses. Better luck next time!"
       );
       markGameCompleted();
       setGuessFeedback([]);
+      soundEffectsManager.playSound("failed");
     } else if (distance <= similarityThreshold) {
       toast("Almost there! Your guess is very close. Try again!");
       setGuessFeedback(
@@ -99,6 +102,7 @@ const MovieScene = ({ params }) => {
     } else {
       toast(INCORRECT_GUESS_MESSAGE);
       setGuessFeedback([]);
+      soundEffectsManager.playSound("wrong");
     }
     setNumberOfGuesses((prev) => prev + 1);
   };
@@ -184,7 +188,9 @@ const MovieScene = ({ params }) => {
           </motion.div>
           {gameCompleted && (
             <div className="justify-center text-center text-text text-2xl">
-              <span className="font-bold">Movie : <span className="font-normal">{currentData.name}</span></span>
+              <span className="font-bold">
+                Movie : <span className="font-normal">{currentData.name}</span>
+              </span>
             </div>
           )}
           <div className="flex flex-col gap-4 items-center">
@@ -232,9 +238,10 @@ const MovieScene = ({ params }) => {
             )}
             <div className="flex items-center justify-center gap-8 md:text-md text-md">
               <motion.button
-                onClick={() =>
-                  challengeFriendPopup(movieUrl, SCENE_DESCRIPTION)
-                }
+                onClick={() => {
+                  challengeFriendPopup(movieUrl, SCENE_DESCRIPTION);
+                  soundEffectsManager.playSound("click");
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
@@ -243,7 +250,10 @@ const MovieScene = ({ params }) => {
               </motion.button>
               {!gameCompleted && (
                 <motion.button
-                  onClick={() => giveUp(markGameCompleted)}
+                  onClick={() => {
+                    giveUp(markGameCompleted);
+                    soundEffectsManager.playSound("click");
+                  }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
@@ -252,9 +262,10 @@ const MovieScene = ({ params }) => {
                 </motion.button>
               )}
               <motion.button
-                onClick={() =>
-                  nextMovie(router, bollywoodMovieScenes, SCENE_URL)
-                }
+                onClick={() => {
+                  nextMovie(router, bollywoodMovieScenes, SCENE_URL);
+                  soundEffectsManager.playSound("click");
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import BackgroundMusic from "./BackgroundMusic";
+import soundEffectsManager from "@/lib/soundManager";
 
 const SinglePlayerLayout = () => {
   const [themeSuffix, setThemeSuffix] = useState("_light");
@@ -17,6 +19,7 @@ const SinglePlayerLayout = () => {
 
   return (
     <div className="flex flex-col h-vh p-4 items-center text-text">
+      {/* <BackgroundMusic /> */}
       <main className="grid md:grid-cols-2 justify-center items-center gap-4 m-8 text-text">
         <section className="p-6 shadow-md rounded-lg text-center items-center justify-center bg-bgSoft">
           <h2 className="text-2xl mb-4">Arrange Movie Scenes</h2>
@@ -45,11 +48,14 @@ const SinglePlayerLayout = () => {
           <p className="my-4 text-textSoft">
             Can you arrange the movie scenes in the correct order?
           </p>
-          <Link href={"/sequence"}>
-            <span className="bg-button text-white px-4 py-2 rounded-md hover:bg-buttonHover">
-              Play Now
-            </span>
-          </Link>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="md:text-md text-md bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
+            onClick={() => soundEffectsManager.playSound("click")} // Move the onClick here
+          >
+            <Link href="/sequence">Play Now</Link>
+          </motion.button>
         </section>
 
         <section className="p-6 shadow-md rounded-lg text-center items-center justify-center bg-bgSoft">
@@ -65,11 +71,14 @@ const SinglePlayerLayout = () => {
           <p className="my-4 text-textSoft">
             Test your movie knowledge by guessing the movie from a dialogue.
           </p>
-          <Link href={"/dialogue"}>
-            <span className="bg-button text-white px-4 py-2 rounded-md hover:bg-buttonHover">
-              Play Now
-            </span>
-          </Link>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="md:text-md text-md bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
+            onClick={() => soundEffectsManager.playSound("click")} // Move the onClick here
+          >
+            <Link href="/dialogue">Play Now</Link>
+          </motion.button>
         </section>
 
         <section className="p-6 shadow-md rounded-lg text-center items-center justify-center bg-bgSoft">
@@ -85,11 +94,14 @@ const SinglePlayerLayout = () => {
           <p className="my-4 text-textSoft">
             Can you complete the dialogue from the movie?
           </p>
-          <Link href={"/complete-dialogue"}>
-            <span className="bg-button text-white px-4 py-2 rounded-md hover:bg-buttonHover">
-              Play Now
-            </span>
-          </Link>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="md:text-md text-md bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
+            onClick={() => soundEffectsManager.playSound("click")} // Move the onClick here
+          >
+            <Link href="/complete-dialogue">Play Now</Link>
+          </motion.button>
         </section>
 
         <section className="p-6 shadow-md rounded-lg text-center items-center justify-center bg-bgSoft">
@@ -112,13 +124,15 @@ const SinglePlayerLayout = () => {
           <p className="my-4 text-textSoft">
             Test your movie knowledge by guessing the movie from on a scene.
           </p>
-          <Link href={"/scene"}>
-            <span className="bg-button text-white px-4 py-2 rounded-md hover:bg-buttonHover">
-              Play Now
-            </span>
-          </Link>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="md:text-md text-md bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
+            onClick={() => soundEffectsManager.playSound("click")} // Move the onClick here
+          >
+            <Link href="/scene">Play Now</Link>
+          </motion.button>
         </section>
-        
       </main>
     </div>
   );

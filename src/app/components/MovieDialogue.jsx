@@ -22,6 +22,7 @@ import {
 } from "../utils/popups";
 import { motion } from "framer-motion";
 import { triggerConfetti } from "@/lib/utils";
+import soundEffectsManager from "@/lib/soundManager";
 
 const MovieDialogue = ({ params }) => {
   const [numberOfGuesses, setNumberOfGuesses] = useState(0);
@@ -64,12 +65,14 @@ const MovieDialogue = ({ params }) => {
       markGameCompleted();
       showGameCompletedDialog(numberOfGuesses + 1);
       triggerConfetti();
+      soundEffectsManager.playSound("right");
     } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
       toast(
         "You've reached the maximum number of guesses. Better luck next time!"
       );
       markGameCompleted();
       setGuessFeedback([]);
+      soundEffectsManager.playSound("failed");
     } else if (distance <= similarityThreshold) {
       toast("Almost there! Your guess is very close. Try again!");
       setGuessFeedback(
@@ -88,6 +91,7 @@ const MovieDialogue = ({ params }) => {
     } else {
       toast(INCORRECT_GUESS_MESSAGE);
       setGuessFeedback([]);
+      soundEffectsManager.playSound("wrong");
     }
     setNumberOfGuesses((prev) => prev + 1);
   };
@@ -211,9 +215,10 @@ const MovieDialogue = ({ params }) => {
             )}
             <div className="flex items-center justify-center gap-8 md:text-md text-md">
               <motion.button
-                onClick={() =>
-                  challengeFriendPopup(movieUrl, DIALOGUE_DESCRIPTION)
-                }
+                onClick={() => {
+                  challengeFriendPopup(movieUrl, DIALOGUE_DESCRIPTION);
+                  soundEffectsManager.playSound("click");
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
@@ -222,7 +227,10 @@ const MovieDialogue = ({ params }) => {
               </motion.button>
               {!gameCompleted && (
                 <motion.button
-                  onClick={() => giveUp(markGameCompleted)}
+                  onClick={() => {
+                    giveUp(markGameCompleted);
+                    soundEffectsManager.playSound("click");
+                  }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
@@ -231,9 +239,10 @@ const MovieDialogue = ({ params }) => {
                 </motion.button>
               )}
               <motion.button
-                onClick={() =>
-                  nextMovie(router, bollywoodMovieDialogues, DIALOGUE_URL)
-                }
+                onClick={() => {
+                  nextMovie(router, bollywoodMovieDialogues, DIALOGUE_URL);
+                  soundEffectsManager.playSound("click");
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"

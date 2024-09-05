@@ -30,6 +30,7 @@ import {
   giveUp,
 } from "../utils/popups";
 import { triggerConfetti } from "@/lib/utils";
+import soundEffectsManager from "@/lib/soundManager";
 
 const MovieSequence = ({ params }) => {
   const router = useRouter();
@@ -104,16 +105,19 @@ const MovieSequence = ({ params }) => {
     if (lastCorrectIndex == 6) {
       setGameCompleted(true);
       showGameCompletedDialog(numberOfGuesses + 1);
-      triggerConfetti()
-    } else if (lastCorrectIndex > 0) {
-      toast(`You guessed ${lastCorrectIndex} image(s) correctly! Keep going!`);
+      triggerConfetti();
+      soundEffectsManager.playSound("right");
     } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
       toast(
         "You've reached the maximum number of guesses. Better luck next time!"
       );
       markGameCompleted();
+      soundEffectsManager.playSound("failed");
+    } else if (lastCorrectIndex > 0) {
+      toast(`You guessed ${lastCorrectIndex} image(s) correctly! Keep going!`);
     } else {
       toast(INCORRECT_SEQUENCE_GUESS_MESSAGE);
+      soundEffectsManager.playSound("wrong");
     }
     setNumberOfGuesses((prev) => prev + 1);
   };
@@ -179,22 +183,24 @@ const MovieSequence = ({ params }) => {
           </div>
           <Toaster />
           <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-            <CustomDragLayer className={"md:h-[150px] md:w-[350px] h-[75px] w-[175px]"} />
-            <div className="grid grid-cols-2 gap-4">
+            <CustomDragLayer
+              className={"w-[10rem] h-[4rem] sm:w-[12.5rem] sm:h-[5rem] md:w-[21.875rem] md:h-[9.375rem]"}
+            />
+            <div className="grid grid-cols-2 md:gap-4 sm:gap-4 gap-4">
               {images.map((image, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="md:h-[150px] md:w-[350px] h-[75px] w-[175px] relative"
+                  className="w-[10rem] h-[4rem] sm:w-[12.5rem] sm:h-[5rem] md:w-[21.875rem] md:h-[9.375rem] relative"
                 >
                   {index >= correctIndex ? (
                     <CustomImage
                       src={image.src}
                       index={index}
                       moveImage={moveImage}
-                      className={"md:h-[150px] md:w-[350px] h-[75px] w-[175px]"}
+                      className={"w-[10rem] h-[4rem] sm:w-[12.5rem] sm:h-[5rem] md:w-[21.875rem] md:h-[9.375rem]"}
                     />
                   ) : (
                     <Image
@@ -230,9 +236,10 @@ const MovieSequence = ({ params }) => {
           )}
           <div className="flex items-center justify-center gap-10 md:text-md text-md">
             <motion.button
-              onClick={() =>
-                challengeFriendPopup(movieUrl, SEQUENCE_DESCRIPTION(movieName))
-              }
+              onClick={() => {
+                soundEffectsManager.playSound("click");
+                challengeFriendPopup(movieUrl, SEQUENCE_DESCRIPTION(movieName));
+              }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
@@ -241,7 +248,10 @@ const MovieSequence = ({ params }) => {
             </motion.button>
             {!gameCompleted && (
               <motion.button
-                onClick={() => giveUp(markGameCompleted)}
+                onClick={() => {
+                  giveUp(markGameCompleted);
+                  soundEffectsManager.playSound("click");
+                }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="bg-giveUpButton hover:bg-giveUpButtonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
@@ -250,7 +260,10 @@ const MovieSequence = ({ params }) => {
               </motion.button>
             )}
             <motion.button
-              onClick={() => nextMovie(router, bollywoodMovies, SEQUENCE_URL)}
+              onClick={() => {
+                nextMovie(router, bollywoodMovies, SEQUENCE_URL);
+                soundEffectsManager.playSound("click");
+              }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="bg-button hover:bg-buttonHover text-white px-3 py-1 md:px-4 md:py-2 rounded-md"
