@@ -103,21 +103,21 @@ const MovieSequence = ({ params }) => {
     setCorrectIndex(lastCorrectIndex);
 
     if (lastCorrectIndex == 6) {
+      soundEffectsManager.playSound("right");
       setGameCompleted(true);
       showGameCompletedDialog(numberOfGuesses + 1);
       triggerConfetti();
-      soundEffectsManager.playSound("right");
     } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
+      soundEffectsManager.playSound("failed");
       toast(
         "You've reached the maximum number of guesses. Better luck next time!"
       );
       markGameCompleted();
-      soundEffectsManager.playSound("failed");
     } else if (lastCorrectIndex > 0) {
       toast(`You guessed ${lastCorrectIndex} image(s) correctly! Keep going!`);
     } else {
-      toast(INCORRECT_SEQUENCE_GUESS_MESSAGE);
       soundEffectsManager.playSound("wrong");
+      toast(INCORRECT_SEQUENCE_GUESS_MESSAGE);
     }
     setNumberOfGuesses((prev) => prev + 1);
   };
@@ -184,7 +184,9 @@ const MovieSequence = ({ params }) => {
           <Toaster />
           <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
             <CustomDragLayer
-              className={"w-[10rem] h-[4rem] sm:w-[12.5rem] sm:h-[5rem] md:w-[21.875rem] md:h-[9.375rem]"}
+              className={
+                "w-[10rem] h-[4rem] sm:w-[12.5rem] sm:h-[5rem] md:w-[21.875rem] md:h-[9.375rem]"
+              }
             />
             <div className="grid grid-cols-2 md:gap-4 sm:gap-4 gap-4">
               {images.map((image, index) => (
@@ -200,7 +202,9 @@ const MovieSequence = ({ params }) => {
                       src={image.src}
                       index={index}
                       moveImage={moveImage}
-                      className={"w-[10rem] h-[4rem] sm:w-[12.5rem] sm:h-[5rem] md:w-[21.875rem] md:h-[9.375rem]"}
+                      className={
+                        "w-[10rem] h-[4rem] sm:w-[12.5rem] sm:h-[5rem] md:w-[21.875rem] md:h-[9.375rem]"
+                      }
                     />
                   ) : (
                     <Image
@@ -249,8 +253,8 @@ const MovieSequence = ({ params }) => {
             {!gameCompleted && (
               <motion.button
                 onClick={() => {
-                  giveUp(markGameCompleted);
                   soundEffectsManager.playSound("click");
+                  giveUp(markGameCompleted);
                 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -261,8 +265,8 @@ const MovieSequence = ({ params }) => {
             )}
             <motion.button
               onClick={() => {
-                nextMovie(router, bollywoodMovies, SEQUENCE_URL);
                 soundEffectsManager.playSound("click");
+                nextMovie(router, bollywoodMovies, SEQUENCE_URL);
               }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

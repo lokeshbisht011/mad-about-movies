@@ -62,17 +62,17 @@ const MovieDialogue = ({ params }) => {
     const similarityThreshold = Math.floor(actualMovieName.length * 0.3);
 
     if (distance === 0) {
+      soundEffectsManager.playSound("right");
       markGameCompleted();
       showGameCompletedDialog(numberOfGuesses + 1);
       triggerConfetti();
-      soundEffectsManager.playSound("right");
     } else if (numberOfGuesses + 1 === GUESSES_ALLOWED) {
+      soundEffectsManager.playSound("failed");
       toast(
         "You've reached the maximum number of guesses. Better luck next time!"
       );
       markGameCompleted();
       setGuessFeedback([]);
-      soundEffectsManager.playSound("failed");
     } else if (distance <= similarityThreshold) {
       toast("Almost there! Your guess is very close. Try again!");
       setGuessFeedback(
@@ -89,9 +89,9 @@ const MovieDialogue = ({ params }) => {
         )
       );
     } else {
+      soundEffectsManager.playSound("wrong");
       toast(INCORRECT_GUESS_MESSAGE);
       setGuessFeedback([]);
-      soundEffectsManager.playSound("wrong");
     }
     setNumberOfGuesses((prev) => prev + 1);
   };
@@ -216,8 +216,8 @@ const MovieDialogue = ({ params }) => {
             <div className="flex items-center justify-center gap-8 md:text-md text-md">
               <motion.button
                 onClick={() => {
-                  challengeFriendPopup(movieUrl, DIALOGUE_DESCRIPTION);
                   soundEffectsManager.playSound("click");
+                  challengeFriendPopup(movieUrl, DIALOGUE_DESCRIPTION);
                 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -228,8 +228,8 @@ const MovieDialogue = ({ params }) => {
               {!gameCompleted && (
                 <motion.button
                   onClick={() => {
-                    giveUp(markGameCompleted);
                     soundEffectsManager.playSound("click");
+                    giveUp(markGameCompleted);
                   }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -240,8 +240,8 @@ const MovieDialogue = ({ params }) => {
               )}
               <motion.button
                 onClick={() => {
-                  nextMovie(router, bollywoodMovieDialogues, DIALOGUE_URL);
                   soundEffectsManager.playSound("click");
+                  nextMovie(router, bollywoodMovieDialogues, DIALOGUE_URL);
                 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
