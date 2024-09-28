@@ -30,21 +30,31 @@ export default function RootLayout({ children }) {
         `}
         </Script>
 
-        <Script
+        {/* <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4080624113623119"
           crossOrigin="anonymous"
-        ></Script>
+        ></Script> */}
         <meta property="og:image" content="" />
         <meta property="og:title" content="Mad About Movies" />
         <meta property="og:description" content="Everything movie related..." />
       </head>
       <body className={`${inter.className} bg-bg`}>
-        <div className="flex flex-col h-screen bg-bg" >
+        <div className="flex flex-col h-screen bg-bg">
           <Navbar />
           {/* <ThemeToggle /> */}
           {children}
           <Footer />
+          <Script id="infolinks-script" strategy="afterInteractive">
+            {`
+            var infolinks_pid = 3425935; 
+            var infolinks_wsid = 0;
+          `}
+          </Script>
+          <Script
+            strategy="afterInteractive"
+            src="//resources.infolinks.com/js/infolinks_main.js"
+          />
         </div>
       </body>
     </html>
