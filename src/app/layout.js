@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
           <Script id="infolinks-script" strategy="afterInteractive">
             {`
             var infolinks_pid = 3425935; 
-            var infolinks_wsid = 0;
+            var infolinks_wsid = 1;
           `}
           </Script>
           <Script
